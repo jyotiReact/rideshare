@@ -1,6 +1,13 @@
+"use client";
+
 import React from "react";
 
-function StepLine({direction}) {
+interface StepLineProps {
+  line?: boolean;
+  lineStyle?: string;
+}
+
+const StepLine: React.FC<StepLineProps> = ({ line, lineStyle }) => {
   return (
     <div className="inline-flex flex-col items-center justify-center">
       <div className="relative w-7 h-7">
@@ -9,9 +16,13 @@ function StepLine({direction}) {
         </div>
       </div>
 
-      <div className="w-0.5 h-20 border-l-2 border-dashed border-[#631cff]" />
+      {line && (
+        <div
+          className={`w-0.5  min-h-[100px] border-l-2 border-dashed border-[#631cff] ${lineStyle}`}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default StepLine;

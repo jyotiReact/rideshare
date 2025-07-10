@@ -1,7 +1,7 @@
 import React from "react";
 import { PassengerListSection } from "./PassengerList";
-import { RideDetailsSection } from "./RideInfo";
 import { AlertCircleIcon } from "@hugeicons/core-free-icons";
+import { RideInfoSection } from "./RideInfo";
 
 export const RideDetails = (): JSX.Element => {
   const alreadyDeparted = false;
@@ -25,7 +25,7 @@ export const RideDetails = (): JSX.Element => {
             <PassengerListSection alreadyDeparted={alreadyDeparted} />
           </div>
           <div className="w-1/3">
-            <RideDetailsSection alreadyDeparted={alreadyDeparted} />
+            <RideInfoSection alreadyDeparted={alreadyDeparted} />
           </div>
         </div>
       </div>

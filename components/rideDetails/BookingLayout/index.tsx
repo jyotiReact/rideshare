@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { TickDouble02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeftIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const BookingLayout = ({
@@ -13,6 +14,7 @@ export const BookingLayout = ({
   description,
   children,
 }): JSX.Element => {
+  const router = useRouter();
   // Journey data
   const journeyData = {
     date: "Monday, 23 June",
@@ -43,7 +45,10 @@ export const BookingLayout = ({
       <div className="flex w-full  items-start gap-2.5">
         {/* Left Card - Booking Request */}
         <Card className="flex flex-col items-start gap-5 p-10 relative min-w-auto  bg-white rounded-[10px]  border-[#f2f2f2]">
-          <div className="inline-flex items-center gap-2.5 p-2.5 relative bg-[#0000000d] rounded-[20px]">
+          <div
+            className="inline-flex items-center gap-2.5 p-2.5 relative bg-[#0000000d] rounded-[20px] cursor-pointer"
+            onClick={() => router.back()}
+          >
             <ArrowLeftIcon className="w-5 h-5" />
           </div>
           <CardContent className="p-0 space-y-2">

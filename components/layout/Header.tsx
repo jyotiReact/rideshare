@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         <Link href={"/dashboard"}>
           <div className="flex items-center gap-2 cursor-pointer ">
             {/* <div className="w-6 h-6 bg-purple-600 rounded" /> */}
-            <Image src="/images/logo.png" alt="Logo" width={24} height={24} />
+            <Image src="/images/Logo.png" alt="Logo" width={24} height={24} />
             <span className="font-semibold text-lg text-[#1A1A1A]">
               RideShare
             </span>

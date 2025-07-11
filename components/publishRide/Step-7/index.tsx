@@ -17,7 +17,7 @@ export const StepSeven = (): JSX.Element => {
                 Ready to publish
               </h1>
               <span className="font-medium text-[#353535] text-base [font-family:'Plus_Jakarta_Sans',Helvetica]">
-                Step 12/5
+                Step 7/7
               </span>
             </div>
           </div>

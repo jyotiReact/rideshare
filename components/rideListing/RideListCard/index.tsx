@@ -12,21 +12,20 @@ import {
   ZapIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 interface RideStatusCardProps {
   ride: Ride;
   btnLabel?: string;
+  handleCardClick?: () => void
 }
 
-const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel }) => {
-  const router = useRouter();
+const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCardClick }) => {
   return (
     <Card
       key={ride.id}
       className="w-full rounded-[10px] overflow-hidden border border-solid border-[#f2f1f1] cursor-pointer"
-      onClick={() => router.push(`/ride-details`)}
+      onClick={handleCardClick}
     >
       <CardContent className="p-0">
         {/* Top Row: Time & Price */}

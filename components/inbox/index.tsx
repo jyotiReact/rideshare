@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Messages } from "./Messages";
 import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
 import { Notifications } from "./Notifications";
-import InboxLayout from "./InboxLayout";
+import InboxLayout from "../layout/InboxLayout";
 import {
   ChatPreview,
   JourneyDetailsType,
@@ -86,12 +86,12 @@ const tabOptions: TabOption[] = [
   {
     id: "messages",
     label: "Messages",
-    // icon: Message01Icon,
+    icon: Message01Icon,
   },
   {
     id: "notifications",
     label: "Notifications",
-    // icon: Notification01Icon,
+    icon: Notification01Icon,
   },
 ];
 
@@ -100,7 +100,7 @@ export const Inbox = (): JSX.Element => {
   const [tab, setTab] = useState<string>("messages");
 
   return (
-    <div className="flex flex-col w-full bg-zinc-50 h-full px-20 pt-5 pb-20 border-4">
+    <div className="flex flex-col w-full bg-zinc-50 h-full  pb-20 border-4">
       <div className="flex justify-center items-start">
         {tab === "messages" ? (
           <InboxLayout

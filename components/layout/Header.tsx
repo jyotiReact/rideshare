@@ -110,24 +110,24 @@ const Header: React.FC = () => {
           {open && (
             <div className="bg-white rounded-xl shadow-md  px-[14px] pt-2 w-64 space-y-3 absolute top-14 right-0 z-10">
               {menuItems.map((item, index) => (
-                <Link href={item?.path}>
+                <Link
+                  key={index}
+                  href={item.path}
+                  onClick={() => setOpen(false)}
+                  className={`flex items-center gap-3 py-2 rounded-lg cursor-pointer border-b ${
+                    item.label === "Logout" ? "text-red-500" : "text-gray-700"
+                  }`}
+                >
                   <div
-                    key={index}
-                    className={`flex items-center gap-3 py-2 rounded-lg cursor-pointer  border-b ${
-                      item.label === "Logout" ? "text-red-500" : "text-gray-700"
-                    }`}
+                    className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                      item.label === "Logout"
+                        ? "bg-red-200 text-red-500"
+                        : "bg-[#631CFF1A] text-[#631CFF]"
+                    } `}
                   >
-                    <div
-                      className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                        item.label === "Logout"
-                          ? "bg-red-200 text-red-500"
-                          : "bg-[#631CFF1A] text-[#631CFF]"
-                      } `}
-                    >
-                      <HugeiconsIcon icon={item.icon} width={20} />
-                    </div>
-                    <span className="text-sm font-medium">{item.label}</span>
+                    <HugeiconsIcon icon={item.icon} width={20} />
                   </div>
+                  <span className="text-sm font-medium">{item.label}</span>
                 </Link>
               ))}
             </div>

@@ -1,15 +1,13 @@
 "use client";
 
-import { BookingLayout } from "@/components/rideDetails/BookingLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PencilIcon } from "lucide-react";
 import React from "react";
-import { EditLayout } from "../EditLayout";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { PencilEdit01Icon, PencilEdit02Icon } from "@hugeicons/core-free-icons";
+import {  PencilEdit02Icon } from "@hugeicons/core-free-icons";
+import { BookingLayout } from "@/components/layout/BookingLayout";
 
 const formFields = [
   {
@@ -27,7 +25,7 @@ const formFields = [
 
 export const EditProfile = (): JSX.Element => {
   return (
-    <EditLayout
+    <BookingLayout
       title="Edit Details"
       description="Edit your personal details which are visible to other people."
     >
@@ -95,6 +93,6 @@ export const EditProfile = (): JSX.Element => {
           </Button>
         </div>
       </div>
-    </EditLayout>
+    </BookingLayout>
   );
 };

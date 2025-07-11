@@ -7,17 +7,18 @@ import React from "react";
 
 // Define tab option type
 
+
 // Define props type
 interface TabsComponentProps {
   title?: string;
-  tabOptions: TabOption[];
-  handleTabClick: (tabId: string) => void;
+  tabOptions?: TabOption[];
+  handleTabClick?: (tabId: string) => void;
 }
 
 export const TabsComponent: React.FC<TabsComponentProps> = ({
   title,
-  tabOptions,
-  handleTabClick,
+  tabOptions=[],
+  handleTabClick=()=>{},
 }) => {
   return (
     <section className="flex flex-col items-center gap-5 w-full">
@@ -33,7 +34,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
         className="w-full max-w-[397px]"
       >
         <TabsList className="grid grid-cols-2 h-auto p-0 bg-transparent gap-2.5">
-          {tabOptions.map((tab) => (
+          {tabOptions?.map((tab) => (
             <TabsTrigger
               key={tab.id}
               value={tab.id}
@@ -43,9 +44,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                 data-[state=active]:border-white data-[state=inactive]:border-[#F2F1F1] 
                 data-[state=inactive]:bg-transparent"
             >
-              {/* {React.createElement(tab.icon, {
-                className: "w-6 h-6 text-[#631CFF]",
-              })} */}
+              <HugeiconsIcon icon={tab.icon} className="w-6 h-6" />
               <span className="font-['Plus_Jakarta_Sans',Helvetica] font-bold text-base tracking-[-0.13px] leading-[22.4px] whitespace-nowrap data-[state=inactive]:text-[#515251]">
                 {tab.label}
               </span>

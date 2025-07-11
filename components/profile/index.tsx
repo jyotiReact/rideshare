@@ -1,21 +1,22 @@
 "use client";
 import React, { useState } from "react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
-import { ProfileLayout } from "./ProfileLayout";
+import { ProfileLayout } from "../layout/ProfileLayout";
 import VerifyAccount from "./VerifyAccount";
 import { Verified } from "./Verified";
 import { Account } from "./Account";
+import { BookingLayout } from "../layout/BookingLayout";
 
 const tabOptions = [
   {
     id: "about",
     label: "About you",
-    // icon: ArrowRight01Icon,
+    icon: ArrowRight01Icon,
   },
   {
     id: "account",
     label: "Account",
-    // icon: ArrowRight01Icon,
+    icon: ArrowRight01Icon,
   },
 ];
 export const Profile = (): JSX.Element => {

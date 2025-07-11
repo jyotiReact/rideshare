@@ -7,7 +7,7 @@ interface StepLineProps {
   lineStyle?: string;
 }
 
-const StepLine: React.FC<StepLineProps> = ({ line, lineStyle }) => {
+const StepLine: React.FC<StepLineProps> = ({ line = true, lineStyle }) => {
   return (
     <div className="inline-flex flex-col items-center justify-center">
       <div className="relative w-7 h-7">

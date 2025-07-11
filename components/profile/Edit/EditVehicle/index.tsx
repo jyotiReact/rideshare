@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronDownIcon } from "lucide-react";
 import React from "react";
-import { EditLayout } from "../EditLayout";
 import { Input } from "@/components/ui/input";
+import { BookingLayout } from "@/components/layout/BookingLayout";
 
 export const EditVehicle = (): JSX.Element => {
   return (
-    <EditLayout
+    <BookingLayout
       title="Add/ Edit a vehicle"
       description="Add/ Edit Vehicle that you travel in"
     >
@@ -74,6 +73,6 @@ export const EditVehicle = (): JSX.Element => {
           Save
         </Button>
       </div>
-    </EditLayout>
+    </BookingLayout>
   );
 };

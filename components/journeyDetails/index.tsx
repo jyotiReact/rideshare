@@ -20,7 +20,7 @@ const JourneyDetails: React.FC<{ journeyData: JourneyData }> = ({
   journeyData,
 }) => {
   return (
-    <div className="flex flex-col items-start gap-[30px] pt-0 pb-[30px] px-0 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#cbcbcb]">
+    <div className="flex  flex-col items-start gap-[30px] pt-0 pb-[30px] px-0 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#cbcbcb]">
       <div className="relative self-stretch mt-[-1.00px] font-bold text-black text-2xl leading-normal">
         {journeyData.date}
       </div>

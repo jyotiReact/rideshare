@@ -5,6 +5,7 @@ import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
 import { Ride } from "@/types";
 import RideListCard from "../rideListing/RideListCard";
 import { TabsComponent } from "../tabs";
+import { useRouter } from "next/navigation";
 
 const rides: Ride[] = [
   {
@@ -74,16 +75,17 @@ const rides: Ride[] = [
 ];
 export const YourRides = (): JSX.Element => {
   const [tab, setTab] = useState("published");
+  const router = useRouter();
   const tabOptions = [
     {
       id: "published",
       label: "Published Rides",
-      // icon: Message01Icon,
+      icon: Message01Icon,
     },
     {
       id: "bookings",
       label: "Your Bookings",
-      // icon: Notification01Icon,
+      icon: Notification01Icon,
     },
   ];
   return (
@@ -105,6 +107,7 @@ export const YourRides = (): JSX.Element => {
                     key={ride.id}
                     ride={ride}
                     btnLabel="View Details"
+                    handleCardClick={() => router.push(`/request-details`)}
                   />
                 );
               })}

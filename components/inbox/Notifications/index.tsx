@@ -1,13 +1,18 @@
 // components/Notifications.tsx
 import JourneyDetails from "@/components/journeyDetails";
+import PassengerInfoCard from "@/components/passengerInfoCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Profile from "@/components/ui/profile";
 import { JourneyDetailsType } from "@/types";
+import {
+  Agreement01Icon,
+  ArrowRight01Icon,
+  MessengerIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRightIcon, CheckSquareIcon, XIcon } from "lucide-react";
 import React from "react";
-
-
 
 type NotificationsProps = {
   journeyDetails: JourneyDetailsType;
@@ -37,35 +42,15 @@ export const Notifications = ({
 
           {/* Rider Profile Section */}
           <div className="flex flex-col items-start justify-center gap-5 w-full rounded-[10px]">
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3.5">
-                <Profile />
-                <div className="flex flex-col items-start gap-2.5">
-                  <span className="font-bold text-black text-base tracking-[-0.13px] leading-[22.4px]">
-                    Ritik Bhardwaj
-                  </span>
-                  <div className="flex items-center gap-2.5 w-full">
-                    <span className="font-medium text-[#101828] text-sm">
-                      Chandigarh → Shimla
-                    </span>
-                    <div className="w-[99px] h-[18px]" />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-end gap-5 w-[229px]">
-                <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">
-                  2 Seats
-                </span>
-                <ArrowRightIcon className="w-5 h-5" />
-              </div>
-            </div>
+            <PassengerInfoCard />
 
             <div className="flex items-center gap-2.5 py-2.5 w-full">
-              <img
-                className="w-6 h-6"
-                alt="Agreement icon"
-                src="/agreement-01.svg"
+              <HugeiconsIcon
+                icon={Agreement01Icon}
+                width={20}
+                color="#631CFF"
               />
+
               <span className="font-medium text-black text-sm text-center leading-5">
                 Never cancels Rides
               </span>
@@ -75,11 +60,7 @@ export const Notifications = ({
               variant="outline"
               className="inline-flex items-center justify-center gap-2.5 px-5 py-[15px] bg-[#631cff1a] text-[#631cff] rounded-[25px]"
             >
-              <img
-                className="w-5 h-5"
-                alt="Messenger icon"
-                src="/messenger.svg"
-              />
+              <HugeiconsIcon icon={MessengerIcon} width={20} color="#631CFF" />
               <span className="font-bold text-sm tracking-[-0.11px] leading-[19.6px]">
                 Contact Ritik
               </span>

@@ -2,9 +2,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ArrowRightIcon, ArrowUpRightIcon, BellIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const YourBookingsSection = (): JSX.Element => {
+  const router = useRouter();
   // Booking data for reuse
   const bookings = [
     {
@@ -73,13 +76,8 @@ export const YourBookingsSection = (): JSX.Element => {
                       </div>
                     </div>
                   </div>
-
-                 
                 </div>
-                {/* Time information */}
-                {/* <div className="flex items-center justify-between w-full"> */}
-                  
-                {/* Origin and destination */}
+
                 <div className="flex items-center justify-between w-full">
                   <div className="flex w-[104px] items-end justify-between">
                     <div className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-[#515251] text-xs">
@@ -106,7 +104,7 @@ export const YourBookingsSection = (): JSX.Element => {
                     {booking.price}
                   </div>
                 </div>
-                <Button className="inline-flex items-center justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
+                <Button onClick={() => router.push(`/ride-details`)} className="inline-flex items-center justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
                   <span className="[font-family:'Inter',Helvetica] font-medium text-base tracking-[-0.13px] leading-[22.4px]">
                     View Details
                   </span>
@@ -115,26 +113,28 @@ export const YourBookingsSection = (): JSX.Element => {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex items-center justify-between px-10 py-2.5 bg-[#0000000a]">
-            <div className="inline-flex items-center gap-2.5">
-              <div className="inline-flex items-center gap-[5px]">
-                <div className="inline-flex items-center gap-2 p-2 bg-white rounded-3xl">
-                  <BellIcon className="w-[21.82px] h-[21.82px]" />
+          <Link href={`/your-rides/bookings`}>
+            <CardFooter className="flex items-center justify-between px-10 py-2.5 bg-[#0000000a] cursor-pointer">
+              <div className="inline-flex items-center gap-2.5">
+                <div className="inline-flex items-center gap-[5px]">
+                  <div className="inline-flex items-center gap-2 p-2 bg-white rounded-3xl">
+                    <BellIcon className="w-[21.82px] h-[21.82px]" />
+                  </div>
+                  <div className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-semibold text-black text-sm text-center leading-5 whitespace-nowrap">
+                    booking requests
+                  </div>
                 </div>
-                <div className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-semibold text-black text-sm text-center leading-5 whitespace-nowrap">
-                  booking requests
-                </div>
+                <Badge className="inline-flex flex-col items-center justify-center gap-2.5 px-2 py-[5px] bg-[#E33629] rounded-[40px]">
+                  <span className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-semibold text-white text-xs text-center">
+                    {booking.notifications} New
+                  </span>
+                </Badge>
               </div>
-              <Badge className="inline-flex flex-col items-center justify-center gap-2.5 px-2 py-[5px] bg-[#E33629] rounded-[40px]">
-                <span className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-semibold text-white text-xs text-center">
-                  {booking.notifications} New
-                </span>
-              </Badge>
-            </div>
-            <div className="inline-flex items-center justify-end gap-1">
-              <ArrowRightIcon className="w-5 h-5" />
-            </div>
-          </CardFooter>
+              <div className="inline-flex items-center justify-end gap-1">
+                <ArrowRightIcon className="w-5 h-5" />
+              </div>
+            </CardFooter>
+          </Link>
         </Card>
       ))}
     </section>

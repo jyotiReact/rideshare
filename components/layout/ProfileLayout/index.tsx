@@ -68,7 +68,9 @@ export const ProfileLayout = ({
                     width={20}
                     color="#631CFF"
                   />
-                  <span className="font-medium text-base font-sans">Edit</span>
+                  <span className="font-medium text-base font-sans">
+                    Edit
+                  </span>
                 </Button>
               </Link>
             </CardContent>
@@ -94,7 +96,7 @@ export const ProfileLayout = ({
                     <span className="font-bold text-base font-sans">
                       {tab.label}
                     </span>
-                    {/* <tab.icon className="w-6 h-6 " /> */}
+                    <HugeiconsIcon icon={tab.icon} className="w-6 h-6" />
                   </TabsTrigger>
                 ))}
               </TabsList>

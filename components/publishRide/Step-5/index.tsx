@@ -1,12 +1,17 @@
+"use client";
+
 import Terms from "@/components/terms&Conditions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { CheckIcon, MinusIcon, PlusIcon, UsersIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const StepFive = (): JSX.Element => {
   // Data for passenger count and price
+  const router = useRouter();
+
   const passengerCount = "02";
   const priceValue = "1000";
   const priceIncrement = "₹100";
@@ -72,7 +77,7 @@ export const StepFive = (): JSX.Element => {
 
                   <div className="flex items-center justify-between relative flex-1 grow">
                     <div className="inline-flex flex-col items-start justify-center gap-1 relative flex-[0_0_auto]">
-                      <div className="relative w-fit mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-neutralblackb-600 text-base tracking-[0] leading-7 whitespace-nowrap">
+                      <div className="relative w-fit mt-[-1.00px] text-[#474B57] [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-neutralblackb-600 text-base tracking-[0] leading-7 whitespace-nowrap">
                         Maximum 2 passengers in the backseat
                       </div>
                     </div>
@@ -142,6 +147,9 @@ export const StepFive = (): JSX.Element => {
 
             {/* Continue Button */}
             <Button
+              onClick={() => {
+                router.push("/publish-ride/step-6");
+              }}
               variant="default"
               className="flex items-center justify-center gap-2.5 px-5 py-[15px] relative self-stretch w-full flex-[0_0_auto] bg-[#631cff] rounded-[25px] h-auto"
             >

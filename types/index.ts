@@ -54,11 +54,7 @@ type HugeIcon = React.ComponentType<{
 export type TabOption = {
   id: string;
   label: string;
-  icon?: React.ComponentType<{
-    className?: string;
-    color?: string;
-    size?: number | string;
-  }>;
+  icon?: any
 };
 
 
@@ -82,11 +78,15 @@ export interface Notification {
   image: string;
 }
 export type InboxLayoutProps = {
-  tabOptions: TabOption[];
-  handleTabClick: (id: string) => void;
+  tabOptions?: TabOption[];
+  handleTabClick?: (id: string) => void;
   data: Notification[] | ChatPreview[];
   children: React.ReactNode;
   alertIcon?: boolean;
+  showTabs?: boolean;
+  title?: string;
+  description?: string;
+  
 };
 
  

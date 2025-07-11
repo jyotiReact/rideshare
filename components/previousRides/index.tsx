@@ -5,6 +5,8 @@ import { Ride } from "@/types";
 import RideListCard from "../rideListing/RideListCard";
 import { TabsComponent } from "../tabs";
 import { RideStatusCard } from "./RidesCards";
+import RidesBookings from "./RidesBookings";
+import { useRouter } from "next/navigation";
 
 const rides: Ride[] = [
   {
@@ -74,37 +76,45 @@ const rides: Ride[] = [
 ];
 export const PreviousRides = (): JSX.Element => {
   const [tab, setTab] = useState("rides");
+  const router = useRouter();
   const tabOptions = [
     {
       id: "rides",
       label: "Previous Rides",
-      // icon: Message01Icon,
+      icon: Message01Icon,
     },
     {
       id: "bookings",
       label: "Previous Bookings",
-      // icon: Notification01Icon,
+      icon: Notification01Icon,
     },
   ];
   return (
     <div className="flex flex-col w-full py-10">
       <TabsComponent
         title="Previous Rides"
-        tabOptions={tabOptions} 
+        tabOptions={tabOptions}
         handleTabClick={(tab) => setTab(tab)}
       />
 
       <div className="flex justify-center mt-8">
         <div className="w-4/5">
           {tab === "rides" ? (
-            <RideStatusCard />
+            <RideStatusCard
+              handleClick={() =>
+                router.push("/previous-rides/view-details")
+              }
+            />
           ) : (
             <div className="flex flex-col items-center gap-5 w-full">
               {rides?.map((ride) => {
                 return (
-                  <RideListCard
-                    key={ride.id}
+                  <RidesBookings
                     ride={ride}
+                    key={ride.id}
+                    handleCardClick={() =>
+                      router.push("/previous-rides/view-details")
+                    }
                     btnLabel="View Details"
                   />
                 );

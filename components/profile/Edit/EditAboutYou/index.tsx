@@ -2,14 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { EditLayout } from "../EditLayout";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
+import { BookingLayout } from "@/components/layout/BookingLayout";
 
 export const EditAboutYou = (): JSX.Element => {
   return (
-    <EditLayout
+    <BookingLayout
       title="About You"
       description="Edit the details of your preferences and about you"
     >
@@ -34,6 +33,6 @@ export const EditAboutYou = (): JSX.Element => {
           </Button>
         </div>
       </div>
-    </EditLayout>
+    </BookingLayout>
   );
 };

@@ -22,7 +22,7 @@ type MessagesProps = {
 
 export const Messages = ({ messages }: MessagesProps): JSX.Element => {
   return (
-    <Card className="h-[691px] rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
+    <Card className="h-[691px]  rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
       {/* Chat header */}
       <div className="flex items-center gap-5 p-5 w-full bg-white rounded-[20px_20px_0px_0px] backdrop-blur-md">
         <div className="flex items-center gap-[5px]">

@@ -5,6 +5,7 @@ import { ChevronDownIcon, RefreshCwIcon } from "lucide-react";
 import React from "react";
 import { Ride } from "@/types";
 import RideListCard from "../RideListCard";
+import { useRouter } from "next/navigation";
 
 const rides: Ride[] = [
   {
@@ -74,6 +75,8 @@ const rides: Ride[] = [
 ];
 
 export const DepartureTimeSection = (): JSX.Element => {
+    const router = useRouter();
+  
   return (
     <section className="flex flex-col w-full  gap-10">
       {/* Header section */}
@@ -127,7 +130,14 @@ export const DepartureTimeSection = (): JSX.Element => {
       {/* Ride cards */}
       <div className="flex flex-col items-center gap-5 w-full">
         {rides?.map((ride) => {
-          return <RideListCard key={ride.id} ride={ride} btnLabel="Book now" />;
+          return (
+            <RideListCard
+              key={ride.id}
+              ride={ride}
+              btnLabel="Book now"
+              handleCardClick={() => router.push(`/ride-details`)}
+            />
+          );
         })}
       </div>
       <Button className="flex items-center justify-center gap-2.5 px-[30px] py-[18px] w-fit mx-auto   rounded-[28px] border ">

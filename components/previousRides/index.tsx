@@ -1,9 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { YourBookingsSection } from "./YourBookings";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Ride } from "@/types";
 import RideListCard from "../rideListing/RideListCard";
 import { TabsComponent } from "../tabs";
@@ -81,21 +78,22 @@ export const PreviousRides = (): JSX.Element => {
     {
       id: "rides",
       label: "Previous Rides",
-      icon: Message01Icon,
+      // icon: Message01Icon,
     },
     {
       id: "bookings",
       label: "Previous Bookings",
-      icon: Notification01Icon,
+      // icon: Notification01Icon,
     },
   ];
   return (
     <div className="flex flex-col w-full py-10">
       <TabsComponent
         title="Previous Rides"
-        tabOptions={tabOptions}
+        tabOptions={tabOptions} 
         handleTabClick={(tab) => setTab(tab)}
       />
+
       <div className="flex justify-center mt-8">
         <div className="w-4/5">
           {tab === "rides" ? (

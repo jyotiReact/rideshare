@@ -1,3 +1,6 @@
+import type { IconSvgElement } from "@hugeicons/react";
+
+
 export interface User {
   id: string;
   email: string;
@@ -38,3 +41,64 @@ export interface AuthContextType {
   logout: () => void;
   loading: boolean;
 }
+
+// In @/types.ts or at the top of ProfileLayout.tsx
+
+type HugeIcon = React.ComponentType<{
+  color?: string;
+  size?: number | string;
+  className?: string;
+}> | IconSvgElement 
+;
+
+export type TabOption = {
+  id: string;
+  label: string;
+  icon?: React.ComponentType<{
+    className?: string;
+    color?: string;
+    size?: number | string;
+  }>;
+};
+
+
+
+export interface ChatPreview {
+  name: string;
+  message: string;
+  avatar: string;
+}
+
+export interface Message {
+  content: string;
+  time: string;
+  isOutgoing: boolean;
+}
+
+export interface Notification {
+  id: number;
+  name: string;
+  message: string;
+  image: string;
+}
+export type InboxLayoutProps = {
+  tabOptions: TabOption[];
+  handleTabClick: (id: string) => void;
+  data: Notification[] | ChatPreview[];
+  children: React.ReactNode;
+  alertIcon?: boolean;
+};
+
+ 
+export  type JourneyLocation = {
+  city: string;
+  address: string;
+};
+
+export type JourneyDetailsType = {
+  date: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: string;
+  locations: JourneyLocation[];
+};

@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { YourBookingsSection } from "./YourBookings";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Ride } from "@/types";
 import RideListCard from "../rideListing/RideListCard";
 import { TabsComponent } from "../tabs";
@@ -80,12 +78,12 @@ export const YourRides = (): JSX.Element => {
     {
       id: "published",
       label: "Published Rides",
-      icon: Message01Icon,
+      // icon: Message01Icon,
     },
     {
       id: "bookings",
       label: "Your Bookings",
-      icon: Notification01Icon,
+      // icon: Notification01Icon,
     },
   ];
   return (

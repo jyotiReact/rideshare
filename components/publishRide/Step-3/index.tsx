@@ -17,9 +17,9 @@ export const StepThree = (): JSX.Element => {
     { name: "Pipli", selected: false },
   ];
   const locations = [
-    { type: "From", location: "New Delhi" },
+    { type: "From", location: "New Delhi", hasPin: false },
     { type: "Via", location: "Ambala", hasPin: true },
-    { type: "To", location: "Chandigarh" },
+    { type: "To", location: "Chandigarh", hasPin: false },
   ];
 
   return (

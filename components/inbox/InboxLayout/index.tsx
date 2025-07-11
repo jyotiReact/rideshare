@@ -1,37 +1,37 @@
+// components/InboxLayout.tsx
+
 import { TabsComponent } from "@/components/tabs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
+import { InboxLayoutProps } from "@/types";
 import { AlertCircleIcon } from "lucide-react";
-import React from "react";
+
 
 function InboxLayout({
   tabOptions,
   handleTabClick,
   data,
   children,
-  alertIcon,
-}) {
+  alertIcon = false,
+}: InboxLayoutProps): JSX.Element {
   return (
-    <div className="flex  gap-5 w-full">
+    <div className="flex gap-5 w-full">
       <div className="flex flex-col min-w-[400px] items-center gap-10">
         {/* Navigation Tabs */}
-        <TabsComponent
-          tabOptions={tabOptions}
-          handleTabClick={handleTabClick}
-        />
+        <TabsComponent tabOptions={tabOptions} handleTabClick={handleTabClick} />
 
         {/* Notifications Card */}
         <Card className="flex flex-col items-start w-full bg-white rounded-[20px] border border-solid border-[#f2f1f1] overflow-hidden">
           <CardContent className="p-0 w-full">
-            {data.map((notification, index) => (
+            {data.map((notification,index) => (
               <div
-                key={notification.id}
+                key={index}
                 className="flex items-center gap-2 p-5 w-full relative border-b border-[#e9e9eb] last:border-b-0"
               >
                 <div className="flex items-center gap-2.5 flex-1">
                   <Avatar className="w-[53px] h-[53px]">
                     <AvatarImage
-                      src={"/images/profile.jpg"}
+                      src="/images/profile.jpg"
                       alt="User avatar"
                       className="w-full h-full object-cover"
                     />
@@ -58,7 +58,7 @@ function InboxLayout({
         </Card>
       </div>
 
-      <div className=" w-full">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 }

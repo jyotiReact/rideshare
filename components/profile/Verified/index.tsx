@@ -5,17 +5,11 @@ import {
   AddCircleHalfDotIcon,
   ArrowRight01Icon,
   Comment01Icon,
-  MusicNote01Icon,
   MusicNote03Icon,
   PencilEdit02Icon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  CheckCircleIcon,
-  ChevronRightIcon,
-  Edit2Icon,
-  PlusCircleIcon,
-} from "lucide-react";
+import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
+import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -27,8 +21,22 @@ export const Verified = (): JSX.Element => {
     { id: 3, text: "+917813897220", verified: true, editable: true },
   ];
 
+  type Tag =
+    | {
+        id: number;
+        type: "icon";
+        icon: IconSvgElement;
+        text: string;
+      }
+    | {
+        id: number;
+        type: "image";
+        icon: string;
+        text: string;
+      };
+
   // About section tags
-  const aboutTags = [
+  const aboutTags: Tag[] = [
     {
       id: 1,
       text: "I am chatty when i feel comfortable",
@@ -116,7 +124,7 @@ export const Verified = (): JSX.Element => {
                     {tag.type === "icon" ? (
                       <HugeiconsIcon icon={tag.icon} color="#631CFF" />
                     ) : (
-                      <img src={tag.icon} alt={tag.text} />
+                      <img src={tag.icon as string} alt={tag.text} />
                     )}
 
                     {tag.text}

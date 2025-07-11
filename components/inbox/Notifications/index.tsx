@@ -1,16 +1,25 @@
+// components/Notifications.tsx
 import JourneyDetails from "@/components/journeyDetails";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Profile from "@/components/ui/profile";
+import { JourneyDetailsType } from "@/types";
 import { ArrowRightIcon, CheckSquareIcon, XIcon } from "lucide-react";
 import React from "react";
 
-export const Notifications = ({ journeyDetails }): JSX.Element => {
+
+
+type NotificationsProps = {
+  journeyDetails: JourneyDetailsType;
+};
+
+export const Notifications = ({
+  journeyDetails,
+}: NotificationsProps): JSX.Element => {
   return (
-    <div className="flex flex-col    items-start gap-5 relative">
+    <div className="flex flex-col items-start gap-5 relative">
       {/* Map Card */}
-      <Card className=" p-5 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
+      <Card className="p-5 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
         <CardContent className="p-0">
           <img
             className="w-full h-[248px]"
@@ -31,21 +40,18 @@ export const Notifications = ({ journeyDetails }): JSX.Element => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3.5">
                 <Profile />
-
                 <div className="flex flex-col items-start gap-2.5">
                   <span className="font-bold text-black text-base tracking-[-0.13px] leading-[22.4px]">
                     Ritik Bhardwaj
                   </span>
-
                   <div className="flex items-center gap-2.5 w-full">
                     <span className="font-medium text-[#101828] text-sm">
-                      Chandigarh →&nbsp;&nbsp;Shimla
+                      Chandigarh → Shimla
                     </span>
                     <div className="w-[99px] h-[18px]" />
                   </div>
                 </div>
               </div>
-
               <div className="flex items-center justify-end gap-5 w-[229px]">
                 <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">
                   2 Seats
@@ -83,7 +89,6 @@ export const Notifications = ({ journeyDetails }): JSX.Element => {
           {/* Revenue Section */}
           <div className="flex flex-col w-full gap-[30px] pb-[30px] border-b border-[#cbcbcb]">
             <h2 className="font-bold text-black text-2xl">Revenue</h2>
-
             <div className="flex items-center justify-around gap-[39px] px-5 py-4 w-full bg-[#0000000a] rounded-[10px] shadow-[2px_2px_8px_#0000000d] opacity-80">
               <div className="flex items-center justify-between flex-1 rounded-[10px]">
                 <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">

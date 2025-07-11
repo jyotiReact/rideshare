@@ -1,24 +1,28 @@
-import { TabsComponent } from "@/components/tabs";
+// components/Messages.tsx
+
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Navigation01FreeIcons,
-  Navigation01Icon,
-  Navigation03Icon,
-  NavigationIcon,
-  Notification01Icon,
-  TickDouble02Icon,
-} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { Navigation03Icon, TickDouble02Icon } from "@hugeicons/core-free-icons";
 import React from "react";
-import InboxLayout from "../InboxLayout";
 
-export const Messages = ({messages}): JSX.Element => {
+// Define the shape of a message
+type Message = {
+  content: string;
+  time: string;
+  isOutgoing: boolean;
+};
+
+// Props type for Messages component
+type MessagesProps = {
+  messages: Message[];
+};
+
+export const Messages = ({ messages }: MessagesProps): JSX.Element => {
   return (
-    <Card className=" h-[691px] rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
+    <Card className="h-[691px] rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
       {/* Chat header */}
       <div className="flex items-center gap-5 p-5 w-full bg-white rounded-[20px_20px_0px_0px] backdrop-blur-md">
         <div className="flex items-center gap-[5px]">
@@ -74,19 +78,21 @@ export const Messages = ({messages}): JSX.Element => {
                   <HugeiconsIcon icon={TickDouble02Icon} color="white" />
                 )}
               </div>
+
+              {/* Optional: message tail image */}
               {/* {message.isOutgoing ? (
-                  <img
-                    className="absolute w-2 h-[15px] top-[49px] left-[400px]"
-                    alt="Message tail"
-                    src="/frame-221.svg"
-                  />
-                ) : (
-                  <img
-                    className="absolute w-2 h-[15px] top-[46px] -left-2"
-                    alt="Message tail"
-                    src="/frame-221-1.svg"
-                  />
-                )} */}
+                <img
+                  className="absolute w-2 h-[15px] top-[49px] left-[400px]"
+                  alt="Message tail"
+                  src="/frame-221.svg"
+                />
+              ) : (
+                <img
+                  className="absolute w-2 h-[15px] top-[46px] -left-2"
+                  alt="Message tail"
+                  src="/frame-221-1.svg"
+                />
+              )} */}
             </div>
           </div>
         ))}

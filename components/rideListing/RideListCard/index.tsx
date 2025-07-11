@@ -17,6 +17,7 @@ import React from "react";
 
 interface RideStatusCardProps {
   ride: Ride;
+  btnLabel?: string;
 }
 
 const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel }) => {

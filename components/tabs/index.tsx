@@ -1,15 +1,11 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabOption } from "@/types";
 import { HugeiconsIcon } from "@hugeicons/react";
 import React from "react";
 
 // Define tab option type
-type TabOption = {
-  id: string;
-  label: string;
-  icon: string;
-};
 
 // Define props type
 interface TabsComponentProps {
@@ -47,7 +43,9 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                 data-[state=active]:border-white data-[state=inactive]:border-[#F2F1F1] 
                 data-[state=inactive]:bg-transparent"
             >
-              <HugeiconsIcon icon={tab.icon} className="w-6 h-6" />
+              {/* {React.createElement(tab.icon, {
+                className: "w-6 h-6 text-[#631CFF]",
+              })} */}
               <span className="font-['Plus_Jakarta_Sans',Helvetica] font-bold text-base tracking-[-0.13px] leading-[22.4px] whitespace-nowrap data-[state=inactive]:text-[#515251]">
                 {tab.label}
               </span>

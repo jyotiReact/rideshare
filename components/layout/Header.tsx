@@ -36,16 +36,16 @@ const Header: React.FC = () => {
     },
     { icon: Message01Icon, label: "Inbox", path: "/inbox" },
     { icon: UserIcon, label: "Profile", path: "/profile" },
-    {
-      icon: ArrowDataTransferDiagonalIcon,
-      label: "Transfers",
-      path: "/transfers",
-    },
-    {
-      icon: PaymentSuccess01Icon,
-      label: "Payments and Refunds",
-      path: "/payments-and-refunds",
-    },
+    // {
+    //   icon: ArrowDataTransferDiagonalIcon,
+    //   label: "Transfers",
+    //   path: "/transfers",
+    // },
+    // {
+    //   icon: PaymentSuccess01Icon,
+    //   label: "Payments and Refunds",
+    //   path: "/payments-and-refunds",
+    // },
     { icon: Logout01Icon, label: "Logout", path: "/logout" },
   ];
 

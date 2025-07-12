@@ -83,7 +83,7 @@ export const RideDetails = (): JSX.Element => {
               <div className="flex justify-between">
                 <div className="flex items-center gap-2.5">
                   <img
-                    src="/images/ridePublish.svg"
+                    src="/images/ridepublish.svg"
                     className="w-[21.38px] h-[21.38px]"
                     alt="Rides"
                   />

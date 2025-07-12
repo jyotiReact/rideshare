@@ -1,6 +1,8 @@
+"use client"
 import RideListCard from "@/components/rideListing/RideListCard";
 
 import { Ride } from "@/types";
+import { useRouter } from "next/navigation";
 
 import React from "react";
 
@@ -72,6 +74,7 @@ const rides: Ride[] = [
 ];
 
 export const RidePublished = (): JSX.Element => {
+  const router =useRouter()
   return (
     <div className="relative h-screen  bg-white overflow-hidden">
       <div className="  ">
@@ -82,7 +85,11 @@ export const RidePublished = (): JSX.Element => {
         </div>
 
         <div className="mx-auto mt-[-80px] w-[900px]">
-          <RideListCard ride={rides[0]} />
+          <RideListCard
+            ride={rides[0]}
+            btnLabel="View Details"
+            handleCardClick={() => router.push(`/ride-details`)}
+          />
         </div>
       </div>
     </div>

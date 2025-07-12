@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import Link from "next/link";
 import React from "react";
 
 export const StepSix = (): JSX.Element => {
@@ -26,10 +27,10 @@ export const StepSix = (): JSX.Element => {
         <div className="flex flex-col items-center gap-2.5 relative self-stretch w-full flex-[0_0_auto]">
           <div className="flex flex-col items-center gap-[35px] relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
-              <h1 className="relative w-fit mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-[#353535] text-4xl tracking-[0] leading-[normal]">
+              <h1 className="relative w-fit mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-[#353535] text-3xl tracking-[0] leading-[normal]">
                 Enable Instant Booking?
               </h1>
-              <div className="relative w-fit [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-[#353535] text-base tracking-[0] leading-[normal]">
+              <div className="relative w-fit [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-[#353535] text-base tracking-[0] leading-[normal]">
                 Step 6/7
               </div>
             </div>
@@ -76,11 +77,13 @@ export const StepSix = (): JSX.Element => {
         <div className="inline-flex flex-col items-center gap-10 relative flex-[0_0_auto]">
           <div className="flex flex-col items-center gap-10 relative self-stretch w-full flex-[0_0_auto]">
             <div className="inline-flex flex-col items-center gap-5 relative flex-[0_0_auto]">
-              <Button className="flex w-[514px] items-center justify-center gap-2.5 px-5 py-[15px] relative flex-[0_0_auto] bg-[#631cff] rounded-[25px] hover:bg-[#5016d0]">
-                <span className="relative w-fit mt-[-2.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap">
-                  Continue
-                </span>
-              </Button>
+              <Link href={"/publish-ride/step-7"}>
+                <Button className="flex w-[514px] items-center justify-center gap-2.5 px-5 py-[15px] relative flex-[0_0_auto] bg-[#631cff] rounded-[25px] hover:bg-[#5016d0]">
+                  <span className="relative w-fit mt-[-2.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap">
+                    Continue
+                  </span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

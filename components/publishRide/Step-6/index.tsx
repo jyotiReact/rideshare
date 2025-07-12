@@ -30,7 +30,7 @@ export const StepSix = (): JSX.Element => {
                 Enable Instant Booking?
               </h1>
               <div className="relative w-fit [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-[#353535] text-base tracking-[0] leading-[normal]">
-                Step 11/5
+                Step 6/7
               </div>
             </div>
           </div>

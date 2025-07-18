@@ -86,6 +86,7 @@ export type InboxLayoutProps = {
   showTabs?: boolean;
   title?: string;
   description?: string;
+  handleMessageClick?: () => void;
   
 };
 

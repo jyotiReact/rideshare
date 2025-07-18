@@ -18,7 +18,7 @@ const StepLine: React.FC<StepLineProps> = ({ line = true, lineStyle }) => {
 
       {line && (
         <div
-          className={`w-0.5  min-h-[100px] border-l-2 border-dashed border-[#631cff] ${lineStyle}`}
+          className={`w-0.5  min-h-[50px] border-l-2 border-dashed border-[#631cff] ${lineStyle}`}
         />
       )}
     </div>

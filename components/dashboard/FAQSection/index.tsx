@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -67,14 +67,14 @@ export const FAQSection = (): JSX.Element => {
   );
 
   return (
-    <section className="flex flex-col items-center gap-[60px] w-full max-w-[1230px] mx-auto px-12">
-      <h2 className="text-4xl font-bold text-[#232f1a] leading-[50.4px]">
+    <section className="flex flex-col items-center md:gap-[60px] gap-4 w-full max-w-[1230px] mx-auto md:px-12 px-5">
+      <h2 className="md:text-4xl text-[24px] font-bold text-[#232f1a] leading-[50.4px]">
         Rideshare Help Center
       </h2>
 
       <div className="flex flex-col md:flex-row items-start gap-5 w-full">
         {/* Left Column */}
-        <div className="flex flex-col items-start gap-5 flex-1 w-full">
+        <div className="flex flex-col items-center gap-5 flex-1 w-full ">
           <Accordion
             type="single"
             collapsible
@@ -88,15 +88,15 @@ export const FAQSection = (): JSX.Element => {
                 <AccordionItem
                   key={value}
                   value={value}
-                  className={`w-full transition-all duration-300 ${
+                  className={`w-full transition-all duration-300  ${
                     openItemLeft === value
                       ? "bg-white rounded-2xl pt-[30px] pb-11 px-9"
                       : "bg-white rounded-2xl border border-solid border-[#fafafd] h-[92.42px]  pt-[30px]  pb-11 px-9"
                   }`}
                 >
-                  <div className="px-0 py-0">
-                    <AccordionTrigger className="p-0 before:hidden after:hidden">
-                      <CustomAccordionTrigger isOpen={openItemLeft === value}>
+                  <div className="px-0 py-0 ">
+                    <AccordionTrigger className="p-0 before:hidden after:hidden text-left">
+                      <CustomAccordionTrigger isOpen={openItemLeft === value} >
                         {faq.question}
                       </CustomAccordionTrigger>
                     </AccordionTrigger>
@@ -134,7 +134,7 @@ export const FAQSection = (): JSX.Element => {
                   }`}
                 >
                   <div className="px-0 py-0">
-                    <AccordionTrigger className="p-0 before:hidden after:hidden">
+                    <AccordionTrigger className="p-0 before:hidden after:hidden text-left">
                       <CustomAccordionTrigger isOpen={openItemRight === value}>
                         {faq.question}
                       </CustomAccordionTrigger>

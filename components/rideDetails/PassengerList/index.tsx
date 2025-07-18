@@ -17,7 +17,7 @@ import {
   ZapFreeIcons,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import React from "react";
+import React, { JSX } from "react";
 
 interface PassengerListSectionProps {
   alreadyDeparted: boolean;
@@ -45,7 +45,7 @@ export const PassengerListSection = ({
 }: PassengerListSectionProps): JSX.Element => {
   return (
     <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-      <CardContent className="flex flex-col gap-5 px-10 py-5">
+      <CardContent className="flex flex-col gap-5 md:px-10 px-5 py-5">
         {alreadyDeparted && (
           <h3 className="text-2xl font-bold text-black">
             Passengers{" "}

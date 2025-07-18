@@ -1,6 +1,7 @@
 import React from "react";
 import { PinLocation01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import StepLine from "../ui/step-line";
 
 type Step = {
   type: string;
@@ -14,37 +15,17 @@ type StepOversProps = {
 
 export const StepOvers: React.FC<StepOversProps> = ({ steps }) => {
   return (
-    <div className="flex flex-col w-[544px] items-center justify-center gap-10 relative">
-      <div className="inline-flex items-start gap-1.5">
+    <div className="flex flex-col md:w-[544px] w-full h-full  items-center justify-center gap-10 relative">
+      <div className="inline-flex md:items-start items-center  gap-1.5  h-full">
         {/* Timeline Dots */}
         <div className="inline-flex flex-col items-center justify-center">
-          <div className="inline-flex flex-col items-center justify-center">
-            <div className="relative w-7 h-7">
-              <div className="h-7 bg-[#631cff33] rounded-[14px]">
-                <div className="relative w-3 h-3 top-2 left-2 bg-[#d0f500] rounded-md border-[1.5px] border-[#631cff] shadow-[0px_0px_30px_#631cff]" />
-              </div>
-            </div>
-            <div className="w-0.5 h-10 border-l-2 border-dashed border-[#631cff]" />
-          </div>
-
-          <div className="relative w-7 h-7">
-            <div className="h-7 bg-[#631cff33] rounded-[14px]">
-              <div className="relative w-3 h-3 top-2 left-2 bg-[#d0f500] rounded-md border-[1.5px] border-[#631cff] shadow-[0px_0px_30px_#631cff]" />
-            </div>
-          </div>
-
-          <div className="inline-flex flex-col items-center justify-center">
-            <div className="w-0.5 h-10 border-l-2 border-dashed border-[#631cff]" />
-            <div className="relative w-7 h-7">
-              <div className="h-7 bg-[#631cff33] rounded-[14px]">
-                <div className="relative w-3 h-3 top-2 left-2 bg-[#d0f500] rounded-md border-[1.5px] border-[#631cff] shadow-[0px_0px_30px_#631cff]" />
-              </div>
-            </div>
-          </div>
+          <StepLine />
+          <StepLine />
+          <StepLine line={false} />
         </div>
 
         {/* Step Info */}
-        <div className="inline-flex flex-col h-[166px] items-start justify-between py-1">
+        <div className="inline-flex flex-col gap-14 items-start justify-between py-1">
           {steps.map((point, index) => (
             <div
               key={index}

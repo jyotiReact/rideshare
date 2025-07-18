@@ -20,12 +20,12 @@ const JourneyDetails: React.FC<{ journeyData: JourneyData }> = ({
   journeyData,
 }) => {
   return (
-    <div className="flex  flex-col items-start gap-[30px] pt-0 pb-[30px] px-0 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#cbcbcb]">
+    <div className="flex  flex-col items-start gap-[30px] pt-0 pb-[30px] px-0 relative  w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#cbcbcb]">
       <div className="relative self-stretch mt-[-1.00px] font-bold text-black text-2xl leading-normal">
         {journeyData.date}
       </div>
 
-      <div className="flex justify-center gap-5 w-full h-full">
+      <div className="flex justify-center gap-5 h-full  w-fit">
         {/* Time Section */}
         <div className="inline-flex flex-col items-start justify-between relative self-stretch flex-[0_0_auto]">
           <div className="inline-flex items-center gap-[5px]">
@@ -51,13 +51,13 @@ const JourneyDetails: React.FC<{ journeyData: JourneyData }> = ({
 
         {/* Step Indicator */}
         <div className="inline-flex flex-col items-center justify-between relative self-stretch flex-[0_0_auto]">
-          <StepLine line={true} lineStyle={"h-[110px]"} />
+          <StepLine line={true} lineStyle={"h-[130px] "} />
 
           <StepLine line={false} />
         </div>
 
         {/* Location Details */}
-        <div className="flex flex-col gap-10 h-full">
+        <div className="flex flex-col   justify-between h-[200px]">
           {journeyData.locations.map((location, index) => (
             <div
               key={index}

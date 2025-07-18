@@ -8,6 +8,7 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { AlertCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { JSX } from "react";
 
 function InboxLayout({
   tabOptions,
@@ -18,11 +19,12 @@ function InboxLayout({
   showTabs = true,
   title,
   description,
+  handleMessageClick,
 }: InboxLayoutProps): JSX.Element {
   const router = useRouter();
   return (
-    <div className="flex gap-5 w-full py-5 px-20 ">
-      <div className="flex flex-col  items-center gap-10 min-w-[400px]">
+    <div className="flex gap-5  py-5 lg:px-20 px-5 w-full  h-full">
+      <div className="flex flex-col  items-center gap-10 lg:min-w-[400px] w-full">
         {/* Navigation Tabs */}
         {showTabs ? (
           <TabsComponent
@@ -45,10 +47,11 @@ function InboxLayout({
         )}
 
         {/* Notifications Card */}
-        <Card className="flex flex-col items-start w-full bg-white rounded-[20px] border border-solid border-[#f2f1f1] overflow-hidden">
+        <Card className="flex flex-col items-start  w-full bg-white rounded-[20px] border border-solid border-[#f2f1f1] overflow-hidden">
           <CardContent className="p-0 w-full">
             {data?.map((notification, index) => (
               <div
+                onClick={handleMessageClick}
                 key={index}
                 className="flex items-center gap-2 p-5 w-full relative border-b border-[#e9e9eb] last:border-b-0"
               >
@@ -82,7 +85,7 @@ function InboxLayout({
         </Card>
       </div>
 
-      <div className="w-full">{children}</div>
+      <div className="w-full lg:block hidden">{children}</div>
     </div>
   );
 }

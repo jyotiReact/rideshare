@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { JSX } from "react";
 import { PassengerListSection } from "./PassengerList";
 import { useRouter } from "next/navigation";
 import { RideDetailsLayout } from "../layout/RideDetailsLayout";
@@ -33,7 +33,7 @@ export const RideDetails = (): JSX.Element => {
       <div className="flex flex-col w-full items-start gap-[30px]">
         {/* Driver Profile Card */}
         <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-          <CardContent className="flex flex-col gap-5 px-10 py-5">
+          <CardContent className="flex flex-col gap-5 lg:px-10 px-5 py-5">
             {/* Driver Info */}
             <div className="flex justify-between border-b border-[#cbcbcb] pb-5">
               <div className="flex items-center gap-3.5">
@@ -61,9 +61,9 @@ export const RideDetails = (): JSX.Element => {
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Button className="gap-2.5 px-5 py-[15px] bg-[#631cff1a] rounded-[25px] hover:bg-[#631cff1a]">
-                  <HugeiconsIcon icon={CheckmarkBadge02Icon} color="#631CFF" />
-                  <span className="text-sm font-bold text-[#631cff]">
+                <Button className="lg:gap-2.5 lg:px-5 lg:py-[15px] p-0 bg-[#631cff1a] w-10 h-10 lg:w-fit rounded-[25px] hover:bg-[#631cff1a]">
+                  <HugeiconsIcon icon={CheckmarkBadge02Icon} color="#631CFF" width={20} />
+                  <span className="text-sm font-bold text-[#631cff] lg:block hidden">
                     Contact Ritik
                   </span>
                 </Button>
@@ -161,7 +161,7 @@ export const RideDetails = (): JSX.Element => {
 
         {/* Report Section */}
         <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-          <CardContent className="flex h-[68px] items-center justify-between px-[30px] py-0">
+          <CardContent className="flex h-[68px] items-center justify-between lg:px-[30px] px-5 py-0">
             <span className="text-base font-bold text-black">
               Report/FlagIcon this ride
             </span>

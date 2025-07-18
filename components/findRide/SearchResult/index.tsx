@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { JSX } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClockIcon, XIcon } from "lucide-react";
 import Link from "next/link";
@@ -51,7 +51,7 @@ export const SearchResults = (): JSX.Element => {
         Recent Searches
       </h2>
 
-      <div className="grid grid-cols-2 items-center gap-[20px_40px] w-full">
+      <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-[20px_40px] w-full">
         {recentSearches.map((search, index) => (
           <Link href={`/rides`}>
             <Card

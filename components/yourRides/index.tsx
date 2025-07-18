@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import { YourBookingsSection } from "./YourBookings";
 import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
 import { Ride } from "@/types";
@@ -89,14 +89,14 @@ export const YourRides = (): JSX.Element => {
     },
   ];
   return (
-    <div className="flex flex-col w-full py-10">
+    <div className="flex flex-col w-full py-10 px-5">
       <TabsComponent
         title="Your Rides"
         tabOptions={tabOptions}
         handleTabClick={(tab) => setTab(tab)}
       />
       <div className="flex justify-center mt-8">
-        <div className="w-4/5">
+        <div className="md:w-4/5 ">
           {tab === "published" ? (
             <YourBookingsSection />
           ) : (

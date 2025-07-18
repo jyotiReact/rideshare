@@ -17,10 +17,14 @@ import React from "react";
 interface RideStatusCardProps {
   ride: Ride;
   btnLabel?: string;
-  handleCardClick?: () => void
+  handleCardClick?: () => void;
 }
 
-const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCardClick }) => {
+const RideListCard: React.FC<RideStatusCardProps> = ({
+  ride,
+  btnLabel,
+  handleCardClick,
+}) => {
   return (
     <Card
       key={ride.id}
@@ -29,9 +33,9 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
     >
       <CardContent className="p-0">
         {/* Top Row: Time & Price */}
-        <div className="flex items-center justify-between px-10 py-5 bg-white border-b border-[#edecec]">
+        <div className="flex md:flex-row flex-col items-center md:justify-between gap-4 md:px-10 px-3 py-5 bg-white border-b border-[#edecec]">
           {/* Ride Info */}
-          <div className="flex flex-col items-start gap-2.5 w-[300px]">
+          <div className="flex flex-col items-start gap-2.5 md:w-[300px] w-full">
             <div className="flex items-center justify-between w-full">
               <div className="text-xs font-medium text-[#515251]">
                 {ride.departureTime}
@@ -43,7 +47,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
 
             <div className="flex items-center justify-center gap-2.5 w-full">
               {/* Start icon */}
-              <div className="flex items-center flex-1">
+              <div className="flex items-center w-[35%] md:w-[40%] ">
                 <div className="relative w-7 h-7">
                   <div className="h-7 bg-[#631cff33] rounded-[14px]">
                     <div className="w-3 h-3 absolute top-2 left-2 bg-[#d0f500] rounded-md border-[1.5px] border-[#631cff] shadow-[0_0_30px_#631cff]" />
@@ -58,7 +62,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
               </div>
 
               {/* End icon */}
-              <div className="flex items-center flex-1 justify-end">
+              <div className="flex items-center w-[35%] md:w-[40%] justify-end">
                 {/* Dashed line right */}
                 <div className="flex-1 h-0.5 border-t-2 border-dashed border-[#631cff]" />
                 <div className="relative w-7 h-7 -ml-2.5">
@@ -85,7 +89,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
           </div>
 
           {/* Rating and Price */}
-          <div className="flex items-center gap-[5px] p-[5px] bg-[#deefe4] rounded-[20px]">
+          <div className="lg:flex hidden items-center gap-[5px] p-[5px] bg-[#deefe4] rounded-[20px]">
             <Badge className="flex items-center gap-1 px-2 py-1 bg-[#0e7a31] rounded-3xl">
               <img
                 className="w-3 h-[11px]"
@@ -99,17 +103,17 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
             <div className="text-sm font-medium text-black">{ride.rating}</div>
           </div>
 
-          <div className="flex flex-col items-end gap-2.5">
+          <div className="flex md:flex-col flex-row justify-between md:items-end items-center  gap-2.5 w-full md:w-fit">
             <div className="flex items-end gap-2.5">
-              <div className="text-base font-bold text-[#a1a1a1] line-through">
+              <div className="text-base font-bold text-[#a1a1a1] line-through md:block hidden">
                 {ride.originalPrice}
               </div>
-              <div className="text-[24px] font-medium text-[#190041]">
+              <div className="md:text-[24px]  font-bold text-[#190041]">
                 {ride.price}
               </div>
             </div>
 
-            <Button className="flex items-center gap-1 px-4 py-2  rounded-full  text-white">
+            <Button className="flex items-center gap-1 px-4 md:py-2  rounded-full w-fit text-white">
               <span className="text-base font-medium">{btnLabel}</span>
               <HugeiconsIcon icon={ArrowUpRight03Icon} width={20} />
             </Button>
@@ -117,22 +121,38 @@ const RideListCard: React.FC<RideStatusCardProps> = ({ ride, btnLabel,handleCard
         </div>
 
         {/* Bottom Row: Driver Info */}
-        <div className="flex items-center justify-between px-10 py-5 bg-white">
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center justify-between md:px-10 py-5 px-1 bg-white">
+          <div className="flex md:items-center gap-2.5">
             <Profile />
-            <div className="text-base font-bold text-black">{ride.driver}</div>
+            <div className="md:text-base text-sm font-bold text-black">{ride.driver}</div>
+
+            <div className="lg:hidden flex items-center gap-[5px] md:p-[5px] p-1 bg-[#deefe4] rounded-[20px]">
+              <Badge className="flex items-center gap-1 px-2 py-1 bg-[#0e7a31] rounded-3xl">
+                <img
+                  className="w-3 h-[11px]"
+                  src="/images/whitestar.png"
+                  alt="Star"
+                />
+                <span className="text-sm font-medium text-white">
+                  {ride.rating}
+                </span>
+              </Badge>
+              <div className="text-sm font-medium text-black">
+                {ride.rating}
+              </div>
+            </div>
 
             <Badge
-              className={`flex items-center gap-2 px-2 py-1.5 ${ride.carBg} rounded-3xl`}
+              className={`flex items-center gap-2 md:px-2 px-1 py-1.5 ${ride.carBg} rounded-3xl`}
             >
               <HugeiconsIcon icon={CarSignalIcon} width={20} color="#631CFF" />
-              <span className={`text-sm font-medium ${ride.carColor}`}>
+              <span className={`text-xs font-medium ${ride.carColor}`}>
                 {ride.car}
               </span>
             </Badge>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="lg:flex hidden items-center gap-2.5">
             <Badge className="flex items-center gap-1 px-2 py-1.5 bg-[#F5F5F5] rounded-3xl">
               <HugeiconsIcon
                 icon={UserMultiple02Icon}

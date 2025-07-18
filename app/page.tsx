@@ -6,7 +6,7 @@ import { HelpCenterSection } from "@/components/dashboard/HelpCenter";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center w-full  gap-24 p ">
+    <div className="flex flex-col items-center w-full  md:gap-24 gap-14 ">
       <HeroBannerSection />
       <MainContentSection />
       <ContentDisplaySection />

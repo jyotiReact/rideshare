@@ -1,11 +1,15 @@
 import Header from "@/components/layout/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { HelpCenterSection } from "@/components/dashboard/HelpCenter";
 // import { AuthProvider } from '@/contexts/AuthContext';
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Add only the weights you use
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "RideShare - Book Your Ride",
@@ -18,10 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="scroll-smooth w-screen">
+      <body
+        className={`${plusJakartaSans.className} overflow-x-hidden bg-gray-50 min-h-screen w-full`}
+      >
         <Header />
-        <main className="min-h-screen bg-gray-50">{children}</main>
+        <main className="min-h-screen w-full">{children}</main>
       </body>
     </html>
   );

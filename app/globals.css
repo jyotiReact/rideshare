@@ -85,3 +85,34 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Remove square box around flag */
+.react-tel-input .flag-dropdown {
+  border: none !important;
+  background: transparent !important;
+
+}
+
+/* Make flag circular */
+.react-tel-input .selected-flag .flag {
+  border-radius: 50% !important;
+  width: 24px !important;
+  height: 24px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+   top:30% !important;
+  bottom: translateY(-50%) !important;
+}
+
+/* Position the arrow */
+.react-tel-input .selected-flag .arrow {
+  left: 29px !important;
+  border-top-color: #666 !important;
+   
+}
+
+/* Dropdown flag styles */
+/* .react-tel-input .country-list .flag {
+  border-radius: 50% !important;
+  margin-right: 8px !important;
+} */
+

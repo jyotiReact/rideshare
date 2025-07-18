@@ -3,16 +3,11 @@ import JourneyDetails from "@/components/journeyDetails";
 import PassengerInfoCard from "@/components/passengerInfoCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Profile from "@/components/ui/profile";
 import { JourneyDetailsType } from "@/types";
-import {
-  Agreement01Icon,
-  ArrowRight01Icon,
-  MessengerIcon,
-} from "@hugeicons/core-free-icons";
+import { Agreement01Icon, MessengerIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRightIcon, CheckSquareIcon, XIcon } from "lucide-react";
-import React from "react";
+import { CheckSquareIcon, XIcon } from "lucide-react";
+import React, { JSX } from "react";
 
 type NotificationsProps = {
   journeyDetails: JourneyDetailsType;
@@ -22,12 +17,12 @@ export const Notifications = ({
   journeyDetails,
 }: NotificationsProps): JSX.Element => {
   return (
-    <div className="flex flex-col items-start gap-5 relative">
+    <div className="flex flex-col items-start gap-5 relative p-5">
       {/* Map Card */}
-      <Card className="p-5 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
+      <Card className="md:p-5 p-2 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
         <CardContent className="p-0">
           <img
-            className="w-full h-[248px]"
+            className="w-full md:h-[248px] "
             alt="Map Screenshot"
             src="/images/inboxmap.svg"
           />
@@ -35,7 +30,7 @@ export const Notifications = ({
       </Card>
 
       {/* Journey Details Card */}
-      <Card className="w-full px-10 py-5 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
+      <Card className="w-full md:px-10 px-5 md:py-5 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
         <CardContent className="p-0 flex flex-col gap-[30px]">
           {/* Journey Section */}
           <JourneyDetails journeyData={journeyDetails} />
@@ -58,7 +53,7 @@ export const Notifications = ({
 
             <Button
               variant="outline"
-              className="inline-flex items-center justify-center gap-2.5 px-5 py-[15px] bg-[#631cff1a] text-[#631cff] rounded-[25px]"
+              className="inline-flex items-center w-fit justify-center gap-2.5 px-5 py-[15px] bg-[#631cff1a] text-[#631cff] rounded-[25px]"
             >
               <HugeiconsIcon icon={MessengerIcon} width={20} color="#631CFF" />
               <span className="font-bold text-sm tracking-[-0.11px] leading-[19.6px]">
@@ -68,8 +63,8 @@ export const Notifications = ({
           </div>
 
           {/* Revenue Section */}
-          <div className="flex flex-col w-full gap-[30px] pb-[30px] border-b border-[#cbcbcb]">
-            <h2 className="font-bold text-black text-2xl">Revenue</h2>
+          <div className="flex flex-col w-full md:gap-[30px] gap-4 pb-[30px] border-b border-[#cbcbcb]">
+            <h2 className="font-bold text-black md:text-2xl text-[20px]">Revenue</h2>
             <div className="flex items-center justify-around gap-[39px] px-5 py-4 w-full bg-[#0000000a] rounded-[10px] shadow-[2px_2px_8px_#0000000d] opacity-80">
               <div className="flex items-center justify-between flex-1 rounded-[10px]">
                 <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">

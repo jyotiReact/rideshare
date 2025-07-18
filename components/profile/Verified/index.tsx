@@ -1,3 +1,5 @@
+"use client";
+import { SendOtpDialog } from "@/components/modals/SendOtp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,51 +13,68 @@ import {
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { JSX, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+
+// Profile verification data
+const profileItems = [
+  { id: 1, text: "*****3678R", verified: true, editable: false, type: "" },
+  {
+    id: 2,
+    text: "ritikbhardwaj@gmail.com",
+    verified: true,
+    editable: true,
+    type: "Email",
+  },
+  {
+    id: 3,
+    text: "+917813897220",
+    verified: true,
+    editable: true,
+    type: "Phone",
+  },
+];
+
+type Tag =
+  | {
+      id: number;
+      type: "icon";
+      icon: IconSvgElement;
+      text: string;
+    }
+  | {
+      id: number;
+      type: "image";
+      icon: string;
+      text: string;
+    };
+
+// About section tags
+const aboutTags: Tag[] = [
+  {
+    id: 1,
+    text: "I am chatty when i feel comfortable",
+    icon: Comment01Icon,
+    type: "icon",
+  },
+  {
+    id: 2,
+    text: "I am chatty when i feel comfortable",
+    icon: MusicNote03Icon,
+    type: "icon",
+  },
+  { id: 3, text: "Pets Allowed", icon: "/images/petpaw.svg", type: "image" },
+  { id: 4, text: "No Smoking", icon: "/images/smoking.svg", type: "image" },
+];
 
 export const Verified = (): JSX.Element => {
-  // Profile verification data
-  const profileItems = [
-    { id: 1, text: "*****3678R", verified: true, editable: false },
-    { id: 2, text: "ritikbhardwaj@gmail.com", verified: true, editable: true },
-    { id: 3, text: "+917813897220", verified: true, editable: true },
-  ];
-
-  type Tag =
-    | {
-        id: number;
-        type: "icon";
-        icon: IconSvgElement;
-        text: string;
-      }
-    | {
-        id: number;
-        type: "image";
-        icon: string;
-        text: string;
-      };
-
-  // About section tags
-  const aboutTags: Tag[] = [
-    {
-      id: 1,
-      text: "I am chatty when i feel comfortable",
-      icon: Comment01Icon,
-      type: "icon",
-    },
-    {
-      id: 2,
-      text: "I am chatty when i feel comfortable",
-      icon: MusicNote03Icon,
-      type: "icon",
-    },
-    { id: 3, text: "Pets Allowed", icon: "/images/petpaw.svg", type: "image" },
-    { id: 4, text: "No Smoking", icon: "/images/smoking.svg", type: "image" },
-  ];
+  const [modalType, setModalType] = useState<string>("");
+  const [open, setOpen] = useState(false);
+  const [otp, setOtp] = useState<string>("");
 
   return (
     <div className="flex flex-col items-start justify-center gap-5 relative">
-      <Card className="flex flex-col items-start gap-5 px-[30px] py-5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-[20px] overflow-hidden border border-solid border-[#f2f1f1]">
+      <Card className="flex flex-col items-start gap-5 md:px-[30px] px-2 py-5 relative self-stretch w-full flex-[0_0_auto] bg-white md:rounded-[20px] overflow-hidden border border-solid border-[#f2f1f1]">
         <CardContent className="p-0 w-full">
           {/* Verify your profile section */}
           <div className="flex flex-col items-start gap-2.5 relative self-stretch w-full flex-[0_0_auto]">
@@ -85,7 +104,15 @@ export const Verified = (): JSX.Element => {
                   </div>
 
                   {item.editable && (
-                    <HugeiconsIcon icon={PencilEdit02Icon} color="#631CFF" />
+                    <HugeiconsIcon
+                      icon={PencilEdit02Icon}
+                      color="#631CFF"
+                      onClick={() => {
+                        setModalType(item.type);
+                        setOpen(true);
+                      }}
+                      className="cursor-pointer"
+                    />
                   )}
                 </div>
               ))}
@@ -101,7 +128,7 @@ export const Verified = (): JSX.Element => {
             </div>
 
             <div className="flex flex-col items-start justify-center relative self-stretch w-full flex-[0_0_auto]">
-              <div className="flex items-start gap-10 pt-0 pb-5 px-0 self-stretch w-full border-b [border-bottom-style:solid] border-[#e9e9eb] relative flex-[0_0_auto]">
+              <div className="flex md:flex-row flex-col items-start md:gap-10 gap-2 pt-0 pb-5 px-0 self-stretch w-full border-b [border-bottom-style:solid] border-[#e9e9eb] relative flex-[0_0_auto]">
                 <div className="flex items-center gap-2.5 relative flex-1 grow">
                   <p className="relative flex-1 mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-neutralblackb-600 text-sm tracking-[0] leading-[24.5px]">
                     Worem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -119,7 +146,7 @@ export const Verified = (): JSX.Element => {
                 {aboutTags.map((tag) => (
                   <Badge
                     key={tag.id}
-                    className="inline-flex  gap-2.5 px-4 py-2.5 bg-[#631cff0d] rounded-[10px] relative  font-medium text-[#474b57] text-sm hover:bg-[#631cff0d]"
+                    className="inline-flex md:w-fit w-full  gap-2.5 px-4 py-2.5 bg-[#631cff0d] rounded-[10px] relative  font-medium text-[#474b57] text-sm hover:bg-[#631cff0d]"
                   >
                     {tag.type === "icon" ? (
                       <HugeiconsIcon icon={tag.icon} color="#631CFF" />
@@ -131,10 +158,10 @@ export const Verified = (): JSX.Element => {
                   </Badge>
                 ))}
 
-                <Button className="inline-flex items-center gap-2.5 px-4 py-2.5 bg-[#631cff] rounded-[10px] relative flex-[0_0_auto] hover:bg-[#5016cc]">
+                <Button className="inline-flex items-center w-fit gap-2.5 px-4 py-2.5 bg-[#631cff] rounded-[10px] relative flex-[0_0_auto] hover:bg-[#5016cc]">
                   <HugeiconsIcon icon={PencilEdit02Icon} color="#ffffff" />
 
-                  <span className="font-bold text-white text-base">Edit</span>
+                  <span className="font-medium text-white text-base">Edit</span>
                 </Button>
               </div>
             </div>
@@ -174,6 +201,23 @@ export const Verified = (): JSX.Element => {
           </div>
         </CardContent>
       </Card>
+
+      <Dialog.Root open={open}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 bg-black/50 z-40" />
+          <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-[500px] -translate-x-1/2 -translate-y-1/2 bg-white rounded-[15px] shadow-xl overflow-y-auto">
+            <SendOtpDialog
+              label={modalType}
+              type={modalType === "Phone" ? "Phone" : "Email"}
+              otp={otp}
+              setOtp={setOtp}
+              submitBtnLabel="Continue"
+              onEditPhone={() => alert("Edit phone clicked")}
+              handleSubmit={() => {}}
+            />
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </div>
   );
 };

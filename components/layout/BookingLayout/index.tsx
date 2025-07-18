@@ -6,7 +6,7 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { ReactNode } from "react";
+import React, { JSX, ReactNode } from "react";
 
 interface BookingLayoutProps {
   title: string;
@@ -24,10 +24,10 @@ export const BookingLayout = ({
   
 
   return (
-    <div className="relative w-full min-h-screen bg-zinc-50 overflow-hidden py-5 px-20">
-      <div className="flex  items-start w-full  gap-2.5">
+    <div className="relative w-full min-h-screen bg-zinc-50 overflow-hidden py-5 lg:px-20 px-5">
+      <div className="flex lg:flex-row flex-col  items-start w-full  gap-2.5">
         {/* Left Card */}
-        <Card className="flex flex-col items-start gap-5 p-10 relative bg-white rounded-[10px] border-[#f2f2f2]">
+        <Card className="flex flex-col items-start gap-5 lg:p-10 p-5 relative bg-white rounded-[10px] lg:w-fit w-full border-[#f2f2f2]">
           <div
             className="inline-flex items-center gap-2.5 p-2 bg-[#0000000d] rounded-[20px] cursor-pointer"
             onClick={() => router.back()}
@@ -35,7 +35,7 @@ export const BookingLayout = ({
            <HugeiconsIcon icon={ArrowLeft01Icon} width={30}  />
           </div>
           <CardContent className="p-0 space-y-2">
-            <h1 className="text-3xl font-medium text-[#353535]">
+            <h1 className="lg:text-3xl text-[24px] font-medium text-[#353535]">
               {title}
             </h1>
             <p className="text-base text-[#515251]">

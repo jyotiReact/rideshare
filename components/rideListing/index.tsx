@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { Card, CardContent } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { DepartureTimeSection } from "./DepartureTime";
@@ -22,9 +22,9 @@ export const RideListing = (): JSX.Element => {
   ];
 
   return (
-    <div className="relative w-full bg-neutral-50 px-20 ">
+    <div className="relative w-full bg-neutral-50 md:px-20 px-2 ">
       <div className="flex mt-6 gap-6">
-        <Card className="flex-col  gap-5 p-5  bg-white rounded-[10px] border border-solid border-[#F2F2F2] h-full">
+        <Card className="md:flex flex-col hidden   gap-5 p-5  bg-white rounded-[10px] border border-solid border-[#F2F2F2] h-full">
           <CardContent className="p-0 space-y-5">
             {/* Departure Time Section */}
             <div className="flex flex-col items-start gap-2.5 w-full">

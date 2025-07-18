@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
-import React from "react";
+import React, { JSX } from "react";
 import { Input } from "@/components/ui/input";
 import { BookingLayout } from "@/components/layout/BookingLayout";
 
@@ -11,10 +11,10 @@ export const EditVehicle = (): JSX.Element => {
       title="Add/ Edit a vehicle"
       description="Add/ Edit Vehicle that you travel in"
     >
-      <div className="inline-flex flex-col items-start justify-center gap-5  w-[785px]">
+      <div className="inline-flex flex-col items-start justify-center gap-5  lg:w-[785px] w-full">
         <Card className="w-full border border-solid border-[#F2F2F2] rounded-[10px]">
-          <CardContent className="flex flex-col items-start gap-[30px] px-10 py-5">
-            <h1 className="font-bold text-[#353535] text-4xl [font-family:'Plus_Jakarta_Sans',Helvetica]">
+          <CardContent className="flex flex-col items-start gap-[30px] lg:px-10 py-5 px-5">
+            <h1 className="font-bold text-[#353535] lg:text-4xl text-[24px] [font-family:'Plus_Jakarta_Sans',Helvetica]">
               Vehicle 1
             </h1>
             <div className="flex flex-col w-full items-start gap-[15px]">

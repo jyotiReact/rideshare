@@ -12,7 +12,7 @@ import {
   PencilEdit02Icon,
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React, { JSX, ReactNode } from "react";
 import { TabOption } from "@/types"; // or define inline below
 
 type ProfileLayoutProps = {
@@ -34,11 +34,11 @@ export const ProfileLayout = ({
   };
 
   return (
-    <div className="inline-flex items-start gap-5 relative w-full">
+    <div className="flex relative  lg:flex-row flex-col h-full  lg:gap-5 gap-10  w-full lg:p-0 ">
       {/* Sidebar */}
-      <div className="inline-flex flex-col h-[780px] items-center justify-between relative flex-[0_0_auto]">
-        <div className="flex flex-col items-center gap-5 relative self-stretch w-full">
-          <div className="w-[397px] items-center px-[30px] py-5 rounded-[20px] border-none bg-transparent">
+      <div className="inline-flex flex-col  rounded-[20px]  items-center  h-full  flex-[0_0_auto]">
+        <div className="flex flex-col items-center gap-5  self-stretch w-full">
+          <div className="lg:w-[397px] w-full items-center  bg-white lg:px-[30px] px-5 py-5 rounded-[20px] border-none bg-transparent">
             <CardContent className="p-0 flex flex-col items-center justify-center gap-2.5">
               <Avatar className="w-[137.81px] h-[137.81px]">
                 <AvatarImage
@@ -68,21 +68,18 @@ export const ProfileLayout = ({
                     width={20}
                     color="#631CFF"
                   />
-                  <span className="font-medium text-base font-sans">
-                    Edit
-                  </span>
+                  <span className="font-medium text-base font-sans">Edit</span>
                 </Button>
               </Link>
             </CardContent>
           </div>
-
           {/* Tabs */}
-          <div className="flex flex-col items-start gap-2.5 w-full">
+          <div className="flex flex-col  items-start gap-2.5 w-full">
             <Tabs
               defaultValue={tabOptions[0]?.id || ""}
-              className="w-full max-w-[397px]"
+              className="w-full"
             >
-              <TabsList className="grid grid-cols-1 p-0 gap-2.5 bg-transparent">
+              <TabsList className="grid lg:grid-cols-1 grid-cols-2 p-0 gap-2.5 bg-transparent">
                 {tabOptions.map((tab) => (
                   <TabsTrigger
                     key={tab.id}
@@ -105,7 +102,7 @@ export const ProfileLayout = ({
         </div>
 
         {/* Bottom Actions */}
-        <div className="flex flex-col items-start gap-2.5 w-full">
+        <div className="flex  flex-col items-start gap-2.5  lg:w-[397px] absolute w-full  left-1 lg:bottom-1  -bottom-48 ">
           <Button
             variant="outline"
             className="h-[68px] justify-between px-[30px] bg-white rounded-[20px] border border-[#e9e9eb] w-full"

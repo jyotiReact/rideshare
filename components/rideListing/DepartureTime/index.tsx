@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon, RefreshCwIcon } from "lucide-react";
-import React from "react";
+import React, { JSX } from "react";
 import { Ride } from "@/types";
 import RideListCard from "../RideListCard";
 import { useRouter } from "next/navigation";
@@ -82,7 +82,7 @@ export const DepartureTimeSection = (): JSX.Element => {
       {/* Header section */}
       <div className="flex flex-col items-start w-full">
         <div className="flex items-center justify-between px-5 py-2.5 w-full bg-white rounded-t-[10px] border-t border-r border-l border-[#f2f1f1]">
-          <div className="flex items-center gap-2.5">
+          <div className="flex md:flex-row flex-col  gap-2.5">
             <div className="font-bold text-sm text-neutralblackb-500">
               Tomorrow
             </div>
@@ -93,7 +93,7 @@ export const DepartureTimeSection = (): JSX.Element => {
 
           <Button
             variant="outline"
-            className="  bg-transparent font-medium text-[#515251] text-sm tracking-[0] leading-[normal] rounded-full py-4 "
+            className="  bg-transparent w-fit font-medium text-[#515251] text-sm tracking-[0] leading-[normal] rounded-full py-4 "
           >
             <span className="font-medium text-sm text-neutralblackb-500">
               Sort by
@@ -112,7 +112,7 @@ export const DepartureTimeSection = (): JSX.Element => {
               <span className="font-bold">36</span>
               <span className="font-normal"> results.</span>
             </div>
-            <div className="text-sm">
+            <div className="text-sm md:block hidden">
               <span className="font-bold text-black">1000</span>
               <span className="font-medium text-black">
                 {" "}

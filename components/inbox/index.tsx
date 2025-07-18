@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import { Messages } from "./Messages";
 import { Message01Icon, Notification01Icon } from "@hugeicons/core-free-icons";
 import { Notifications } from "./Notifications";
@@ -12,6 +12,7 @@ import {
   Notification,
   TabOption,
 } from "@/types";
+import { useRouter } from "next/navigation";
 
 // Dummy Data
 const chatPreviews: ChatPreview[] = [
@@ -98,9 +99,10 @@ const tabOptions: TabOption[] = [
 // Component
 export const Inbox = (): JSX.Element => {
   const [tab, setTab] = useState<string>("messages");
+  const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full bg-zinc-50 h-full  pb-20 border-4">
+    <div className="flex flex-col w-full bg-zinc-50 h-full  pb-20 ">
       <div className="flex justify-center items-start">
         {tab === "messages" ? (
           <InboxLayout
@@ -108,6 +110,7 @@ export const Inbox = (): JSX.Element => {
             handleTabClick={(selectedTab: string) => setTab(selectedTab)}
             data={chatPreviews}
             alertIcon={false}
+            handleMessageClick={() => router.push("/inbox/messages")}
           >
             <Messages messages={chatMessages} />
           </InboxLayout>
@@ -117,6 +120,7 @@ export const Inbox = (): JSX.Element => {
             handleTabClick={(selectedTab: string) => setTab(selectedTab)}
             data={notifications}
             alertIcon={true}
+            handleMessageClick={() => router.push("/inbox/notifications")}
           >
             <Notifications journeyDetails={journeyData} />
           </InboxLayout>

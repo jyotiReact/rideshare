@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React from "react";
+import React, { JSX } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {  PencilEdit02Icon } from "@hugeicons/core-free-icons";
+import { PencilEdit02Icon } from "@hugeicons/core-free-icons";
 import { BookingLayout } from "@/components/layout/BookingLayout";
 
 const formFields = [
@@ -29,9 +29,9 @@ export const EditProfile = (): JSX.Element => {
       title="Edit Details"
       description="Edit your personal details which are visible to other people."
     >
-      <div className="flex flex-col w-[785px] items-start gap-[25px]">
+      <div className="flex flex-col lg:w-[785px] items-center md:items-start  gap-[25px] w-full">
         {/* Profile Picture Section */}
-        <div className="flex flex-col items-end justify-end relative">
+        <div className="flex flex-col  relative">
           <img
             className="relative w-[137.81px] h-[137.81px] object-cover rounded-full"
             alt="Profile picture"
@@ -46,20 +46,20 @@ export const EditProfile = (): JSX.Element => {
         </div>
         {/* Personal Information Card */}
         <Card className="w-full border border-solid border-[#F2F2F2] rounded-[10px] shadow-none">
-          <CardContent className="p-10 space-y-[30px]">
+          <CardContent className="lg:p-10 p-2 space-y-[30px]">
             <div className="space-y-[30px] w-full">
               {formFields[0].fields.map((field) => (
                 <div key={field.id} className="space-y-[15px]">
                   <Label
                     htmlFor={field.id}
-                    className="font-bold text-sm text-black font-['Plus_Jakarta_Sans',Helvetica]"
+                    className="font-bold text-sm text-black  "
                   >
                     {field.label}
                   </Label>
                   <Input
                     id={field.id}
                     defaultValue={field.value}
-                    className="rounded-[40px] px-5 py-[19px] h-auto border-[#D9D9D9] font-['Plus_Jakarta_Sans',Helvetica] font-medium text-[#515251] text-sm"
+                    className="rounded-[40px] px-5 lg:py-[19px] py-4 h-auto border-[#D9D9D9]   font-medium text-[#515251] text-sm"
                   />
                 </div>
               ))}
@@ -68,27 +68,27 @@ export const EditProfile = (): JSX.Element => {
         </Card>
         {/* Date of Birth Card */}
         <Card className="w-full border border-solid border-[#F2F2F2] rounded-[10px] shadow-none">
-          <CardContent className="p-10 space-y-[15px]">
+          <CardContent className="lg:p-10 p-2 space-y-[15px]">
             {formFields[1].fields.map((field) => (
               <div key={field.id} className="space-y-[15px]">
                 <Label
                   htmlFor={field.id}
-                  className="font-bold text-sm text-black font-['Plus_Jakarta_Sans',Helvetica]"
+                  className="font-bold text-sm text-black  "
                 >
                   {field.label}
                 </Label>
                 <Input
                   id={field.id}
                   defaultValue={field.value}
-                  className="rounded-[40px] px-5 py-[19px] h-auto border-[#D9D9D9] font-['Plus_Jakarta_Sans',Helvetica] font-medium text-[#515251] text-sm"
+                  className="rounded-[40px] px-5 py-[19px] h-auto border-[#D9D9D9]   font-medium text-[#515251] text-sm"
                 />
               </div>
             ))}
           </CardContent>
         </Card>
         {/* Save Button */}
-        <div className="w-[393px]">
-          <Button className="w-full bg-[#631CFF] hover:bg-[#5016D0] rounded-[50px] p-3 h-auto font-['Plus_Jakarta_Sans',Helvetica] font-semibold text-base">
+        <div className="lg:w-[393px] w-full">
+          <Button className="w-full bg-[#631CFF] hover:bg-[#5016D0] rounded-[50px] p-3 h-auto   font-semibold text-base">
             Save
           </Button>
         </div>

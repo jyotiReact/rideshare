@@ -2,16 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import AuthForm from "../auth/AuthForm";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   AddCircleHalfDotIcon,
-  ArrowDataTransferDiagonalIcon,
   ArrowUpRight03Icon,
   LanguageSkillIcon,
   Logout01Icon,
   Message01Icon,
-  PaymentSuccess01Icon,
   Search01Icon,
   TaxiFreeIcons,
   UserIcon,
@@ -20,11 +17,16 @@ import SearchForm from "../searchBar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Profile from "../ui/profile";
+import { SendOtpDialog } from "../modals/SendOtp";
+import { LoginOptionModal } from "../modals/LoginOptionModal";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const login = true;
+  const [switchToLogin, setSwitchToLogin] = useState(false);
+  const [buttonClick, setButtonClick] = useState("");
+
   function handleSearch() {}
 
   const menuItems = [
@@ -50,14 +52,14 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className=" py-5 px-20  bg-[#fafafa] shadow w-full border-b border-[#E0E1E0] flex flex-col gap-5">
+    <header className=" py-5 lg:px-20  px-5 bg-[#fafafa] shadow w-full border-b border-[#E0E1E0] flex flex-col gap-5">
       <div className="flex w-full justify-between  items-center ">
         {/* Logo */}
         <Link href={"/dashboard"}>
           <div className="flex items-center gap-2 cursor-pointer ">
             {/* <div className="w-6 h-6 bg-purple-600 rounded" /> */}
             <Image src="/images/Logo.png" alt="Logo" width={24} height={24} />
-            <span className="font-semibold text-lg text-[#1A1A1A]">
+            <span className="font-semibold md:text-lg text-md text-[#1A1A1A]">
               RideShare
             </span>
           </div>
@@ -67,26 +69,26 @@ const Header: React.FC = () => {
         <div className="flex items-center gap-4">
           <Link
             href="/search-ride"
-            className="py-2 px-4 bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            className="py-2 px-4 w-8 h-8 md:w-fit  justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
           >
             <span className="text-[#1A1A1A]">
               <HugeiconsIcon icon={Search01Icon} width={20} />
             </span>
-            <span className="text-[#1A1A1A]">Search a ride</span>
+            <span className="text-[#1A1A1A] md:block hidden">Search a ride</span>
           </Link>
           <Link
             href="/publish-ride/step-1"
-            className="py-2 px-4 bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            className="py-2 px-4 w-8 h-8 md:w-fit  justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
           >
             <span className="text-[#1A1A1A]">
               <HugeiconsIcon icon={AddCircleHalfDotIcon} width={20} />
             </span>
-            <span className="text-[#1A1A1A]">Publish a ride</span>
+            <span className="text-[#1A1A1A] md:block hidden">Publish a ride</span>
           </Link>
         </div>
 
         <div className=" relative flex items-center gap-4">
-          <button className="py-2 px-4 bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow">
+          <button className="py-2 px-4  bg-white rounded-full border border-gray-300 md:flex hidden items-center gap-1 custom-shadow">
             <span className="text-[#1A1A1A]">
               <HugeiconsIcon icon={LanguageSkillIcon} width={20} />
             </span>
@@ -98,8 +100,8 @@ const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              className="py-2 px-4 bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
-              // onClick={() => setOpen(true)}
+              className="py-2 md:px-4 px-2 bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+              onClick={() => setOpen(true)}
             >
               <span className="text-[#1A1A1A]">Sign In</span>
               <span className="text-[#1A1A1A]">
@@ -134,7 +136,24 @@ const Header: React.FC = () => {
           )}
         </div>
       </div>
-      {/* <AuthForm open={open} onOpenChange={setOpen} /> */}
+
+      {/* <LoginOptionModal
+        open={open}
+        title="Welcome to RideShare"
+        formType={switchToLogin ? "Sign In" : "Sign Up"}
+        switchToLogin={switchToLogin || false}
+        footerLoginClick={() => {
+          setSwitchToLogin(!switchToLogin);
+          setButtonClick("");
+        }}
+        onClose={() => {
+          setOpen(false);
+          setButtonClick("");
+        }}
+        buttonClick={buttonClick}
+        setButtonClick={setButtonClick}
+      /> */}
+
       {pathname === "/rides" && <SearchForm handleSearch={handleSearch} />}
     </header>
   );

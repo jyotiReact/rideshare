@@ -1,5 +1,5 @@
 import { ArrowRightIcon, ChevronRightIcon, XIcon } from "lucide-react";
-import React from "react";
+import React, { JSX } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import PassengerInfoCard from "@/components/passengerInfoCard";
 import Profile from "@/components/ui/profile";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon, CarSignalIcon } from "@hugeicons/core-free-icons";
+import JourneyDetails from "@/components/journeyDetails";
 
 export const RideDetails = (): JSX.Element => {
   // Trip data
@@ -44,25 +45,26 @@ export const RideDetails = (): JSX.Element => {
   // Driver and car data
   const journeyData = {
     date: "Monday, 23 June",
-    startTime: "12:50",
+    departureTime: "12:50",
+    arrivalTime: "12:50",
     duration: "4h:30m",
-    endTime: "12:50",
     locations: [
       {
         city: "Delhi",
-        address: "Metro Station Jahangirpuri, 250, J Block, Jahangirpuri",
+        address: "Metro Station jahangirpuri,250, J Block, Jahangipuri",
       },
       {
         city: "Delhi",
-        address: "Metro Station Jahangirpuri, 250, J Block, Jahangirpuri",
+        address: "Metro Station jahangirpuri,250, J Block, Jahangipuri",
       },
     ],
-    price: {
-      amount: "₹1320",
-      seats: "2 Seats",
-      paymentMethod: "Cash",
-      paymentLocation: "Pay in car",
-    },
+  };
+
+  const priceDetails = {
+    amount: "₹1320",
+    seats: "2 Seats",
+    paymentMethod: "Cash",
+    paymentLocation: "Pay in car",
   };
 
   return (
@@ -71,48 +73,10 @@ export const RideDetails = (): JSX.Element => {
         title="Ride Details"
         description={"Booking will only be confirmed once the driver "}
       >
-        <div className="flex flex-col w-[785px] items-start gap-[25px]">
-          <Card className="w-full flex flex-col items-start gap-[30px] px-[60px] py-10 bg-white rounded-t-xl border border-[#f2f2f2]">
+        <div className="flex flex-col lg::w-[785px] w-full items-start gap-[25px]">
+          <Card className="w-full flex flex-col items-start gap-[30px] md:px-[60px] px-5 py-10 bg-white rounded-t-xl border border-[#f2f2f2]">
             <CardContent className="p-0 w-full">
-              <h2 className="text-2xl font-bold text-black">
-                {journeyData.date}
-              </h2>
-
-              <div className="flex gap-5 w-full mt-6">
-                {/* Time Section */}
-                <div className="flex flex-col justify-between">
-                  <div className="text-sm text-[#515251]">
-                    {journeyData.startTime}
-                  </div>
-                  <div className="text-xs text-[#515251] text-right">
-                    {journeyData.duration}
-                  </div>
-                  <div className="text-sm text-[#515251]">
-                    {journeyData.endTime}
-                  </div>
-                </div>
-
-                {/* Vertical Step Line */}
-                <div className="flex flex-col items-center justify-between">
-                  <StepLine />
-
-                  <StepLine line={false} />
-                </div>
-
-                {/* Locations */}
-                <div className="flex flex-col gap-16 h-full">
-                  {journeyData.locations.map((loc, index) => (
-                    <div key={index} className="flex flex-col gap-1 w-full">
-                      <div className="text-base font-bold text-[#515251]">
-                        {loc.city}
-                      </div>
-                      <div className="text-xs font-medium text-[#515251]">
-                        {loc.address}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <JourneyDetails journeyData={journeyData} />
 
               {/* Price Info */}
               <div className="flex flex-col gap-5 mt-[30px]">
@@ -121,21 +85,21 @@ export const RideDetails = (): JSX.Element => {
                     Price to be paid
                   </h2>
 
-                  <div className="flex justify-between items-center px-10 py-4 bg-[#0000000a] rounded-[10px] shadow-sm opacity-80">
+                  <div className="flex justify-between items-center md:px-10 py-4 px-5 bg-[#0000000a] rounded-[10px] shadow-sm opacity-80">
                     <div>
                       <div className="text-base font-bold text-[#5b5b5b]">
-                        {journeyData.price.seats}
+                        {priceDetails.seats}
                       </div>
                       <div className="text-xl font-bold text-black">
-                        {journeyData.price.amount}
+                        {priceDetails.amount}
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-base font-bold text-[#5b5b5b]">
-                        {journeyData.price.paymentLocation}
+                        {priceDetails.paymentLocation}
                       </div>
                       <div className="text-xl font-bold text-black">
-                        {journeyData.price.paymentMethod}
+                        {priceDetails.paymentMethod}
                       </div>
                     </div>
                   </div>
@@ -150,9 +114,9 @@ export const RideDetails = (): JSX.Element => {
               <PassengerInfoCard />
             </CardContent>
           </Card>
-          <Card className="flex flex-col items-start gap-[30px] px-10 py-[30px] w-full bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
+          <Card className="flex flex-col items-start gap-[30px] md:px-10 px-5 py-[30px] w-full bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
             <CardContent className="flex flex-col items-start justify-center gap-5 w-full p-0">
-              <h2 className="self-stretch mt-[-1.00px] font-['Plus_Jakarta_Sans',Helvetica] font-bold text-black text-1xl">
+              <h2 className="self-stretch mt-[-1.00px]   font-bold text-black text-1xl">
                 Driver and Car
               </h2>
 
@@ -162,7 +126,7 @@ export const RideDetails = (): JSX.Element => {
                     <Profile />
 
                     <div className="flex flex-col items-start gap-2.5">
-                      <div className="font-['Plus_Jakarta_Sans',Helvetica] font-bold text-black text-base tracking-[-0.13px] leading-[22.4px]">
+                      <div className="  font-bold text-black text-base tracking-[-0.13px] leading-[22.4px]">
                         Ritik B.
                       </div>
 
@@ -184,7 +148,7 @@ export const RideDetails = (): JSX.Element => {
               </div>
             </CardContent>
 
-            <div className="flex items-center justify-between w-full">
+            <div className="flex   md:flex-row flex-col md:items-center  md:justify-between gap-4 w-full">
               <div className="flex items-center justify-center gap-1 px-4 py-2 bg-basewhite rounded-[28px] border border-solid border-[#e5e5e5] shadow-[0px_2px_0px_#eeeeee]">
                 <div className="flex flex-col items-start">
                   <div className="relative w-[12.15px] h-[12.15px] rounded-[45.56px] overflow-hidden">
@@ -203,16 +167,16 @@ export const RideDetails = (): JSX.Element => {
                 </div>
 
                 <div className="flex items-center gap-[3px]">
-                  <span className="font-['Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
+                  <span className="  font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
                     PB
                   </span>
-                  <span className="font-['Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
+                  <span className="  font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
                     36
                   </span>
-                  <span className="font-['Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
+                  <span className="  font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
                     L2
                   </span>
-                  <span className="font-['Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
+                  <span className="  font-extrabold text-[#332f2a] text-lg tracking-[0.54px] leading-[26px]">
                     2500
                   </span>
                 </div>
@@ -223,7 +187,7 @@ export const RideDetails = (): JSX.Element => {
 
                 <div className="flex items-end gap-1">
                   <div className="flex items-center gap-[5px]">
-                    <div className="font-['Plus_Jakarta_Sans',Helvetica] font-bold text-base tracking-[-0.13px] leading-[22.4px] whitespace-nowrap">
+                    <div className="  font-bold text-base tracking-[-0.13px] leading-[22.4px] whitespace-nowrap">
                       <span className="text-black tracking-[-0.02px]">
                         Tata{" "}
                       </span>
@@ -236,18 +200,18 @@ export const RideDetails = (): JSX.Element => {
               </div>
             </div>
           </Card>
-          <div className="flex items-start gap-5 w-full">
+          <div className="flex md:flex-row flex-col items-start gap-5 w-full">
             <Button
               variant="outline"
-              className="flex-1 justify-center items-center gap-5 p-5 bg-white rounded-[50px] border border-solid border-[#f2f2f2]"
+              className="flex-1 md:justify-center justify-between  w-full items-center gap-5 md:p-5 bg-white rounded-[50px] border border-solid border-[#f2f2f2]"
             >
               <span className="font-medium text-[#e33629] text-base leading-7">
-               Cancel Ride
+                Cancel Ride
               </span>
               <XIcon className="w-5 h-5" color="#e33629" />
             </Button>
 
-            <Button className="flex-1 justify-center items-center gap-5 p-5 bg-[#631cff] rounded-[50px]">
+            <Button className="flex-1 md:justify-center justify-between items-center gap-5 md:p-5 bg-[#631cff] w-full rounded-[50px]">
               <span className="font-medium text-white text-base leading-7">
                 See Ride Offer
               </span>

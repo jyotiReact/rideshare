@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { JSX } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { BookingLayout } from "@/components/layout/BookingLayout";
@@ -12,8 +12,8 @@ export const EditAboutYou = (): JSX.Element => {
       title="About You"
       description="Edit the details of your preferences and about you"
     >
-      <div className="flex flex-col w-[785px] items-start gap-[10px]">
-        <Card className="w-full py-5 px-[40px]">
+      <div className="flex flex-col lg:w-[785px] w-full h-full items-start lg:gap-[10px] justify-between">
+        <Card className="w-full lg:py-5 lg:px-[40px] px-2 py-2">
           <div className="flex flex-col items-start gap-[15px] relative self-stretch w-full">
             <label className="relative w-fit mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-black text-sm tracking-[0] leading-[normal]">
               Comments/ Introduction
@@ -25,7 +25,7 @@ export const EditAboutYou = (): JSX.Element => {
           </div>
         </Card>
         {/* Book Button */}
-        <div className="inline-flex flex-col items-start gap-5 relative mt-[30px] w-[300px]">
+        <div className="inline-flex flex-col items-start gap-5 relative mt-[30px] lg:w-[300px] w-full">
           <Button className="inline-flex items-center justify-center gap-2.5 px-[50px] py-[15px]  rounded-[100px] text-white w-full">
             <span className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-white text-base text-center tracking-[-0.13px] leading-[22.4px]">
               Save

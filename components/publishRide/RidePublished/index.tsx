@@ -4,7 +4,7 @@ import RideListCard from "@/components/rideListing/RideListCard";
 import { Ride } from "@/types";
 import { useRouter } from "next/navigation";
 
-import React from "react";
+import React, { JSX } from "react";
 
 const rides: Ride[] = [
   {
@@ -76,15 +76,15 @@ const rides: Ride[] = [
 export const RidePublished = (): JSX.Element => {
   const router =useRouter()
   return (
-    <div className="relative h-screen  bg-white overflow-hidden">
-      <div className="  ">
+    <div className="relative h-screen   bg-white overflow-hidden w-full">
+      <div className=" w-full  ">
         <div className="  h-[353px]  bg-[#d0f500] flex items-center justify-center">
-          <h1 className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#631cff] text-[56px] text-center tracking-[0] leading-normal">
+          <h1 className=" font-extrabold text-[#631cff] lg:text-[56px] text-[44px]  text-center tracking-[0] leading-normal">
             Your ride is published !
           </h1>
         </div>
 
-        <div className="mx-auto mt-[-80px] w-[900px]">
+        <div className="lg:mx-auto lg:mt-[-80px] mt-[-40px] lg:w-[900px] mx-5 ">
           <RideListCard
             ride={rides[0]}
             btnLabel="View Details"

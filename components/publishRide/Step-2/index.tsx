@@ -1,9 +1,8 @@
 import Terms from "@/components/terms&Conditions";
-import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import React from "react";
+import React, { JSX } from "react";
 
 export const StepTwo = (): JSX.Element => {
   // Route options data
@@ -35,8 +34,8 @@ export const StepTwo = (): JSX.Element => {
   ];
 
   return (
-    <div className="flex w-full h-screen items-start bg-white">
-      <div className="flex flex-col items-center justify-center gap-[60px] px-[100px] py-0 flex-1 h-full">
+    <div className="flex lg:flex-row flex-col w-full h-screen lg:gap-0 gap-6 items-start bg-white">
+      <div className="flex flex-col lg:order-1 order-2 items-center justify-center gap-[60px] lg:px-[100px] px-5 py-0 flex-1 h-full w-full">
         <div className="flex flex-col items-center justify-center gap-10 self-stretch w-full">
           <div className="flex flex-col items-center gap-2.5 self-stretch w-full">
             <div className="flex flex-col items-center justify-center gap-[35px] self-stretch w-full">
@@ -89,13 +88,14 @@ export const StepTwo = (): JSX.Element => {
             >
               Continue
             </Link>
-
-            <Terms />
+            <div className="text-center mt-1 lg:w-[500px]">
+              <Terms />
+            </div>{" "}
           </div>
         </div>
       </div>
 
-      <div className="h-full">
+      <div className="h-full lg:order-2 order-1 w-full">
         <img
           className="w-full h-full object-cover"
           alt="Map showing route"

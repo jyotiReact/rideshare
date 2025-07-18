@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { ProfileLayout } from "../layout/ProfileLayout";
 import VerifyAccount from "./VerifyAccount";
 import { Verified } from "./Verified";
 import { Account } from "./Account";
-import { BookingLayout } from "../layout/BookingLayout";
 
 const tabOptions = [
   {
@@ -24,7 +23,7 @@ export const Profile = (): JSX.Element => {
   const login = true;
 
   return (
-    <div className="flex flex-col w-full bg-zinc-50 h-full px-20 pt-5 pb-20 border-4">
+    <div className="flex flex-col w-full bg-zinc-50 h-full lg:px-20 p-5 pb-20 ">
       <div className="flex justify-center items-start">
         {tab === "about" ? (
           <ProfileLayout

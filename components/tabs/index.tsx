@@ -7,7 +7,6 @@ import React from "react";
 
 // Define tab option type
 
-
 // Define props type
 interface TabsComponentProps {
   title?: string;
@@ -17,16 +16,14 @@ interface TabsComponentProps {
 
 export const TabsComponent: React.FC<TabsComponentProps> = ({
   title,
-  tabOptions=[],
-  handleTabClick=()=>{},
+  tabOptions = [],
+  handleTabClick = () => {},
 }) => {
   return (
     <section className="flex flex-col items-center gap-5 w-full">
       <div className="flex flex-col items-center gap-[30px] w-full">
         {title && (
-          <h2 className="font-bold text-4xl text-[#353535] font-['Plus_Jakarta_Sans',Helvetica]">
-            {title}
-          </h2>
+          <h2 className="font-bold md:text-4xl text-[24px] text-[#353535]  ">{title}</h2>
         )}
       </div>
       <Tabs
@@ -39,13 +36,13 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
               key={tab.id}
               value={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className="flex items-center justify-center gap-2.5 h-[62px] p-5 rounded-[20px] border border-solid 
+              className="flex items-center justify-center gap-2.5 md:p-5 p-2 md:rounded-[20px] rounded-full border border-solid 
                 data-[state=active]:bg-[#631CFF] data-[state=active]:text-white 
                 data-[state=active]:border-white data-[state=inactive]:border-[#F2F1F1] 
                 data-[state=inactive]:bg-transparent"
             >
               <HugeiconsIcon icon={tab.icon} className="w-6 h-6" />
-              <span className="font-['Plus_Jakarta_Sans',Helvetica] font-bold text-base tracking-[-0.13px] leading-[22.4px] whitespace-nowrap data-[state=inactive]:text-[#515251]">
+              <span className="  font-medium md:text-base text-sm tracking-[-0.13px] leading-[22.4px] whitespace-nowrap data-[state=inactive]:text-[#515251]">
                 {tab.label}
               </span>
             </TabsTrigger>

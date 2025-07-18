@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { JSX, ReactNode } from "react";
 import {
   AlertCircleFreeIcons,
   AlertCircleIcon,
@@ -57,7 +57,7 @@ export const RideDetailsLayout = ({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full bg-neutral-50 px-20 py-10">
+    <div className="flex flex-col w-full bg-neutral-50 lg:px-20 px-5 py-10">
       <div className="flex flex-col gap-10">
         <h1 className="text-4xl font-bold text-[#353535]">Ride Details</h1>
 
@@ -72,12 +72,13 @@ export const RideDetailsLayout = ({
         )}
 
         {/* Main Content */}
-        <div className="flex gap-10">
-          <div className="flex-1">{children}</div>
-          <div className="w-1/3">
-            <div className="flex flex-col w-full max-w-[450px] items-start gap-[30px] relative">
+        <div className="flex lg:flex-row flex-col gap-10">
+          <div className="flex-1 lg:order-1 order-2">{children}</div>
+
+          <div className="lg:w-1/3 w-full order-1 lg:order-2">
+            <div className="flex flex-col w-full  items-start gap-[30px] relative">
               <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-                <CardContent className="flex flex-col items-start gap-[30px] px-10 py-5">
+                <CardContent className="flex flex-col items-start gap-[30px] lg:px-10 px-5 py-5">
                   <JourneyDetails journeyData={journeyData} />
 
                   <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
@@ -132,7 +133,7 @@ export const RideDetailsLayout = ({
               >
                 <HugeiconsIcon icon={ZapFreeIcons} color="#ffffff" />
 
-                <span className="font-medium text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap font-['Plus_Jakarta_Sans',Helvetica]">
+                <span className="font-medium text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap  ">
                   {btnLabel}
                 </span>
               </Button>

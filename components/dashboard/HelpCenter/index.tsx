@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import React, { JSX } from "react";
 import {
   InstagramIcon,
   TwitterIcon,
@@ -42,20 +42,19 @@ const socialLinks: {
 
 
   return (
-    <section className="px-12 w-full py-12 ">
-      <div className="bg-[#631cff] rounded-[90px] py-20 px-[100px] flex flex-col gap-20 w-full ">
-        <div className="flex justify-between w-full">
-          <div className="flex gap-40 flex-1">
+    <section className="lg:px-12 w-full lg:py-12 pt-6">
+      <div className="bg-[#631cff] lg:rounded-[90px] py-20 lg:px-[100px] px-5 flex flex-col gap-20 w-full ">
+        <div className="flex md:flex-row flex-col md:justify-between gap-10 w-full ">
             {/* Top carpool routes column */}
-            <div className="flex flex-col gap-10">
-              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+            <div className=" md:flex hidden flex-col gap-10 md:order-1">
+              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6  ">
                 Top carpool routes
               </h3>
               <ul className="flex flex-col gap-4">
-                {carpoolRoutes.map((route, index) => (
+                {carpoolRoutes.map((route, index) => ( 
                   <li
                     key={`route-${index}`}
-                    className="font-medium text-base text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]"
+                    className="font-medium text-base text-white leading-6  "
                   >
                     {route}
                   </li>
@@ -64,42 +63,42 @@ const socialLinks: {
             </div>
 
             {/* Resources column */}
-            <div className="flex flex-col gap-10">
-              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+            <div className="flex flex-col md:gap-10 gap-4  order-2">
+              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6  ">
                 Resources
               </h3>
               <ul className="flex flex-col gap-4">
                 {resources.map((resource, index) => (
                   <li
                     key={`resource-${index}`}
-                    className="font-medium text-base text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]"
+                    className="font-medium text-base text-white leading-6  "
                   >
                     {resource}
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+       
 
           {/* Stay up to date column */}
-          <div className="flex flex-col items-end gap-10 py-0.5">
+          <div className="flex flex-col  md:gap-10 gap-6 py-0.5 md:order-3 order-1">
             <div className="w-[300px] h-7">
-              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+              <h3 className="font-bold text-2xl text-white tracking-[-0.14px] leading-6  ">
                 Stay up to date
               </h3>
             </div>
 
-            <div className="flex flex-col items-end gap-[23px]">
-              <div className="flex w-[300px] items-center gap-2.5">
+            <div className="flex flex-col  gap-[23px]">
+              <div className="flex md:w-[300px] items-center gap-2.5">
                 <div className="relative flex-1 h-11 ">
                   <Input
-                    className="h-full bg-transparent rounded-[100px] border border-solid border-[#ffffff99]  text-[#ffffffcc] placeholder:text-[#ffffffcc] font-['Plus_Jakarta_Sans',Helvetica] font-medium"
+                    className="h-full bg-transparent rounded-[100px] border border-solid border-[#ffffff99]  text-[#ffffffcc] placeholder:text-[#ffffffcc]   font-medium"
                     placeholder="Email"
                   />
                 </div>
               </div>
 
-              <p className="font-medium text-base text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+              <p className="font-medium text-base text-white leading-6  ">
                 I confirm that I have read transparent&apos;s <br />
                 Privacy policy and agree with it.
               </p>
@@ -107,7 +106,7 @@ const socialLinks: {
 
             {/* Social media links */}
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-5">
+              <div className="flex items-center md:gap-5 gap-2">
                 {socialLinks.map((social, index) => (
                   <Card
                     key={`social-${index}`}
@@ -123,19 +122,20 @@ const socialLinks: {
               </div>
             </div>
           </div>
+          
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-5 w-full border-t border-[#ffffff33]">
-          <p className="font-medium text-sm text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+        <div className="flex md:flex-row flex-col md:items-center justify-between pt-5 w-full border-t border-[#ffffff33]">
+          <p className="font-medium text-sm text-white leading-6  ">
             © RideShare. Ltd.
           </p>
 
           <div className="flex gap-4">
-            <p className="font-medium text-sm text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+            <p className="font-medium text-sm text-white leading-6  ">
               Terms
             </p>
-            <p className="font-medium text-sm text-white leading-6 font-['Plus_Jakarta_Sans',Helvetica]">
+            <p className="font-medium text-sm text-white leading-6  ">
               Privacy Policy
             </p>
           </div>

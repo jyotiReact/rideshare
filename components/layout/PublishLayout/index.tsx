@@ -2,6 +2,8 @@
 
 import Terms from "@/components/terms&Conditions";
 import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { JSX, ReactNode } from "react";
 
@@ -48,9 +50,18 @@ const PublishLayout = ({
           <div className="flex flex-col md:items-center gap-6 relative self-stretch w-full">
             <div className="flex flex-col items-center gap-[35px] relative self-stretch w-full">
               <div className="flex items-center justify-between w-full">
-                <h1 className="text-[#353535] md:text-3xl  text-[24px] font-bold leading-normal">
-                  {title}
-                </h1>
+                <div className="flex items-start gap-3">
+                  {stepCount > 1 && (
+                    <ChevronLeft
+                      className="w-5 h-5 mt-2 text-[#631CFF] cursor-pointer"
+                      onClick={() => router.back()}
+                    />
+                  )}
+
+                  <h1 className="text-[#353535] md:text-3xl text-[24px] font-bold leading-normal">
+                    {title}
+                  </h1>
+                </div>
                 <span className="font-medium text-[#353535] text-base">
                   Step {stepCount}/{totalStep}
                 </span>
@@ -58,7 +69,7 @@ const PublishLayout = ({
             </div>
           </div>
 
-          <div className="flex flex-col items-center  justify-center w-full">
+          <div className="flex flex-col items-center  justify-center w-full ">
             {children}
           </div>
         </div>
@@ -75,9 +86,7 @@ const PublishLayout = ({
                   className={button.className}
                   size={button.size}
                 >
-                  <div className="font-bold  text-sm">
-                    {button.label}
-                  </div>
+                  <div className="font-bold  text-sm">{button.label}</div>
                 </Button>
               ))}
           </div>

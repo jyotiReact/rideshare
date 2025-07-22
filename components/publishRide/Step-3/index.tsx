@@ -1,25 +1,86 @@
 "use client";
+
 import PublishLayout from "@/components/layout/PublishLayout";
 import { StepOvers } from "@/components/stepOvers";
-import { CheckCircleIcon } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RootState } from "@/store/store";
+import { getStopovers } from "@/utils";
 import { useRouter } from "next/navigation";
-import React, { JSX, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setStep3Data } from "@/store/rideSlice";
+
+// Types
+type Stopover = {
+  name: string;
+  selected: boolean;
+};
+
+type LocationStep = {
+  type: "From" | "Via" | "To";
+  location: string;
+  hasPin: boolean;
+};
+
+interface City {
+  name: string;
+  selected: boolean;
+}
 
 export const StepThree = (): JSX.Element => {
-  const [showSteps, setShowSteps] = useState(false);
+  const [showSteps, setShowSteps] = useState<boolean>(false);
+  const [cities, setCities] = useState<Stopover[]>([]);
+  const [locations, setLocations] = useState<LocationStep[]>([]);
   const router = useRouter();
-  // Data for the stopover cities
-  const cities = [
-    { name: "Ambala", selected: true },
-    { name: "Karnal", selected: false },
-    { name: "Pipli", selected: false },
-  ];
-  const locations = [
-    { type: "From", location: "New Delhi", hasPin: false },
-    { type: "Via", location: "Ambala", hasPin: true },
-    { type: "To", location: "Chandigarh", hasPin: false },
-  ];
+  const dispatch = useDispatch();
 
+  const { step1, step3 } = useSelector((state: RootState) => state.ride);
+
+  useEffect(() => {
+    if (step1) {
+      if (step3?.stopovers) {
+        setCities(step3.stopovers);
+      } else {
+        const initialCities = getStopovers(step1.origin, step1.destination);
+        setCities(initialCities);
+      }
+    }
+  }, [step1, step3]);
+  console.log(cities)
+
+  const handleCheckboxChange = (cityName: string) => {
+    const updatedCities = cities.map((city) =>
+      city.name === cityName ? { ...city, selected: !city.selected } : city
+    );
+    setCities(updatedCities);
+  };
+
+  const handleContinue = () => {
+    if (!showSteps) {
+      // Make sure cities is properly typed as City[]
+      const selectedCities = cities.filter((city: City) => city.selected);
+
+      dispatch(
+        setStep3Data({
+          stopovers: selectedCities,
+        })
+      );
+      setShowSteps(true);
+
+      const newLocations: LocationStep[] = [
+        { type: "From", location: step1.origin, hasPin: false },
+        ...selectedCities.map((city: City) => ({
+          type: "Via" as const,
+          location: city.name,
+          hasPin: true,
+        })),
+        { type: "To" as const, location: step1.destination, hasPin: false },
+      ];
+      setLocations(newLocations);
+    } else {
+      router.push("/publish-ride/step-4");
+    }
+  };
   return (
     <PublishLayout
       stepCount={3}
@@ -32,16 +93,12 @@ export const StepThree = (): JSX.Element => {
         },
         {
           label: "Continue",
-          handleClick: () => {
-            !showSteps
-              ? setShowSteps(true)
-              : router.push("/publish-ride/step-4");
-          },
+          handleClick: handleContinue,
           variant: "default",
         },
       ]}
     >
-      <section className="flex flex-col items-start self-stretch w-full pl-4 ">
+      <section className="flex flex-col items-start self-stretch w-full pl-4">
         {!showSteps ? (
           cities.map((city, index) => (
             <div
@@ -51,14 +108,12 @@ export const StepThree = (): JSX.Element => {
               }`}
             >
               <div className="inline-flex items-center gap-2.5">
-                {city.selected ? (
-                  <CheckCircleIcon className="w-[18px] h-[18px] text-[#631cff]" />
-                ) : (
-                  <div className="relative w-[18px] h-[18px] rounded-[33px] border-2 border-solid border-[#e6e7e8]" />
-                )}
-
+                <Checkbox
+                  checked={city.selected}
+                  onCheckedChange={() => handleCheckboxChange(city.name)}
+                />
                 <div className="inline-flex flex-col items-start justify-center gap-1">
-                  <div className="mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-neutralblackb-600 text-base tracking-[0] leading-7 whitespace-nowrap">
+                  <div className="mt-[-1.00px] font-bold text-neutralblackb-600 text-base leading-7">
                     {city.name}
                   </div>
                 </div>

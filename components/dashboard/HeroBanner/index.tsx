@@ -1,19 +1,23 @@
 // components/HeroBannerSection.tsx
-
+"use client";
+import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import CustomDatePicker from "@/components/ui/date-picker";
 import {
   ArrowDataTransferVerticalIcon,
   Calendar02Icon,
   IdIcon,
   Money04Icon,
   PinLocation01Icon,
+  Search01Icon,
   UserGroupIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
-import React, { JSX } from "react";
+import React, { JSX, useRef, useState } from "react";
 
 // Define the card type
 type FeatureCard = {
@@ -24,6 +28,16 @@ type FeatureCard = {
 };
 
 export const HeroBannerSection = (): JSX.Element => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(
+    new Date(new Date().setDate(new Date().getDate() + 1))
+  );
+  const [passengerCount, setPassengerCount] = useState<number>(2);
+  const [showPassengerPopup, setShowPassengerPopup] = useState<boolean>(false);
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  const [fromLocation, setFromLocation] = useState("Chandigarh");
+  const [toLocation, setToLocation] = useState("Shimla");
+  const router = useRouter();
+
   // Feature cards data
   const featureCards: FeatureCard[] = [
     {
@@ -48,6 +62,17 @@ export const HeroBannerSection = (): JSX.Element => {
       type: "image",
     },
   ];
+
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams({
+      from: fromLocation,
+      to: toLocation,
+      date: selectedDate?.toISOString() ?? "",
+      passengers: passengerCount.toString(),
+    });
+
+    router.push(`/search-ride?${queryParams.toString()}`);
+  };
 
   return (
     <section className="flex flex-col items-center w-full bg-[url('/images/bannerbg.png')] bg-contain bg-no-repeat md:px-12 px-5">
@@ -75,71 +100,165 @@ export const HeroBannerSection = (): JSX.Element => {
                 </span>
               </Badge>
 
-              <h1 className="w-full font-extrabold text-black md:text-[56px]  text-[36px] text-center leading-[normal]  ">
+              <h1 className="w-full font-extrabold text-black md:text-[56px]  text-[32px] text-center leading-[normal]  ">
                 Share Your Ride. Save on Travel.
               </h1>
 
-              <p className="lg:w-[541px] md:w-[353px] font-normal text-[#515251] text-lg text-center leading-[25.2px]  ">
+              <p className="lg:w-[541px] md:w-[353px] font-normal text-[#515251] md:text-lg text-xs text-center md:leading-[25.2px] leading-5  ">
                 Connect with verified co-travelers going your way. Save money,
                 reduce your carbon footprint, and enjoy the journey together.
               </p>
             </div>
-
-            <div className="flex flex-col w-full gap-4">
-              <div className="flex flex-col items-start justify-center gap-2.5 w-full relative">
-                <div className="flex items-center gap-1 px-5 py-[18px] w-full rounded-[40px] border-2 border-[#631cff]">
-                  <HugeiconsIcon icon={PinLocation01Icon} width={20} />
-                  <span className="font-bold text-black text-sm leading-[normal]  ">
+            <div className="flex flex-col w-full items-start lg:gap-2.5 gap-4 ">
+              {/* From/To Location Fields */}
+              <div className="flex flex-col items-center lg:gap-2.5 gap-4 relative w-full">
+                {/* From Location */}
+                <div className="flex items-center gap-1 px-5 py-3 rounded-[40px] border w-full border-[#d9d9d9] relative">
+                  <HugeiconsIcon
+                    icon={PinLocation01Icon}
+                    width={20}
+                    color="#631CFF"
+                  />
+                  <label
+                    htmlFor="fromLocation"
+                    className="font-bold text-black text-sm"
+                  >
                     From:
-                  </span>
-                  <span className="font-medium text-sm leading-[normal]  ">
-                    <span className="text-[#515251]">Chandigarh</span>
-                    <span className="text-black">|</span>
-                  </span>
+                  </label>
+                  <input
+                    id="fromLocation"
+                    name="fromLocation"
+                    type="text"
+                    placeholder="Enter location"
+                    value={fromLocation}
+                    onChange={(e) => setFromLocation(e.target.value)}
+                    className="flex-1 border-none focus:outline-none bg-transparent font-medium text-[#515251] text-sm placeholder:text-[#b0b0b0]"
+                  />
                 </div>
 
-                <div className="flex items-center gap-1 px-5 py-[18px] w-full rounded-[40px] border border-[#d9d9d9]">
-                  <HugeiconsIcon icon={PinLocation01Icon} width={20} />
-                  <span className="font-bold text-black text-sm leading-[normal]  ">
+                {/* To Location */}
+                <div className="flex items-center gap-1 px-5 py-3 rounded-[40px] border w-full border-[#d9d9d9] relative">
+                  <HugeiconsIcon
+                    icon={PinLocation01Icon}
+                    width={20}
+                    color="#631CFF"
+                  />
+                  <label
+                    htmlFor="toLocation"
+                    className="font-bold text-black text-sm"
+                  >
                     To:
-                  </span>
-                  <span className="font-medium text-[#515251] text-sm leading-[normal]  ">
-                    Shimla
-                  </span>
+                  </label>
+                  <input
+                    id="toLocation"
+                    name="toLocation"
+                    type="text"
+                    placeholder="Enter location"
+                    value={toLocation}
+                    onChange={(e) => setToLocation(e.target.value)}
+                    className="flex-1 border-none focus:outline-none bg-transparent font-medium text-[#515251] text-sm placeholder:text-[#b0b0b0]"
+                  />
                 </div>
 
+                {/* Swap Button - Centered between inputs */}
                 <Button
-                  className="absolute top-[35%] left-1/2 -translate-x-1/2 p-3 bg-[#D0F500] rounded-full hover:bg-[#bfe000] transition"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-[#D0F500] rounded-full hover:bg-[#bfe000] transition z-10"
                   size="icon"
                 >
                   <HugeiconsIcon
                     icon={ArrowDataTransferVerticalIcon}
                     width={20}
                     color="#631cff"
-                    className="align-middle shrink-0"
                   />
                 </Button>
               </div>
 
-              <div className="flex items-center gap-2.5 w-full">
-                <div className="flex items-center gap-1.5 px-5 py-[18px] flex-1 rounded-[40px] border border-[#d9d9d9]">
-                  <HugeiconsIcon icon={Calendar02Icon} width={20} />
-                  <span className="font-bold text-black text-sm leading-[normal]  ">
-                    Tomorrow
-                  </span>
-                </div>
+              <div className="flex  gap-2.5  w-full relative">
+                <CustomDatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                  renderCustomInput={() => (
+                    <Button
+                      variant="outline"
+                      className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
+                    >
+                      <HugeiconsIcon
+                        icon={Calendar02Icon}
+                        width={20}
+                        color="#631CFF"
+                      />
+                      <span className="font-bold text-black text-sm">
+                        {selectedDate
+                          ? selectedDate.toLocaleDateString("en-IN", {
+                              weekday: "short",
+                              day: "numeric",
+                              month: "short",
+                            })
+                          : "Select date"}
+                      </span>
+                    </Button>
+                  )}
+                />
 
-                <div className="flex items-center gap-1.5 px-5 py-[18px] flex-1 rounded-[40px] border border-[#d9d9d9]">
-                  <HugeiconsIcon icon={UserGroupIcon} width={20} />
-                  <span className="font-bold text-black text-sm leading-[normal]  ">
-                    2 Passenger
-                  </span>
+                {/* Passenger Selector */}
+                <div className="relative w-full">
+                  <Button
+                    variant="outline"
+                    className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
+                    onClick={() => setShowPassengerPopup((prev) => !prev)}
+                  >
+                    <HugeiconsIcon
+                      icon={UserGroupIcon}
+                      width={20}
+                      color="#631CFF"
+                    />
+                    <span className="font-bold text-black text-sm">
+                      {passengerCount} Passenger{passengerCount > 1 ? "s" : ""}
+                    </span>
+                  </Button>
+
+                  {/* Popup */}
+                  {showPassengerPopup && (
+                    <div
+                      ref={popupRef}
+                      className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-2xl shadow-xl p-4 transition-all duration-200 ease-out origin-top transform-gpu opacity-0 scale-95 animate-[fadeIn_200ms_ease-out_forwards]"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <button
+                          onClick={() =>
+                            setPassengerCount((prev) => Math.max(1, prev - 1))
+                          }
+                          className="flex-1 flex items-center justify-center p-2 bg-gray-100 rounded-full hover:bg-gray-200"
+                        >
+                          <MinusIcon className="w-4 h-4 text-[#631CFF]" />
+                        </button>
+
+                        <span className="text-sm font-medium w-8 text-center">
+                          {passengerCount}
+                        </span>
+
+                        <button
+                          onClick={() =>
+                            setPassengerCount((prev) => Math.min(10, prev + 1))
+                          }
+                          className="flex-1 flex items-center justify-center p-2 bg-gray-100 rounded-full hover:bg-gray-200"
+                        >
+                          <PlusIcon className="w-4 h-4 text-[#631CFF]" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              <Button className="w-full px-4 py-[18px] rounded-[28px] border border-solid shadow-[0px_2px_0px_#4100d11a] hover:bg-[#5016d1]">
-                <span className="font-bold text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap  ">
-                  Search
+              {/* Search Button */}
+              <Button
+                className="inline-flex items-center w-full justify-center gap-1 px-[30px] py-6 rounded-full"
+                onClick={handleSearch}
+              >
+                <HugeiconsIcon icon={Search01Icon} width={20} color="#ffffff" />
+                <span className="font-medium text-white text-sm">
+                  Search Rides
                 </span>
               </Button>
             </div>

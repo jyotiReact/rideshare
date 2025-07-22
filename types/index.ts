@@ -18,14 +18,16 @@ export interface Ride {
   duration: string;
   from: string;
   to: string;
-  rating: string;
-  originalPrice: string;
-  price: string;
+  rating: number;
+  originalPrice: number;
+  price: number ;
   driver: string;
   driverImage: string;
   car: string;
   carColor: string;
   carBg: string;
+  maxPassengers: number;
+  instantRequest: boolean;
 }
 
 export interface Location {
@@ -103,3 +105,18 @@ export type JourneyDetailsType = {
   duration: string;
   locations: JourneyLocation[];
 };
+
+export interface SearchItem {
+  route: string;
+  date?: Date | string | null | undefined;
+  passengers: string;
+   timestamp: number;
+}
+
+export interface RouteOption {
+  id: string;
+  duration: string;
+  tollInfo: string;
+  distance: string;
+  path: string;
+}

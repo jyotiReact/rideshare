@@ -15,6 +15,11 @@ import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";
 import React, { JSX, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { AuthModal } from "@/components/modals/authModal";
+import { EmailOption } from "@/components/modals/EmailOption";
+import { PhoneOption } from "@/components/modals/PhoneOption";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 // Profile verification data
 const profileItems = [
@@ -70,8 +75,8 @@ const aboutTags: Tag[] = [
 export const Verified = (): JSX.Element => {
   const [modalType, setModalType] = useState<string>("");
   const [open, setOpen] = useState(false);
-  const [otp, setOtp] = useState<string>("");
-
+  const [authData, setAuthData] = useState({});
+  const aboutYou = useSelector((state: RootState) => state?.user?.aboutYou);
   return (
     <div className="flex flex-col items-start justify-center gap-5 relative">
       <Card className="flex flex-col items-start gap-5 md:px-[30px] px-2 py-5 relative self-stretch w-full flex-[0_0_auto] bg-white md:rounded-[20px] overflow-hidden border border-solid border-[#f2f1f1]">
@@ -131,10 +136,7 @@ export const Verified = (): JSX.Element => {
               <div className="flex md:flex-row flex-col items-start md:gap-10 gap-2 pt-0 pb-5 px-0 self-stretch w-full border-b [border-bottom-style:solid] border-[#e9e9eb] relative flex-[0_0_auto]">
                 <div className="flex items-center gap-2.5 relative flex-1 grow">
                   <p className="relative flex-1 mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-neutralblackb-600 text-sm tracking-[0] leading-[24.5px]">
-                    Worem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc vulputate libero et velit interdum, ac aliquet odio
-                    mattis. Class aptent taciti sociosqu ad litora torquent per
-                    conubia nostra, per inceptos himenaeos.
+                    {aboutYou || "Comments/ Introduction"}
                   </p>
                 </div>
                 <Link href="/profile/edit-about-you">
@@ -202,22 +204,24 @@ export const Verified = (): JSX.Element => {
         </CardContent>
       </Card>
 
-      <Dialog.Root open={open}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/50 z-40" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 z-50 w-[90vw] max-w-[500px] -translate-x-1/2 -translate-y-1/2 bg-white rounded-[15px] shadow-xl overflow-y-auto">
-            <SendOtpDialog
-              label={modalType}
-              type={modalType === "Phone" ? "Phone" : "Email"}
-              otp={otp}
-              setOtp={setOtp}
-              submitBtnLabel="Continue"
-              onEditPhone={() => alert("Edit phone clicked")}
-              handleSubmit={() => {}}
-            />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+      <AuthModal
+        formType={
+          modalType === "Email"
+            ? "Edit/Confirm Email"
+            : "Edit/Confirm Phone Number"
+        }
+        open={open}
+        onClose={() => setOpen(false)}
+        terms={true}
+        loginText={false}
+        renderComponent={
+          modalType === "Email" ? (
+            <EmailOption btnLabel="Save" setAuthData={setAuthData} />
+          ) : (
+            <PhoneOption btnLabel="Save" setAuthData={setAuthData} />
+          )
+        }
+      />
     </div>
   );
 };

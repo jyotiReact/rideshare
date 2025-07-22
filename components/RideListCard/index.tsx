@@ -74,12 +74,12 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
             </div>
 
             {/* From/To */}
-            <div className="flex items-center justify-between w-full">
-              <div className="flex w-[104px] justify-between items-center">
+            <div className="flex items-center justify-between w-full ">
+              <div className="flex  gap-2 items-center">
                 <div className="text-xs text-[#515251] font-medium">From</div>
                 <div className="text-sm font-bold text-black">{ride.from}</div>
               </div>
-              <div className="flex w-[99px] justify-between items-center">
+              <div className="flex  gap-2 items-center">
                 <div className="text-xs text-[#515251] font-medium ">To</div>
                 <div className="text-sm font-bold text-black text-right">
                   {ride.to}
@@ -89,7 +89,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
           </div>
 
           {/* Rating and Price */}
-          <div className="lg:flex hidden items-center gap-[5px] p-[5px] bg-[#deefe4] rounded-[20px]">
+          <div className="md:flex hidden items-center gap-[5px] p-[5px] bg-[#deefe4] rounded-[20px]">
             <Badge className="flex items-center gap-1 px-2 py-1 bg-[#0e7a31] rounded-3xl">
               <img
                 className="w-3 h-[11px]"
@@ -114,7 +114,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
             </div>
 
             <Button className="flex items-center gap-1 px-4 md:py-2  rounded-full w-fit text-white">
-              <span className="text-base font-medium">{btnLabel}</span>
+              <span className="md:text-base text-sm font-medium">{btnLabel}</span>
               <HugeiconsIcon icon={ArrowUpRight03Icon} width={20} />
             </Button>
           </div>
@@ -122,33 +122,37 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
 
         {/* Bottom Row: Driver Info */}
         <div className="flex items-center justify-between md:px-10 py-5 px-1 bg-white">
-          <div className="flex md:items-center gap-2.5">
-            <Profile />
-            <div className="md:text-base text-sm font-bold text-black">{ride.driver}</div>
+          <div className="flex flex-col md:flex-row  gap-2.5 w-full">
+            <div className="flex  items-center gap-3 justify-between w-full ">
+              <div className="flex items-center gap-3">
+                <Profile />
+                <div className="md:text-base text-sm font-bold text-black">
+                  {ride.driver}
+                </div>
+              </div>
 
-            <div className="lg:hidden flex items-center gap-[5px] md:p-[5px] p-1 bg-[#deefe4] rounded-[20px]">
-              <Badge className="flex items-center gap-1 px-2 py-1 bg-[#0e7a31] rounded-3xl">
-                <img
-                  className="w-3 h-[11px]"
-                  src="/images/whitestar.png"
-                  alt="Star"
-                />
-                <span className="text-sm font-medium text-white">
+              <div className="md:hidden flex items-center gap-[5px] p-[5px] bg-[#deefe4] rounded-[20px]">
+                <Badge className="flex items-center gap-1 px-2 py-1 bg-[#0e7a31] rounded-3xl">
+                  <img
+                    className="w-3 h-[11px]"
+                    src="/images/whitestar.png"
+                    alt="Star"
+                  />
+                  <span className="text-sm font-medium text-white">
+                    {ride.rating}
+                  </span>
+                </Badge>
+                <div className="text-sm font-medium text-black">
                   {ride.rating}
-                </span>
-              </Badge>
-              <div className="text-sm font-medium text-black">
-                {ride.rating}
+                </div>
               </div>
             </div>
 
             <Badge
-              className={`flex items-center gap-2 md:px-2 px-1 py-1.5 ${ride.carBg} rounded-3xl`}
+              className={`flex items-center gap-2 md:px-2 px-1 py-1.5 bg-[#631CFF1] rounded-3xl text-[#631CFF] w-fit whitespace-nowrap`}
             >
               <HugeiconsIcon icon={CarSignalIcon} width={20} color="#631CFF" />
-              <span className={`text-xs font-medium ${ride.carColor}`}>
-                {ride.car}
-              </span>
+              <span className={`text-xs font-medium  `}>{ride.car}</span>
             </Badge>
           </div>
 
@@ -159,21 +163,23 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
                 width={20}
                 color="#631CFF"
               />
-              <span className="text-sm font-medium text-[#101828]">
-                2 Max. Allowed in back
+              <span className="text-sm font-medium text-[#101828] whitespace-nowrap">
+                {ride.maxPassengers} Max. Allowed in back
               </span>
             </Badge>
 
             <div className="flex gap-2.5">
-              <Badge className="flex items-center gap-1 px-2 py-1.5 bg-[#F5F5F5] rounded-3xl">
-                <HugeiconsIcon icon={ZapIcon} width={20} color="#631CFF" />
-                <span className="text-sm font-medium text-[#101828]">
-                  Instant Booking
-                </span>
-              </Badge>
+              {ride.instantRequest && (
+                <Badge className="flex items-center gap-1 px-2 py-1.5 bg-[#F5F5F5] rounded-3xl">
+                  <HugeiconsIcon icon={ZapIcon} width={20} color="#631CFF" />
+                  <span className="text-sm font-medium text-[#101828] whitespace-nowrap">
+                    Instant Booking
+                  </span>
+                </Badge>
+              )}
 
               <Badge className="flex items-center gap-1 px-2 py-1.5 bg-[#F5F5F5] rounded-3xl">
-                <span className="text-sm font-medium text-[#101828]">
+                <span className="text-sm font-medium text-[#101828] whitespace-nowrap">
                   + 2 More
                 </span>
               </Badge>

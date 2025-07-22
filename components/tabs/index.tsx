@@ -41,7 +41,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                 data-[state=active]:border-white data-[state=inactive]:border-[#F2F1F1] 
                 data-[state=inactive]:bg-transparent"
             >
-              <HugeiconsIcon icon={tab.icon} className="w-6 h-6" />
+              <HugeiconsIcon icon={tab.icon} className="w-6 h-6 sm:block hidden" />
               <span className="  font-medium md:text-base text-sm tracking-[-0.13px] leading-[22.4px] whitespace-nowrap data-[state=inactive]:text-[#515251]">
                 {tab.label}
               </span>

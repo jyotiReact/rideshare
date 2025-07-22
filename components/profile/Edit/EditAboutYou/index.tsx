@@ -1,12 +1,27 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { JSX } from "react";
+import React, { JSX, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { BookingLayout } from "@/components/layout/BookingLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { setAboutYou } from "@/store/authslice";
+import { useRouter } from "next/navigation";
 
 export const EditAboutYou = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const aboutYou = useSelector((state: RootState) => state.user.aboutYou);
+
+  const [comments, setComments] = useState(aboutYou || "");
+
+  const handleSave = () => {
+    dispatch(setAboutYou(comments));
+    router.push("/profile");
+  };
+
   return (
     <BookingLayout
       title="About You"
@@ -20,13 +35,18 @@ export const EditAboutYou = (): JSX.Element => {
             </label>
             <Textarea
               placeholder="Comments"
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
               className="h-36 px-5 py-[18px] rounded-[20px] border border-[#d9d9d9]"
             />
           </div>
         </Card>
-        {/* Book Button */}
+        {/* Save Button */}
         <div className="inline-flex flex-col items-start gap-5 relative mt-[30px] lg:w-[300px] w-full">
-          <Button className="inline-flex items-center justify-center gap-2.5 px-[50px] py-[15px]  rounded-[100px] text-white w-full">
+          <Button
+            className="inline-flex items-center justify-center gap-2.5 px-[50px] py-[15px] rounded-[100px] text-white w-full"
+            onClick={handleSave}
+          >
             <span className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-white text-base text-center tracking-[-0.13px] leading-[22.4px]">
               Save
             </span>

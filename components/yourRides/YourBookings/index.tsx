@@ -37,9 +37,9 @@ export const YourBookingsSection = (): JSX.Element => {
           className="w-full border border-solid border-[#F2F1F1] rounded-[10px] overflow-hidden"
         >
           <CardContent className="p-0">
-            <div className="flex md:flex-row flex-col md:items-center  md:justify-between gap-10 md:px-10 py-5 px-5 bg-white">
+            <div className="flex md:flex-row flex-col md:items-center  md:justify-between gap-10 md:px-10 py-5 px-2 bg-white">
               <div className="flex flex-col items-start gap-2.5">
-                <div className="flex flex-col items-start gap-2.5 w-[300px]">
+                <div className="flex flex-col items-start gap-2.5 md:w-[300px] w-full">
                   <div className="flex items-center justify-between w-full">
                     <div className="text-xs font-medium text-[#515251]">
                       {booking.departureTime}
@@ -98,14 +98,14 @@ export const YourBookingsSection = (): JSX.Element => {
                 </div>
               </div>
               {/* Price and action button */}
-              <div className="flex  md:flex-col flex-row items-end md:gap-2.5 justify-between">
-                <div className="inline-flex items-end gap-2.5">
-                  <div className="[font-family:'Plus_Jakarta_Sans',Helvetica] font-extrabold text-[#190041] text-[26px] tracking-[-0.21px] leading-[36.4px] whitespace-nowrap">
+              <div className="flex  md:flex-col flex-row  md:gap-2.5 justify-between">
+                <div className="inline-flex  gap-2.5">
+                  <div className=" font-medium text-[#190041] md:text-[26px] text-[20px] tracking-[-0.21px] leading-[36.4px] whitespace-nowrap">
                     {booking.price}
                   </div>
                 </div>
                 <Button onClick={() => router.push(`/ride-details`)} className="inline-flex items-center w-fit justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
-                  <span className="[font-family:'Inter',Helvetica] font-medium text-base tracking-[-0.13px] leading-[22.4px]">
+                  <span className=" font-medium md:text-base text-xs tracking-[-0.13px] leading-[22.4px]">
                     View Details
                   </span>
                   <ArrowUpRightIcon className="w-5 h-5" />
@@ -114,7 +114,7 @@ export const YourBookingsSection = (): JSX.Element => {
             </div>
           </CardContent>
           <Link href={`/your-rides/bookings`}>
-            <CardFooter className="flex items-center justify-between md:px-10 py-2.5 px-5 bg-[#0000000a] cursor-pointer">
+            <CardFooter className="flex items-center justify-between md:px-10 py-2.5 px-2 bg-[#0000000a] cursor-pointer">
               <div className="inline-flex items-center gap-2.5">
                 <div className="inline-flex items-center gap-[5px]">
                   <div className="inline-flex items-center gap-2 p-2 bg-white rounded-3xl">

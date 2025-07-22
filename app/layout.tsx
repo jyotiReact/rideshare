@@ -2,8 +2,7 @@ import Header from "@/components/layout/Header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { HelpCenterSection } from "@/components/dashboard/HelpCenter";
-// import { AuthProvider } from '@/contexts/AuthContext';
+import { Providers } from "./providers";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -26,8 +25,10 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.className} overflow-x-hidden bg-gray-50 min-h-screen w-full`}
       >
-        <Header />
-        <main className="min-h-screen w-full">{children}</main>
+        <Providers>
+          <Header />
+          <main className="min-h-screen w-full">{children}</main>
+        </Providers>
       </body>
     </html>
   );

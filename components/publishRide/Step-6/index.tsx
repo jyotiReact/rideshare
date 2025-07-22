@@ -4,9 +4,22 @@ import PublishLayout from "@/components/layout/PublishLayout";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useRouter } from "next/navigation";
 import React, { JSX } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setStep6Data } from "@/store/rideSlice";
+import { RootState } from "@/store/store";
 
 export const StepSix = (): JSX.Element => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { bookingType } = useSelector((state: RootState) => state.ride.step6);
+
+  const handleContinue = () => {
+    router.push("/publish-ride/step-7");
+  };
+
+  const handleOptionChange = (value: 'instant' | 'manual') => {
+    dispatch(setStep6Data({ bookingType: value }));
+  };
 
   // Define booking options data for mapping
   const bookingOptions = [
@@ -31,13 +44,14 @@ export const StepSix = (): JSX.Element => {
       buttons={[
         {
           label: "Continue",
-          handleClick: () => router.push("/publish-ride/step-7"),
+          handleClick: handleContinue,
           variant: "default",
         },
       ]}
     >
       <RadioGroup
-        defaultValue="instant"
+        value={bookingType}
+        onValueChange={handleOptionChange}
         className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]"
       >
         {bookingOptions.map((option) => (
@@ -50,7 +64,7 @@ export const StepSix = (): JSX.Element => {
                 value={option.id}
                 id={option.id}
                 className={
-                  option.defaultChecked
+                  bookingType === option.id
                     ? "relative w-[18px] h-[18px] bg-[#d0f500] rounded-[33px] border-[5px] border-solid border-[#631cff]"
                     : "relative w-[18px] h-[18px] rounded-[33px] border-2 border-solid border-[#e6e7e8]"
                 }

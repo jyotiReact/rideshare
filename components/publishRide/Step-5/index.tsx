@@ -10,6 +10,8 @@ import React, { JSX, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setStep5Data } from "@/store/rideSlice";
 import { RootState } from "@/store/store";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { CheckmarkCircle01FreeIcons } from "@hugeicons/core-free-icons";
 
 export const StepFive = (): JSX.Element => {
   const router = useRouter();
@@ -118,16 +120,15 @@ export const StepFive = (): JSX.Element => {
 
           <Card className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto] border-none shadow-none">
             <CardContent className="flex items-center gap-2.5 px-1 py-3 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#e9e9eb] p-0">
-              <UsersIcon className="w-6 h-6" />
+              <UsersIcon className="w-6 h-6 text-[#631CFF] md:block hidden" />
 
               <div className="flex items-center justify-between relative flex-1 grow">
                 <div className="inline-flex flex-col items-start justify-center gap-1 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] text-[#474B57] [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-neutralblackb-600 text-base tracking-[0] leading-7 whitespace-nowrap">
+                  <div className="relative w-fit mt-[-1.00px] p-2 text-[#474B57] [font-family:'Plus_Jakarta_Sans',Helvetica] font-medium text-neutralblackb-600 text-base tracking-[0] leading-7 whitespace-nowrap">
                     Maximum 4 passengers in the backseat
                   </div>
                 </div>
-
-                <CheckIcon className="w-[18px] h-[18px]" />
+                  <HugeiconsIcon icon={CheckmarkCircle01FreeIcons} className="w-6 h-6 text-[#631CFF] sm:block hidden" />
               </div>
             </CardContent>
           </Card>

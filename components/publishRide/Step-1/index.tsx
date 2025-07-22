@@ -77,7 +77,7 @@ export const StepOne = (): JSX.Element => {
         },
       ]}
     >
-      <div className="flex flex-col gap-10 w-full">
+      <div className="flex flex-col md:gap-10 gap-4 w-full">
         {addressFields.map((field, index) => (
           <div
             key={index}
@@ -88,7 +88,7 @@ export const StepOne = (): JSX.Element => {
             </label>
             <div className="flex items-center gap-[15px] relative w-full">
               <div className="flex items-start gap-[15px] relative self-stretch w-full">
-                <div className="flex items-center gap-1 px-5 py-[18px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
+                <div className="flex items-center gap-1 px-5 md:py-[18px] py-[10px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
                   <HugeiconsIcon icon={PinLocation01Icon} width={20} />
                   <input
                     type="text"

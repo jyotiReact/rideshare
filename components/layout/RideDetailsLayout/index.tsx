@@ -57,7 +57,7 @@ export const RideDetailsLayout = ({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full bg-neutral-50 lg:px-20 px-5 py-10">
+    <div className="flex flex-col w-full bg-neutral-50 lg:px-20 px-2 py-10">
       <div className="flex flex-col gap-10">
         <h1 className="text-4xl font-bold text-[#353535]">Ride Details</h1>
 

@@ -36,7 +36,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
               key={tab.id}
               value={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className="flex items-center justify-center gap-2.5 md:p-5 p-2 md:rounded-[20px] rounded-full border border-solid 
+              className="flex items-center justify-center gap-2.5 p-5 rounded-[20px]  border border-solid 
                 data-[state=active]:bg-[#631CFF] data-[state=active]:text-white 
                 data-[state=active]:border-white data-[state=inactive]:border-[#F2F1F1] 
                 data-[state=inactive]:bg-transparent"

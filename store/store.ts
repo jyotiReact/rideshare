@@ -4,12 +4,14 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import rideReducer from './rideSlice';
 import userReducer from './authslice'; // Import your other reducers
+import profileReducer  from './profileSlice';
 // Import any other reducers you have
 
 // Combine all your reducers
 const rootReducer = combineReducers({
   ride: rideReducer,
   user: userReducer,
+  profile:profileReducer
   // Add other reducers here
 });
 

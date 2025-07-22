@@ -43,10 +43,10 @@ const PublishLayout = ({
   const router = useRouter();
 
   return (
-    <section className="flex md:items-center justify-center h-screen p-5 ">
-      <div className="flex flex-col md:items-center md:justify-center md:gap-10 justify-between relative w-full md:w-fit">
+    <section className="flex md:items-center justify-center h-full lg:h-screen p-2 ">
+      <div className="flex flex-col md:items-center md:justify-center md:gap-10 gap-6  relative w-full md:w-fit">
         {/* Main Content */}
-        <div className="flex flex-col md:items-center gap-10 relative self-stretch ">
+        <div className="flex flex-col md:items-center md:gap-10 gap-6 relative self-stretch ">
           <div className="flex flex-col md:items-center gap-6 relative self-stretch w-full">
             <div className="flex flex-col items-center gap-[35px] relative self-stretch w-full">
               <div className="flex items-center justify-between w-full">
@@ -69,7 +69,7 @@ const PublishLayout = ({
             </div>
           </div>
 
-          <div className="flex flex-col items-center  justify-center w-full ">
+          <div className="flex flex-col items-center  justify-center w-full px-2 ">
             {children}
           </div>
         </div>

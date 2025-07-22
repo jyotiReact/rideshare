@@ -46,7 +46,7 @@ export const StepThree = (): JSX.Element => {
       }
     }
   }, [step1, step3]);
-  console.log(cities)
+  console.log(cities);
 
   const handleCheckboxChange = (cityName: string) => {
     const updatedCities = cities.map((city) =>
@@ -98,9 +98,9 @@ export const StepThree = (): JSX.Element => {
         },
       ]}
     >
-      <section className="flex flex-col items-start self-stretch w-full pl-4">
-        {!showSteps ? (
-          cities.map((city, index) => (
+      {!showSteps ? (
+        <section className="flex flex-col items-start self-stretch w-full overflow-auto h-[300px] pl-4">
+          {cities.map((city, index) => (
             <div
               key={city.name}
               className={`flex items-center gap-2 px-1 py-3 relative self-stretch w-full ${
@@ -113,17 +113,19 @@ export const StepThree = (): JSX.Element => {
                   onCheckedChange={() => handleCheckboxChange(city.name)}
                 />
                 <div className="inline-flex flex-col items-start justify-center gap-1">
-                  <div className="mt-[-1.00px] font-bold text-neutralblackb-600 text-base leading-7">
+                  <div className="mt-[-1.00px] font-medium text-neutralblackb-600 text-base leading-7">
                     {city.name}
                   </div>
                 </div>
               </div>
             </div>
-          ))
-        ) : (
+          ))}
+        </section>
+      ) : (
+        <section className="flex flex-col items-start self-stretch w-full overflow-auto h-[300px] pl-4">
           <StepOvers steps={locations} />
-        )}
-      </section>
+        </section>
+      )}
     </PublishLayout>
   );
 };

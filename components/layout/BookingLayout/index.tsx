@@ -24,7 +24,7 @@ export const BookingLayout = ({
   
 
   return (
-    <div className="relative w-full min-h-screen bg-zinc-50 overflow-hidden py-5 lg:px-20 px-5">
+    <div className="relative w-full min-h-screen bg-zinc-50 overflow-hidden py-5 lg:px-20 px-2">
       <div className="flex lg:flex-row flex-col  items-start w-full  gap-2.5">
         {/* Left Card */}
         <Card className="flex flex-col items-start gap-5 lg:p-10 p-5 relative bg-white rounded-[10px] lg:w-fit w-full border-[#f2f2f2]">

@@ -108,8 +108,8 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
               <div className="text-base font-bold text-[#a1a1a1] line-through md:block hidden">
                 {ride.originalPrice}
               </div>
-              <div className="md:text-[24px]  font-bold text-[#190041]">
-                {ride.price}
+              <div className="md:text-[24px] text-[18px]  font-bold text-[#190041]">
+                {`₹ ${ride.price}`}
               </div>
             </div>
 

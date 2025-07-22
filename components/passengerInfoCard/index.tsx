@@ -5,7 +5,7 @@ import Profile from "../ui/profile";
 
 function PassengerInfoCard() {
   return (
-    <div className="flex md:flex-row flex-col md:items-center md:justify-between gap-6 w-full">
+    <div className="flex md:flex-row flex-col md:items-center md:justify-between gap-6 w-full ">
       <div className="flex items-center gap-3.5">
         <Profile />
         <div className="flex flex-col items-start gap-2.5">
@@ -20,7 +20,7 @@ function PassengerInfoCard() {
           </div>
         </div>
       </div>
-      <div className="flex items-center md:justify-end justify-between gap-5 w-[229px]">
+      <div className="flex items-center md:justify-end justify-between gap-5 w-full md:w-fit">
         <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">
           2 Seats
         </span>

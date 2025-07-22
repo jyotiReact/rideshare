@@ -116,7 +116,7 @@ export const StepSeven = (): JSX.Element => {
               variant="outline"
               className=" px-5 py-[15px] w-full bg-[#631cff1a] text-[#631cff] rounded-[25px] border-none [font-family:'Plus_Jakarta_Sans',Helvetica] font-bold text-sm"
             >
-              Skip
+              Skip and Publish
             </Button>
           </Link>
 

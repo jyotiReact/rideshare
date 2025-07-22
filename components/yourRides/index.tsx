@@ -24,7 +24,7 @@ export const YourRides = (): JSX.Element => {
     },
   ];
   return (
-    <div className="flex flex-col w-full py-10 px-5">
+    <div className="flex flex-col w-full py-10 px-2">
       <TabsComponent
         title="Your Rides"
         tabOptions={tabOptions}

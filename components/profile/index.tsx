@@ -23,7 +23,7 @@ export const Profile = (): JSX.Element => {
   const login = true;
 
   return (
-    <div className="flex flex-col w-full bg-zinc-50 h-full lg:px-20 p-5 pb-20 ">
+    <div className="flex flex-col w-full bg-zinc-50 h-full lg:px-20 p-2 pb-20 ">
       <div className="flex justify-center items-start">
         {tab === "about" ? (
           <ProfileLayout

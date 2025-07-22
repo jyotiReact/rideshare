@@ -116,9 +116,7 @@ const Header: React.FC = () => {
   const [authData, setAuthData] = useState({});
   const [showProfile, setShowProfile] = useState(false);
 
-  const handleGoogleLogin = async () => {
-   
-  };
+  const handleGoogleLogin = async () => {};
 
   const handleModalClose = () => {
     setOpen(false);
@@ -152,32 +150,46 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Action buttons */}
-        <div className="flex items-center gap-4">
+        <div className="md:flex items-center gap-4 hidden">
           <Link
             href="/search-ride"
-            className="py-2 px-4 w-8 h-8 md:w-fit justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            className="py-2 px-4  md:w-fit justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
           >
             <span className="text-[#1A1A1A]">
               <HugeiconsIcon icon={Search01Icon} width={20} />
             </span>
-            <span className="text-[#1A1A1A] md:block hidden">
-              Search a ride
-            </span>
+            <span className="text-[#1A1A1A] ">Search a ride</span>
           </Link>
           <Link
             href="/publish-ride/step-1"
-            className="py-2 px-4 w-8 h-8 md:w-fit justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            className="py-2 px-4  md:w-fit justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
           >
             <span className="text-[#1A1A1A]">
               <HugeiconsIcon icon={AddCircleHalfDotIcon} width={20} />
             </span>
-            <span className="text-[#1A1A1A] md:block hidden">
-              Publish a ride
-            </span>
+            <span className="text-[#1A1A1A] ">Publish a ride</span>
           </Link>
         </div>
 
-        <div className="relative flex items-center gap-4">
+        <div className="relative flex items-center md:gap-4 gap-1">
+          <div className="flex items-center gap-2 md:hidden">
+            <Link
+              href="/search-ride"
+              className="py-2 px-4 w-8 h-8  justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            >
+              <span className="text-[#1A1A1A]">
+                <HugeiconsIcon icon={Search01Icon} width={20} />
+              </span>
+            </Link>
+            <Link
+              href="/publish-ride/step-1"
+              className="py-2 px-4 w-8 h-8  justify-center bg-white rounded-full border border-gray-300 flex items-center gap-1 custom-shadow"
+            >
+              <span className="text-[#1A1A1A]">
+                <HugeiconsIcon icon={AddCircleHalfDotIcon} width={20} />
+              </span>
+            </Link>
+          </div>
           <div className="relative">
             <button
               className="py-2 px-4 bg-white rounded-full border border-gray-300 md:flex hidden items-center gap-1 custom-shadow"

@@ -84,10 +84,20 @@ export const StepTwo = (): JSX.Element => {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col w-full h-screen   lg:gap-0 gap-20 items-start bg-white">
-      <div className="flex flex-col lg:order-1 order-2  items-center justify-center gap-[60px] lg:px-[100px] px-5 py-0 flex-1 h-full w-full">
-        <div className="flex flex-col items-center justify-center gap-2 md:gap-10 self-stretch w-full">
-          <div className="flex items-center justify-between w-full ">
+    <div className="flex lg:flex-row flex-col w-full lg:h-screen h-auto min-h-screen items-start bg-white">
+      {/* Image Section - comes first in mobile view */}
+      <div className="lg:h-full h-[250px] w-full lg:order-2 order-1 lg:flex-1">
+        <img
+          className="w-full h-full object-cover"
+          alt="Map showing route"
+          src="/images/map.png"
+        />
+      </div>
+
+      {/* Content Section */}
+      <div className="flex flex-col lg:order-1 order-2 items-center justify-center lg:px-[100px] px-4 py-6 lg:flex-1 w-full lg:overflow-y-auto">
+        <div className="flex flex-col justify-center md:gap-10 gap-8 w-full max-w-[600px]">
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-start gap-3">
               <Link
                 href="/publish-ride/step-1"
@@ -111,7 +121,7 @@ export const StepTwo = (): JSX.Element => {
           >
             {routeOptions.map((route, index) => (
               <React.Fragment key={route.id}>
-                <div className="flex items-center gap-2 px-1 py-3 w-full">
+                <div className="flex items-center gap-2 px-1 pl-4 py-3 w-full">
                   <div className="inline-flex items-center gap-2.5">
                     <RadioGroupItem
                       value={route.id}
@@ -139,27 +149,19 @@ export const StepTwo = (): JSX.Element => {
             ))}
           </RadioGroup>
 
-          <div className="flex flex-col items-center gap-[25px] self-stretch w-full">
+          <div className="flex flex-col items-center gap-6 w-full">
             <Link
               href="/publish-ride/step-3"
               onClick={handleContinue}
-              className="w-full py-[15px] bg-[#631cff] rounded-[25px] font-['Plus_Jakarta_Sans',Helvetica] font-bold text-white text-sm tracking-[-0.11px] leading-[19.6px] text-center hover:bg-[#4e16cc] transition-colors"
+              className="w-full py-4 bg-[#631cff] rounded-[25px] font-bold text-white text-sm text-center hover:bg-[#4e16cc] transition-colors"
             >
               Continue
             </Link>
-            <div className="text-center mb-2 lg:w-[500px]">
+            <div className="text-center w-full px-4">
               <Terms />
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="h-[400px] lg:h-full lg:order-2 order-1 w-full">
-        <img
-          className="w-full h-full object-cover"
-          alt="Map showing route"
-          src="/images/map.png"
-        />
       </div>
     </div>
   );

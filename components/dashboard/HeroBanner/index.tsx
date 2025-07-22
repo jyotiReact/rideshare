@@ -111,7 +111,7 @@ export const HeroBannerSection = (): JSX.Element => {
             </div>
             <div className="flex flex-col w-full items-start lg:gap-2.5 gap-4 ">
               {/* From/To Location Fields */}
-              <div className="flex flex-col items-center lg:gap-2.5 gap-4 relative w-full">
+              <div className="flex flex-col items-center lg:gap-2.5 gap-4 relative w-full ">
                 {/* From Location */}
                 <div className="flex items-center gap-1 px-5 py-3 rounded-[40px] border w-full border-[#d9d9d9] relative">
                   <HugeiconsIcon
@@ -173,35 +173,38 @@ export const HeroBannerSection = (): JSX.Element => {
                 </Button>
               </div>
 
-              <div className="flex  gap-2.5  w-full relative">
-                <CustomDatePicker
-                  selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
-                  renderCustomInput={() => (
-                    <Button
-                      variant="outline"
-                      className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
-                    >
-                      <HugeiconsIcon
-                        icon={Calendar02Icon}
-                        width={20}
-                        color="#631CFF"
-                      />
-                      <span className="font-bold text-black text-sm">
-                        {selectedDate
-                          ? selectedDate.toLocaleDateString("en-IN", {
-                              weekday: "short",
-                              day: "numeric",
-                              month: "short",
-                            })
-                          : "Select date"}
-                      </span>
-                    </Button>
-                  )}
-                />
+              <div className="flex gap-2.5 w-full relative">
+                {/* Date Picker */}
+                <div className="flex-1">
+                  <CustomDatePicker
+                    selected={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                    renderCustomInput={() => (
+                      <Button
+                        variant="outline"
+                        className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
+                      >
+                        <HugeiconsIcon
+                          icon={Calendar02Icon}
+                          width={20}
+                          color="#631CFF"
+                        />
+                        <span className="font-bold text-black text-sm">
+                          {selectedDate
+                            ? selectedDate.toLocaleDateString("en-IN", {
+                                weekday: "short",
+                                day: "numeric",
+                                month: "short",
+                              })
+                            : "Select date"}
+                        </span>
+                      </Button>
+                    )}
+                  />
+                </div>
 
                 {/* Passenger Selector */}
-                <div className="relative w-full">
+                <div className="flex-1 relative">
                   <Button
                     variant="outline"
                     className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
@@ -217,7 +220,6 @@ export const HeroBannerSection = (): JSX.Element => {
                     </span>
                   </Button>
 
-                  {/* Popup */}
                   {showPassengerPopup && (
                     <div
                       ref={popupRef}

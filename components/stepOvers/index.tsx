@@ -14,14 +14,20 @@ type StepOversProps = {
 };
 
 export const StepOvers: React.FC<StepOversProps> = ({ steps }) => {
+  if (steps.length === 0)
+    return (
+      <div className="text-[#6b6b6b] text-sm h-full font-medium flex items-center justify-center w-full">
+        No Stopovers added Yet
+      </div>
+    );
   return (
-    <div className="flex flex-col md:w-[544px] w-full h-full  items-center justify-center gap-10 relative">
-      <div className="inline-flex md:items-start items-center  gap-1.5  mb-4 overflow-auto h-[200px]">
+    <div className="flex flex-col md:w-[544px] w-full   items-center justify-center gap-10 relative  ">
+      <div className="inline-flex md:items-start items-center  gap-1.5  mb-4 ">
         {/* Timeline Dots */}
         <div className="inline-flex flex-col items-center justify-center">
-         {steps.map((point, index) => (
-           <StepLine key={index} line={index !== steps.length - 1} />
-         ))}
+          {steps.map((point, index) => (
+            <StepLine key={index} line={index !== steps.length - 1} />
+          ))}
         </div>
 
         {/* Step Info */}

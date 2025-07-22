@@ -16,7 +16,7 @@ export const YourBookingsSection = (): JSX.Element => {
       duration: "04 h 00m",
       from: "New Delhi",
       to: "Chandigarh",
-      price: "₹1,000.00",
+      price: 1000,
       notifications: 3,
     },
     {
@@ -25,7 +25,7 @@ export const YourBookingsSection = (): JSX.Element => {
       duration: "04 h 00m",
       from: "New Delhi",
       to: "Chandigarh",
-      price: "₹1,000.00",
+      price: 1000,
       notifications: 3,
     },
   ];
@@ -100,12 +100,12 @@ export const YourBookingsSection = (): JSX.Element => {
               {/* Price and action button */}
               <div className="flex  md:flex-col flex-row  md:gap-2.5 justify-between">
                 <div className="inline-flex  gap-2.5">
-                  <div className=" font-medium text-[#190041] md:text-[26px] text-[20px] tracking-[-0.21px] leading-[36.4px] whitespace-nowrap">
-                    {booking.price}
+                  <div className=" font-medium text-[#190041] md:text-[26px] text-[18px] tracking-[-0.21px] leading-[36.4px] whitespace-nowrap">
+                    { ` ₹ ${booking.price}`}
                   </div>
                 </div>
                 <Button onClick={() => router.push(`/ride-details`)} className="inline-flex items-center w-fit justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
-                  <span className=" font-medium md:text-base text-xs tracking-[-0.13px] leading-[22.4px]">
+                  <span className=" font-bold md:text-base text-xs tracking-[-0.13px] leading-[22.4px]">
                     View Details
                   </span>
                   <ArrowUpRightIcon className="w-5 h-5" />

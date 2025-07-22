@@ -102,10 +102,10 @@ export const RideDetails = (): JSX.Element => {
                   Never cancels Rides
                 </span>
               </div>
-            </div>
+            {/* </div> */}
 
             {/* Car and Booking Info */}
-            <div className="flex flex-col gap-2.5">
+            {/* <div className="flex flex-col gap-2.5"> */}
               <div className="flex justify-between">
                 <div className="flex items-center gap-2.5">
                   <HugeiconsIcon icon={Backpack01Icon} color="#631CFF" />
@@ -128,7 +128,7 @@ export const RideDetails = (): JSX.Element => {
                 </span>
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex sm:flex-row flex-col sm:justify-between gap-4 sm:items-center">
                 <div className="flex items-center gap-2.5">
                   <HugeiconsIcon icon={Car01Icon} color="#631CFF" />
                   <span className="text-sm font-medium text-[#101828]">
@@ -136,7 +136,7 @@ export const RideDetails = (): JSX.Element => {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2 border border-[#e5e5e5] px-4 py-2 rounded-[28px] shadow-[0px_2px_0px_#eeeeee]">
+                <div className="flex items-center justify-center gap-2 border border-[#e5e5e5] px-4 py-2 rounded-[28px] shadow-[0px_2px_0px_#eeeeee]">
                   <div className="flex flex-col items-center">
                     <img
                       src="/images/wheel.png"

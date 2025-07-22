@@ -17,7 +17,7 @@ export const Notifications = ({
   journeyDetails,
 }: NotificationsProps): JSX.Element => {
   return (
-    <div className="flex flex-col items-start gap-5 relative p-5">
+    <div className="flex flex-col items-start gap-5 relative p-2">
       {/* Map Card */}
       <Card className="md:p-5 p-2 bg-white rounded-[10px] border border-solid border-[#f2f2f2]">
         <CardContent className="p-0">
@@ -66,7 +66,7 @@ export const Notifications = ({
           <div className="flex flex-col w-full md:gap-[30px] gap-4 pb-[30px] border-b border-[#cbcbcb]">
             <h2 className="font-bold text-black md:text-2xl text-[20px]">Revenue</h2>
             <div className="flex items-center justify-around gap-[39px] px-5 py-4 w-full bg-[#0000000a] rounded-[10px] shadow-[2px_2px_8px_#0000000d] opacity-80">
-              <div className="flex items-center justify-between flex-1 rounded-[10px]">
+              <div className="flex items-center justify-between flex-1 rounded-[10px] ">
                 <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">
                   2 Seats
                 </span>

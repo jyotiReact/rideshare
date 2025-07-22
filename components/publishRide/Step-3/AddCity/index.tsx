@@ -33,7 +33,7 @@ export const AddCity = (): JSX.Element => {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col w-full items-start lg:gap-0 gap-10 bg-white">
+    <div className="flex lg:flex-row flex-col w-full items-start lg:gap-0  bg-white h-full">
       <div className="lg:w-[50%] w-full lg:px-16 lg:order-1 order-2">
         <PublishLayout
           stepCount={3}
@@ -50,7 +50,7 @@ export const AddCity = (): JSX.Element => {
           <div className="flex flex-col gap-[15px] self-stretch w-full">
             <label className="font-bold text-black text-sm">Stopover</label>
             <div className="flex items-start gap-[15px] relative self-stretch w-full">
-              <div className="flex items-center gap-1 px-5 py-[18px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
+              <div className="flex items-center gap-1 px-5 md:py-[18px] py-[10px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
                 <HugeiconsIcon icon={PinLocation01Icon} width={20} />
                 <input
                   type="text"
@@ -65,9 +65,9 @@ export const AddCity = (): JSX.Element => {
           </div>
         </PublishLayout>
       </div>
-      <div className="lg:w-[50%] w-full lg:order-2 order-1 h-[400px] lg:h-full">
+      <div className="lg:w-[50%] w-full lg:order-2 order-1 h-[200px] lg:h-full">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
           alt="Map showing route"
           src="/images/map.png"
         />

@@ -2,14 +2,14 @@
 
 import PublishLayout from "@/components/layout/PublishLayout";
 import CustomDatePicker from "@/components/ui/date-picker";
-import { Calendar03Icon } from "@hugeicons/core-free-icons";
+import { Calendar03Icon, Clock01FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setStep4Data } from "@/store/rideSlice";
-import { RootState } from "@/store/store"; 
+import { RootState } from "@/store/store";
 
 const StepFour = () => {
   const router = useRouter();
@@ -60,26 +60,50 @@ const StepFour = () => {
             Date & Time
           </label>
 
-          <div className="flex items-start gap-[15px] relative self-stretch w-full">
+          <div className="flex flex-col gap-[15px] relative self-stretch w-full">
             <CustomDatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
-              showTimeSelect
-              dateFormat="dd/MM/yyyy HH:mm"
+              dateFormat="dd/MM/yyyy "
               renderCustomInput={() => (
-                <div className="flex items-center gap-1.5 px-5 py-[18px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
+                <div className="flex items-center gap-1.5 px-5 md:py-[18px] py-[10px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9] w-full">
                   <HugeiconsIcon icon={Calendar03Icon} width={20} />
                   <input
                     type="text"
-                    id="datetime"
+                    id="date"
                     value={
                       selectedDate
-                        ? moment(selectedDate).format("DD/MM/YYYY hh:mm A")
+                        ? moment(selectedDate).format("DD/MM/YYYY")
                         : ""
                     }
-                    name="datetime"
-                    placeholder="DD/MM/YYYY HH:MM"
-                    className="bg-transparent outline-none border-none text-[#515251] font-medium text-sm w-full placeholder:text-[#b0b0b0] [font-family:'Plus_Jakarta_Sans',Helvetica]"
+                    name="date"
+                    placeholder="DD/MM/YYYY "
+                    className="bg-transparent outline-none border-none text-[#515251] font-medium text-sm w-full placeholder:text-[#b0b0b0] "
+                    readOnly
+                  />
+                </div>
+              )}
+            />
+
+            <CustomDatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              dateFormat="HH:mm:ss "
+              showTimeOnly={true}
+              renderCustomInput={() => (
+                <div className="flex items-center gap-1.5 px-5 md:py-[18px] py-[10px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9] w-full">
+                  <HugeiconsIcon icon={Clock01FreeIcons} width={20} />
+                  <input
+                    type="text"
+                    id="time"
+                    value={
+                      selectedDate
+                        ? moment(selectedDate).format("HH:mm:ss")
+                        : ""
+                    }
+                    name="time"
+                    placeholder="HH:MM:SS "
+                    className="bg-transparent outline-none border-none text-[#515251] font-medium text-sm w-full placeholder:text-[#b0b0b0] "
                     readOnly
                   />
                 </div>

@@ -100,26 +100,32 @@ export const StepThree = (): JSX.Element => {
     >
       {!showSteps ? (
         <section className="flex flex-col items-start self-stretch w-full overflow-auto h-[300px] pl-4">
-          {cities.map((city, index) => (
-            <div
-              key={city.name}
-              className={`flex items-center gap-2 px-1 py-3 relative self-stretch w-full ${
-                index < cities.length - 1 ? "border-b border-[#e9e9eb]" : ""
-              }`}
-            >
-              <div className="inline-flex items-center gap-2.5">
-                <Checkbox
-                  checked={city.selected}
-                  onCheckedChange={() => handleCheckboxChange(city.name)}
-                />
-                <div className="inline-flex flex-col items-start justify-center gap-1">
-                  <div className="mt-[-1.00px] font-medium text-neutralblackb-600 text-base leading-7">
-                    {city.name}
+          {cities?.length > 0 ? (
+            cities.map((city, index) => (
+              <div
+                key={city.name}
+                className={`flex items-center gap-2 px-1 py-3 relative self-stretch w-full ${
+                  index < cities.length - 1 ? "border-b border-[#e9e9eb]" : ""
+                }`}
+              >
+                <div className="inline-flex items-center gap-2.5">
+                  <Checkbox
+                    checked={city.selected}
+                    onCheckedChange={() => handleCheckboxChange(city.name)}
+                  />
+                  <div className="inline-flex flex-col items-start justify-center gap-1">
+                    <div className="mt-[-1.00px] font-medium text-neutralblackb-600 text-base leading-7">
+                      {city.name}
+                    </div>
                   </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="text-[#6b6b6b] text-sm h-full font-medium flex items-center justify-center w-full">
+              No Stopovers added Yet
             </div>
-          ))}
+          )}
         </section>
       ) : (
         <section className="flex flex-col items-start self-stretch w-full overflow-auto h-[300px] pl-4">

@@ -8,6 +8,8 @@ interface UserInfo {
   gender?: string;
   email?: string;
   phone?: string;
+  otp?: string;
+  password?: string;
   // Add other user properties as needed
 }
 

@@ -1,5 +1,4 @@
 "use client";
-import { SendOtpDialog } from "@/components/modals/SendOtp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,7 +13,6 @@ import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";
 import React, { JSX, useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import { AuthModal } from "@/components/modals/authModal";
 import { EmailOption } from "@/components/modals/EmailOption";
 import { PhoneOption } from "@/components/modals/PhoneOption";

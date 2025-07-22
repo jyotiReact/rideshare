@@ -26,8 +26,16 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required("Last name is required"),
  
 });
+// Type for the authData prop
+interface AuthData {
+  email?: string;
+  phone?: string;
+  password?: string;
+  otp?: string;
+  // Add other auth-related properties you might have
+}
 
-export const PersonalDetailModal = ({ authData }) => {
+export const PersonalDetailModal = ({ authData } : { authData: AuthData } ) => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -45,7 +53,7 @@ export const PersonalDetailModal = ({ authData }) => {
         dateOfBirth: moment(values.dateOfBirth).format("YYYY-MM-DD"),
       };
 
-      // Dispatch to Redux
+    //@ts-ignore
       dispatch(setPersonalDetails({formattedValues,...authData}));
 
     },

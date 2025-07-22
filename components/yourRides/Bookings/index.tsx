@@ -14,7 +14,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRightIcon, CheckSquareIcon, XIcon } from "lucide-react";
-import React from "react";
+import React, { JSX } from "react";
 
 
 const journeyDetails: JourneyDetailsType = {

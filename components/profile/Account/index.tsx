@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRightIcon } from "lucide-react";
-import React from "react";
+import React, { JSX } from "react";
 
 export const Account = (): JSX.Element => {
   // Define menu items data for better organization and mapping

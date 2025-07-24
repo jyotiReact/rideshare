@@ -20,7 +20,6 @@ const PhoneNumberInput: React.FC<CustomPhoneInputProps> = ({
   inputClassName = "!w-full   !pr-4 !py-4 !rounded-[40px] !border-none  focus:!outline-none ",
   buttonClassName = "!bg-transparent !border-none !p-0 !flex !items-center !justify-center !w-4 !h-4 !top-1/2 !-translate-y-1/2 !left-3",
   dropdownClass = "!border-none !shadow-lg !rounded-xl !mt-2",
-
   ...props
 }) => {
   return (

@@ -9,7 +9,18 @@ import Profile from "../ui/profile";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Agreement01Icon, ArrowRight01Icon, Backpack01Icon, Car01Icon, CheckmarkBadge02Icon, CheckmarkSquare01Icon, Flag01Icon, SecurityCheckIcon, ZapFreeIcons } from "@hugeicons/core-free-icons";
+import {
+  Agreement01Icon,
+  ArrowRight01Icon,
+  Backpack01Icon,
+  Car01Icon,
+  CheckmarkBadge02Icon,
+  CheckmarkSquare01Icon,
+  Flag01Icon,
+  SecurityCheckIcon,
+  ZapFreeIcons,
+} from "@hugeicons/core-free-icons";
+import { XIcon } from "lucide-react";
 
 const driverInfo = {
   name: "Ritik B.",
@@ -29,7 +40,28 @@ export const RideDetails = (): JSX.Element => {
   const router = useRouter();
 
   return (
-    <RideDetailsLayout>
+    <RideDetailsLayout
+      buttons={[
+        {
+          label: "Edit Ride",
+          handleClick: () => {},
+          variant: "twoTone",
+          className: "border-none",
+        },
+        {
+          label: "Complete Ride",
+          handleClick: () => {},
+          variant: "solid",
+        },
+        {
+          label: "Cancel Ride",
+          handleClick: () => {},
+          variant: "twoTone",
+          className: "!text-red-500 bg-red-100 border-none gap-2 ",
+          icon: <XIcon className="w-4 h-4" />,
+        },
+      ]}
+    >
       <div className="flex flex-col w-full items-start gap-[30px]">
         {/* Driver Profile Card */}
         <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
@@ -62,7 +94,11 @@ export const RideDetails = (): JSX.Element => {
 
               <div className="flex items-center gap-2.5">
                 <Button className="lg:gap-2.5 lg:px-5 lg:py-[15px] p-0 bg-[#631cff1a] w-10 h-10 lg:w-fit rounded-[25px] hover:bg-[#631cff1a]">
-                  <HugeiconsIcon icon={CheckmarkBadge02Icon} color="#631CFF" width={20} />
+                  <HugeiconsIcon
+                    icon={CheckmarkBadge02Icon}
+                    color="#631CFF"
+                    width={20}
+                  />
                   <span className="text-sm font-bold text-[#631cff] lg:block hidden">
                     Contact Ritik
                   </span>
@@ -102,10 +138,10 @@ export const RideDetails = (): JSX.Element => {
                   Never cancels Rides
                 </span>
               </div>
-            {/* </div> */}
+              {/* </div> */}
 
-            {/* Car and Booking Info */}
-            {/* <div className="flex flex-col gap-2.5"> */}
+              {/* Car and Booking Info */}
+              {/* <div className="flex flex-col gap-2.5"> */}
               <div className="flex justify-between">
                 <div className="flex items-center gap-2.5">
                   <HugeiconsIcon icon={Backpack01Icon} color="#631CFF" />

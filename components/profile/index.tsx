@@ -5,6 +5,7 @@ import { ProfileLayout } from "../layout/ProfileLayout";
 import VerifyAccount from "./VerifyAccount";
 import { Verified } from "./Verified";
 import { Account } from "./Account";
+import { useSelector } from "react-redux";
 
 const tabOptions = [
   {
@@ -21,7 +22,8 @@ const tabOptions = [
 export const Profile = (): JSX.Element => {
   const [tab, setTab] = useState("about");
   const login = true;
-
+  const data = useSelector((state: any) => state.profile);
+   console.log(data)
   return (
     <div className="flex flex-col w-full bg-zinc-50 h-full lg:px-20 p-2 pb-20 ">
       <div className="flex justify-center items-start">
@@ -30,7 +32,7 @@ export const Profile = (): JSX.Element => {
             tabOptions={tabOptions}
             handleTabClick={(tab) => setTab(tab)}
           >
-            {login ? <Verified /> : <VerifyAccount />}
+            {login ? <Verified data={data} /> : <VerifyAccount />}
           </ProfileLayout>
         ) : (
           <ProfileLayout

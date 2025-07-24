@@ -61,7 +61,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
           <div className="flex flex-col gap-6 p-6">
             {title && (
-              <h1 className="w-full text-3xl font-medium text-center text-[#353535]">
+              <h1 className="w-full md:text-3xl text-[24px] font-medium text-center text-[#353535]">
                 {title}
               </h1>
             )}

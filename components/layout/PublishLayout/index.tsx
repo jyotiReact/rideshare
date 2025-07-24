@@ -2,26 +2,13 @@
 
 import Terms from "@/components/terms&Conditions";
 import { Button } from "@/components/ui/button";
+import { ButtonProps } from "@/types";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { JSX, ReactNode } from "react";
 
-interface ButtonProps {
-  label: string;
-  handleClick?: () => void;
-  variant?:
-    | "default"
-    | "outline"
-    | "ghost"
-    | "link"
-    | "destructive"
-    | "twoTone"
-    | "solid";
-  size?: "default" | "icon" | "sm" | "lg";
 
-  className?: string;
-}
 
 interface PublishLayoutProps {
   children: ReactNode;
@@ -62,7 +49,7 @@ const PublishLayout = ({
                     {title}
                   </h1>
                 </div>
-                <span className="font-medium text-[#353535] text-base">
+                <span className="font-medium text-[#353535] text-base whitespace-nowrap">
                   Step {stepCount}/{totalStep}
                 </span>
               </div>

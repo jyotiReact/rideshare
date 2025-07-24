@@ -75,7 +75,7 @@ export const RideStatusCard = ({
       </CardHeader>
 
       <CardContent className="flex  flex-col justify-between md:px-10 px-5 py-5 w-full bg-white">
-        <div className="flex md:flex-row flex-col md:justify-between gap-6 py-1 bg-white border-b border-[#edecec] w-full">
+        <div className="flex md:flex-row flex-col md:justify-between gap-6 py-4 bg-white  w-full">
           <div className="flex flex-col items-start gap-2.5 md:w-[300px] w-full">
             <div className="flex items-center justify-between w-full">
               <div className="text-xs font-medium text-[#515251]">
@@ -146,7 +146,7 @@ export const RideStatusCard = ({
         </div>
 
         {ride?.driverInfo && (
-          <div className="flex items-center justify-between  py-5 bg-white w-full">
+          <div className="flex items-center justify-between  py-3 bg-white w-full border-t border-[#edecec]">
             <div className="flex items-center md:gap-2.5 justify-between w-full">
               <div className="flex items-center gap-2.5">
                  <Profile />

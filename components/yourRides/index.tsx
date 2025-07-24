@@ -30,7 +30,7 @@ export const YourRides = (): JSX.Element => {
         tabOptions={tabOptions}
         handleTabClick={(tab) => setTab(tab)}
       />
-      <div className="flex  mt-8">
+      <div className="flex justify-center  mt-8">
         <div className="lg:w-4/5 w-full ">
           {tab === "published" ? (
             <YourBookingsSection />

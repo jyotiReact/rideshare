@@ -21,14 +21,20 @@ import Profile from "../ui/profile";
 import { AuthModal } from "../modals/authModal";
 import { LoginOptions } from "../modals/LoginOptions";
 import { PhoneOption } from "../modals/PhoneOption";
-import { useDispatch } from "react-redux";
-import { resetAuthState } from "@/store/authslice";
+import { useDispatch, useSelector } from "react-redux";
+import { resetAuthState, setPersonalDetails } from "@/store/authslice";
 import { EmailOption } from "../modals/EmailOption";
 import { PersonalDetailModal } from "../modals/PersonalDetailModal";
 import { ChevronDownIcon } from "lucide-react";
 import React from "react";
 import { Card, CardContent } from "../../components/ui/card";
 import { Switch } from "../../components/ui/switch";
+import { clearVehicleData } from "@/store/profileSlice";
+import { clearRideData } from "@/store/rideSlice";
+import { useRouter } from "next/navigation";
+import { AuthData } from "@/types";
+
+
 
 export const ChangeLanguage = ({
   onClose,
@@ -109,13 +115,13 @@ const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const [showLanguage, setShowLanguage] = useState(false);
-  const login = true;
+  const { login } = useSelector((state: any) => state?.user?.userInfo);
   const [switchToLogin, setSwitchToLogin] = useState(false);
   const [buttonClick, setButtonClick] = useState("");
   const dispatch = useDispatch();
-  const [authData, setAuthData] = useState({});
+  const [authData, setAuthData] = useState<AuthData>({});
   const [showProfile, setShowProfile] = useState(false);
-
+  const router = useRouter();
   const handleGoogleLogin = async () => {};
 
   const handleModalClose = () => {
@@ -123,6 +129,17 @@ const Header: React.FC = () => {
     setButtonClick("");
     dispatch(resetAuthState());
   };
+  function handleLogout() {
+    dispatch(resetAuthState());
+    dispatch(clearVehicleData());
+    dispatch(clearRideData());
+  }
+  function handleSendOtp(formData: AuthData) {
+    console.log(formData);
+    if (formData?.email || formData?.phone) {
+      setAuthData({ ...formData, otp: "123456" });
+    }
+  }
 
   const menuItems = [
     { icon: TaxiFreeIcons, label: "Your Rides", path: "/your-rides" },
@@ -133,8 +150,21 @@ const Header: React.FC = () => {
     },
     { icon: Message01Icon, label: "Inbox", path: "/inbox" },
     { icon: UserIcon, label: "Profile", path: "/profile" },
-    { icon: Logout01Icon, label: "Logout", path: "/logout" },
+    { icon: Logout01Icon, label: "Logout", path: "" },
   ];
+  function handleContinue() {
+    if (switchToLogin) {
+      dispatch(
+        //@ts-ignore
+        setPersonalDetails({ login: true, ...authData })
+      );
+      setButtonClick("");
+      setOpen(false);
+      setAuthData({});
+    } else {
+      setShowProfile(true);
+    }
+  }
 
   return (
     <header className="py-5 lg:px-20 px-5 bg-[#fafafa] shadow w-full border-b border-[#E0E1E0] flex flex-col gap-5">
@@ -227,7 +257,13 @@ const Header: React.FC = () => {
                 <Link
                   key={index}
                   href={item.path}
-                  onClick={() => setOpenMenu(false)}
+                  onClick={() => {
+                    setOpenMenu(false);
+                    if (item.label === "Logout") {
+                      handleLogout();
+                      router.push("/dashboard");
+                    }
+                  }}
                   className={`flex items-center gap-3 py-2 rounded-lg cursor-pointer border-b ${
                     item.label === "Logout" ? "text-red-500" : "text-gray-700"
                   }`}
@@ -260,7 +296,14 @@ const Header: React.FC = () => {
             : "Welcome To RideShare"
         }
         terms={true}
-        switchForm={() => setSwitchToLogin(!switchToLogin)}
+        switchForm={() => {
+          if (buttonClick) {
+            setButtonClick("");
+            setShowProfile(false);
+          } else {
+            setSwitchToLogin(!switchToLogin);
+          }
+        }}
         switchToLogin={switchToLogin}
         renderComponent={
           !buttonClick ? (
@@ -271,20 +314,28 @@ const Header: React.FC = () => {
             />
           ) : !showProfile && buttonClick === "Email" ? (
             <EmailOption
-              btnLabel={"Continue"}
+              btnLabel={!authData?.email ? "Send OTP" : "Continue"}
               setAuthData={setAuthData}
-              setShowProfile={setShowProfile}
+              authData={authData}
+              handleSendOtp={handleSendOtp}
+              handleContinue={handleContinue}
             />
           ) : !showProfile && buttonClick === "Phone" ? (
             <PhoneOption
-              btnLabel={"Continue"}
+              btnLabel={!authData?.phone ? "Send OTP" : "Continue"}
+              authData={authData}
               setAuthData={setAuthData}
-              setShowProfile={setShowProfile}
+              handleSendOtp={handleSendOtp}
+              handleContinue={handleContinue}
             />
           ) : showProfile ? (
-            switchToLogin ? null : (
-              <PersonalDetailModal authData={authData} />
-            )
+            <PersonalDetailModal
+              authData={authData}
+              setShowProfile={setShowProfile}
+              setOpen={setOpen}
+              setAuthData={setAuthData}
+              setButtonClick={setButtonClick}
+            />
           ) : null
         }
       />

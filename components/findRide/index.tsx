@@ -84,7 +84,6 @@ export const FindRide = () => {
         ride.to.toLowerCase().includes(toLower)
     );
   }, [activeSearchQuery]);
-  console.log({ searchParamsObj });
 
   const handleSearch = useCallback(() => {
     setSearchPerformed(true);

@@ -27,9 +27,11 @@ export const profileSlice = createSlice({
     updateVehicle: (state, action: PayloadAction<{index: number; vehicle: Vehicle}>) => {
       state.vehicles[action.payload.index] = action.payload.vehicle;
     },
+        clearVehicleData: () => initialState,
+    
     // Add other reducers as needed
   },
 });
 
-export const { addVehicle, updateVehicle } = profileSlice.actions;
+export const { addVehicle, updateVehicle,clearVehicleData } = profileSlice.actions;
 export default profileSlice.reducer;

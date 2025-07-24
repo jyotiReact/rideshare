@@ -22,18 +22,18 @@ const OtpInputField: React.FC<OtpInputFieldProps> = ({
   inputStyle = {
     width: "3rem",
     height: "3rem",
-    margin: "0 0.25rem",
     fontSize: "1rem",
     borderRadius: "100%",
     border: "2px solid #631CFF",
     textAlign: "center",
-  
   },
   containerStyle = {
     display: "flex",
-    justifyContent: "start",
+    justifyContent: "space-between",
     alignItems: "start",
+    outline: "none",
   },
+  ...props
 }) => {
   return (
     <OtpInput
@@ -46,9 +46,10 @@ const OtpInputField: React.FC<OtpInputFieldProps> = ({
         <>
           <input
             {...props}
+            className=" md:mx-1 mx-0 rounded-full border-2 border-[#631CFF] outline-none otp-input "
             style={{
               ...props.style,
-              // Hide number arrows in all browsers
+              textAlign: "center",
               MozAppearance: "textfield",
               WebkitAppearance: "none",
               appearance: "textfield",
@@ -60,6 +61,7 @@ const OtpInputField: React.FC<OtpInputFieldProps> = ({
       )}
       inputStyle={inputStyle}
       containerStyle={containerStyle}
+      {...props}
     />
   );
 };

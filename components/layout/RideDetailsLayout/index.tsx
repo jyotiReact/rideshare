@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import JourneyDetails from "@/components/journeyDetails";
 import Profile from "@/components/ui/profile";
 import { Badge } from "@/components/ui/badge";
+import { ButtonProps } from "@/types";
 
 const journeyData = {
   date: "Monday, 23 June",
@@ -48,10 +49,11 @@ const vehicleData = {
 interface RideDetailsLayoutProps {
   children: ReactNode;
   btnLabel?: string;
+  buttons?: ButtonProps[];
 }
 export const RideDetailsLayout = ({
   children,
-  btnLabel = "Book",
+  buttons = [],
 }: RideDetailsLayoutProps): JSX.Element => {
   const alreadyDeparted = false;
   const router = useRouter();
@@ -125,18 +127,21 @@ export const RideDetailsLayout = ({
                   </div>
                 </CardContent>
               </Card>
-              <Button
-                onClick={() => {
-                  router.push(`/booking`);
-                }}
-                className="w-full px-4 py-[18px] bg-[#631cff] rounded-[28px] border border-solid flex gap-2 items-center"
-              >
-                <HugeiconsIcon icon={ZapFreeIcons} color="#ffffff" />
 
-                <span className="font-medium text-white text-sm tracking-[-0.11px] leading-[19.6px] whitespace-nowrap  ">
-                  {btnLabel}
-                </span>
-              </Button>
+              {buttons?.length > 0 &&
+                buttons?.map((button, index) => (
+                  <Button
+                    key={index}
+                    onClick={button?.handleClick}
+                    variant={button.variant}
+                    className={button.className}
+                    size={button.size}
+                  >
+                    <div className="font-bold  text-sm">{button.icon}</div>
+
+                    <div className="font-bold  text-sm">{button.label}</div>
+                  </Button>
+                ))}
             </div>
           </div>
         </div>

@@ -38,6 +38,14 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
     );
   }
 
+  if(recentSearches.length === 0) {
+    return (
+      <section className="flex flex-col w-full items-center justify-center gap-6">
+        <h2 className="text-sm font-medium text-[#363636]">No recent searches</h2>
+      </section>
+    )
+  }
+
   return (
     <section className="flex flex-col w-full items-start gap-6">
       <h2 className="text-3xl font-bold text-[#363636]">Recent Searches</h2>

@@ -107,32 +107,38 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
       {/* Date and Passenger Selection */}
       <div className="flex items-center gap-2.5 w-full relative">
-        <CustomDatePicker
-          selected={date}
-          onChange={(newDate) =>
-            setSearchParams((prev) => ({ ...prev, date: newDate }))
-          }
-          renderCustomInput={() => (
-            <Button
-              variant="outline"
-              className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
-            >
-              <HugeiconsIcon icon={Calendar02Icon} width={20} color="#631CFF" />
-              <span className="font-bold text-black text-sm">
-                {date
-                  ? date.toLocaleDateString("en-IN", {
-                      weekday: "short",
-                      day: "numeric",
-                      month: "short",
-                    })
-                  : "Select date"}
-              </span>
-            </Button>
-          )}
-        />
+        <div className="flex-1">
+          <CustomDatePicker
+            selected={date}
+            onChange={(newDate) =>
+              setSearchParams((prev) => ({ ...prev, date: newDate }))
+            }
+            renderCustomInput={() => (
+              <Button
+                variant="outline"
+                className="flex-1 gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"
+              >
+                <HugeiconsIcon
+                  icon={Calendar02Icon}
+                  width={20}
+                  color="#631CFF"
+                />
+                <span className="font-bold text-black text-sm">
+                  {date
+                    ? date.toLocaleDateString("en-IN", {
+                        weekday: "short",
+                        day: "numeric",
+                        month: "short",
+                      })
+                    : "Select date"}
+                </span>
+              </Button>
+            )}
+          />
+        </div>
 
         {/* Passenger Selector */}
-        <div className="relative w-full">
+        <div className="relative flex-1 ">
           <Button
             variant="outline"
             className="flex gap-2 items-center w-full bg-transparent font-medium text-[#515251] text-sm rounded-full py-6"

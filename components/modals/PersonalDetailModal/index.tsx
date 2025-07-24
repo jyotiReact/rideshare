@@ -24,7 +24,6 @@ import { setPersonalDetails } from "@/store/authslice";
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
- 
 });
 // Type for the authData prop
 interface AuthData {
@@ -32,10 +31,23 @@ interface AuthData {
   phone?: string;
   password?: string;
   otp?: string;
+
   // Add other auth-related properties you might have
 }
 
-export const PersonalDetailModal = ({ authData } : { authData: AuthData } ) => {
+export const PersonalDetailModal = ({
+  authData,
+  setShowProfile = () => {},
+  setOpen = () => {},
+  setButtonClick = () => {},
+  setAuthData = () => {},
+}: {
+  setShowProfile?: (show: boolean) => void;
+  setOpen?: (open: boolean) => void;
+  authData?: AuthData;
+  setButtonClick?: (value: string) => void;
+  setAuthData?: (value: AuthData) => void;
+}) => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -53,9 +65,15 @@ export const PersonalDetailModal = ({ authData } : { authData: AuthData } ) => {
         dateOfBirth: moment(values.dateOfBirth).format("YYYY-MM-DD"),
       };
 
-    //@ts-ignore
-      dispatch(setPersonalDetails({formattedValues,...authData}));
+      dispatch(
+        //@ts-ignore
 
+        setPersonalDetails({ formattedValues, login: true, ...authData })
+      );
+      setShowProfile(false);
+      setButtonClick("");
+      setOpen(false);
+      setAuthData({});
     },
   });
 
@@ -115,6 +133,7 @@ export const PersonalDetailModal = ({ authData } : { authData: AuthData } ) => {
               selected={formik.values.dateOfBirth}
               onChange={(date) => formik.setFieldValue("dateOfBirth", date)}
               dateFormat="dd/MM/yyyy"
+              minDate={new Date("1900-01-01")}
               renderCustomInput={() => (
                 <div className="flex items-center gap-1.5 px-5 py-[18px] relative flex-1 grow rounded-[40px] border border-solid border-[#d9d9d9]">
                   <HugeiconsIcon

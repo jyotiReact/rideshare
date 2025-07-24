@@ -14,6 +14,11 @@ import {
 import Link from "next/link";
 import React, { JSX, ReactNode } from "react";
 import { TabOption } from "@/types"; // or define inline below
+import { useDispatch } from "react-redux";
+import { resetAuthState } from "@/store/authslice";
+import { clearVehicleData } from "@/store/profileSlice";
+import { clearRideData } from "@/store/rideSlice";
+import { useRouter } from "next/navigation";
 
 type ProfileLayoutProps = {
   children: ReactNode;
@@ -26,12 +31,21 @@ export const ProfileLayout = ({
   handleTabClick,
   tabOptions,
 }: ProfileLayoutProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const profileData = {
     name: "Ritik B.",
     age: "22 y/o",
     email: "ritikbhardwaj@gmail.com",
     phone: "+917813897220",
   };
+
+  function handleLogout() {
+    dispatch(resetAuthState());
+    dispatch(clearVehicleData());
+    dispatch(clearRideData());
+    router.replace("/dashboard");
+  }
 
   return (
     <div className="flex relative  lg:flex-row flex-col h-full  lg:gap-5 gap-10  w-full lg:p-0 ">
@@ -75,10 +89,7 @@ export const ProfileLayout = ({
           </div>
           {/* Tabs */}
           <div className="flex flex-col  items-start gap-2.5 w-full">
-            <Tabs
-              defaultValue={tabOptions[0]?.id || ""}
-              className="w-full"
-            >
+            <Tabs defaultValue={tabOptions[0]?.id || ""} className="w-full">
               <TabsList className="grid lg:grid-cols-1 grid-cols-2 p-0 gap-2.5 bg-transparent">
                 {tabOptions.map((tab) => (
                   <TabsTrigger
@@ -104,6 +115,7 @@ export const ProfileLayout = ({
         {/* Bottom Actions */}
         <div className="flex  flex-col items-start gap-2.5  lg:w-[397px] absolute w-full  left-1 lg:bottom-1  -bottom-48 ">
           <Button
+            onClick={handleLogout}
             variant="outline"
             className="h-[68px] justify-between px-[30px] bg-white rounded-[20px] border border-[#e9e9eb] w-full"
           >

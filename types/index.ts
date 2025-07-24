@@ -30,6 +30,22 @@ export interface Ride {
   instantRequest: boolean;
 }
 
+export interface ButtonProps {
+  label: string;
+  handleClick?: () => void;
+  variant?:
+    | "default"
+    | "outline"
+    | "ghost"
+    | "link"
+    | "destructive"
+    | "twoTone"
+    | "solid";
+  size?: "default" | "icon" | "sm" | "lg";
+  icon?: any;
+  className?: string;
+}
+
 export interface Location {
   address: string;
   lat: number;
@@ -119,4 +135,28 @@ export interface RouteOption {
   tollInfo: string;
   distance: string;
   path: string;
+}
+export interface EmailOptionProps {
+  btnLabel: string;
+  setAuthData: (data: {
+    email: string;
+    password?: string;
+    otp?: string;
+    phone?: string;
+  }) => void;
+  handleSendOtp?: (data: { email: string; otp: string }) => void;
+  handleContinue?: () => void;
+  authData: {
+    email?: string;
+    password?: string;
+    otp?: string;
+    phone?: string;
+  };
+}
+
+export interface AuthData {
+  email?: string;
+  phone?: string;
+  otp?: string;
+  [key: string]: any;
 }

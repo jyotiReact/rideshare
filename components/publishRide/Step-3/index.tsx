@@ -122,8 +122,11 @@ export const StepThree = (): JSX.Element => {
               </div>
             ))
           ) : (
-            <div className="text-[#6b6b6b] text-sm h-full font-medium flex items-center justify-center w-full">
-              No Stopovers added Yet
+            <div className="text-[#6b6b6b]  text-sm h-full font-medium flex flex-col items-center justify-center w-full">
+              <div className="w-[300px] h-[300px]">
+                <img src={"/images/nostops.png"} className="w-full h-full object-contain" />
+                </div>
+                <p className="text-gray-400 text-sm">No stopovers added yet</p>
             </div>
           )}
         </section>

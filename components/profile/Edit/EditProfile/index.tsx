@@ -29,9 +29,9 @@ export const EditProfile = (): JSX.Element => {
       title="Edit Details"
       description="Edit your personal details which are visible to other people."
     >
-      <div className="flex flex-col lg:w-[785px] items-center md:items-start  gap-[25px] w-full">
+      <div className="flex flex-col lg:w-[785px] items-center lg:items-start  gap-[25px] w-full">
         {/* Profile Picture Section */}
-        <div className="flex flex-col  relative">
+        <div className="flex flex-col   relative">
           <img
             className="relative w-[137.81px] h-[137.81px] object-cover rounded-full"
             alt="Profile picture"

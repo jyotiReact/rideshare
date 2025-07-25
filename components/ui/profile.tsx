@@ -3,9 +3,9 @@ import { Avatar, AvatarImage } from "./avatar";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
 
-function Profile() {
+function Profile({ handleClick = () => {} }: any) {
   return (
-    <div className="relative cursor-pointer" >
+    <div className="relative cursor-pointer" onClick={handleClick}>
       <Avatar className="w-[50px] h-[50px] border-2 border-[#D0F500]">
         <AvatarImage
           src="/images/profile.jpg"

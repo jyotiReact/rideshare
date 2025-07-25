@@ -73,7 +73,7 @@ export const HeroBannerSection = (): JSX.Element => {
 
     router.push(`/search-ride?${queryParams.toString()}`);
   };
-
+console.log(toLocation)
   return (
     <section className="flex flex-col items-center w-full bg-[url('/images/bannerbg.png')] bg-contain bg-no-repeat md:px-12 px-5">
       <div className="relative w-full md:py-20 py-10">
@@ -164,6 +164,10 @@ export const HeroBannerSection = (): JSX.Element => {
                 <Button
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-[#D0F500] rounded-full hover:bg-[#bfe000] transition z-10"
                   size="icon"
+                  onClick={() => {
+                    setFromLocation(toLocation);
+                    setToLocation(fromLocation);
+                  }}
                 >
                   <HugeiconsIcon
                     icon={ArrowDataTransferVerticalIcon}

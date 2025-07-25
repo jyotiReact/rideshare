@@ -84,10 +84,12 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
         {/* Swap Button */}
         <Button
-          className="absolute top-1/2 lg:left-[52%] md:left-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-[#D0F500] rounded-full hover:bg-[#bfe000] transition z-10"
+          className="absolute top-1/2 lg:left-[52%] md:left-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-[#D0F500] rounded-full hover:bg-[#bfe000] transition z-8"
           size="icon"
           onClick={() =>
             setSearchParams((prev) => ({ ...prev, from: to, to: from }))
+
+
           }
         >
           <HugeiconsIcon

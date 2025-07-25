@@ -1,11 +1,11 @@
-import { ArrowRightIcon, ChevronRightIcon, XIcon } from "lucide-react";
+"use client"
+
+import { ChevronRightIcon, XIcon } from "lucide-react";
 import React, { JSX } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BookingLayout } from "@/components/layout/BookingLayout";
-import StepLine from "@/components/ui/step-line";
 import PassengerInfoCard from "@/components/passengerInfoCard";
 import Profile from "@/components/ui/profile";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -13,35 +13,6 @@ import { ArrowRight01Icon, CarSignalIcon } from "@hugeicons/core-free-icons";
 import JourneyDetails from "@/components/journeyDetails";
 
 export const RideDetails = (): JSX.Element => {
-  // Trip data
-  const tripData = {
-    date: "Monday, 23 June",
-    departureTime: "12:50",
-    duration: "4h:30m",
-    arrivalTime: "12:50", // This would typically be calculated based on departure + duration
-    location: {
-      name: "Delhi",
-      address: "Metro Station jahangirpuri,250, J Block, Jahangipuri",
-    },
-  };
-
-  // Price data
-  const priceData = {
-    seats: 2,
-    amount: "₹1320",
-    paymentMethod: "Cash",
-    paymentLocation: "Pay in car",
-  };
-
-  // Passenger data
-  const passengerData = {
-    name: "Ritik Bhardwaj",
-    route: "Chandigarh → Shimla",
-    profileImage: "/ellipse-11-1.png",
-    verificationBadge: "/checkmark-badge-01.svg",
-    seats: 2,
-  };
-
   // Driver and car data
   const journeyData = {
     date: "Monday, 23 June",

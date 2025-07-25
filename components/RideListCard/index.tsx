@@ -12,6 +12,7 @@ import {
   ZapIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface RideStatusCardProps {
@@ -25,11 +26,11 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
   btnLabel,
   handleCardClick,
 }) => {
+  const router = useRouter();
   return (
     <Card
       key={ride.id}
       className="w-full rounded-[10px] overflow-hidden border border-solid border-[#f2f1f1] cursor-pointer"
-      onClick={handleCardClick}
     >
       <CardContent className="p-0">
         {/* Top Row: Time & Price */}
@@ -113,8 +114,13 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
               </div>
             </div>
 
-            <Button className="flex items-center gap-1 px-4 md:py-2  rounded-full w-fit text-white">
-              <span className="md:text-base text-sm font-medium">{btnLabel}</span>
+            <Button
+              onClick={handleCardClick}
+              className="flex items-center gap-1 px-4 md:py-2  rounded-full w-fit text-white"
+            >
+              <span className="md:text-base text-sm font-medium">
+                {btnLabel}
+              </span>
               <HugeiconsIcon icon={ArrowUpRight03Icon} width={20} />
             </Button>
           </div>
@@ -125,7 +131,7 @@ const RideListCard: React.FC<RideStatusCardProps> = ({
           <div className="flex flex-col md:flex-row  gap-2.5 w-full">
             <div className="flex  items-center gap-3 justify-between w-full ">
               <div className="flex items-center gap-3">
-                <Profile />
+                <Profile  />
                 <div className="md:text-base text-sm font-bold text-black">
                   {ride.driver}
                 </div>

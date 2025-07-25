@@ -7,6 +7,8 @@ import {
   AddCircleHalfDotIcon,
   ArrowUpRight03Icon,
   Call02Icon,
+  Home01Icon,
+  HomeIconFreeIcons,
   LanguageSkillIcon,
   Logout01Icon,
   Mail01Icon,
@@ -33,8 +35,6 @@ import { clearVehicleData } from "@/store/profileSlice";
 import { clearRideData } from "@/store/rideSlice";
 import { useRouter } from "next/navigation";
 import { AuthData } from "@/types";
-
-
 
 export const ChangeLanguage = ({
   onClose,
@@ -142,6 +142,8 @@ const Header: React.FC = () => {
   }
 
   const menuItems = [
+    { icon: HomeIconFreeIcons, label: "Home", path: "/dashboard" },
+
     { icon: TaxiFreeIcons, label: "Your Rides", path: "/your-rides" },
     {
       icon: TaxiFreeIcons,

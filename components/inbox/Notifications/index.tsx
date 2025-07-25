@@ -1,4 +1,4 @@
-// components/Notifications.tsx
+"use client";
 import JourneyDetails from "@/components/journeyDetails";
 import PassengerInfoCard from "@/components/passengerInfoCard";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { JourneyDetailsType } from "@/types";
 import { Agreement01Icon, MessengerIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckSquareIcon, XIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { JSX } from "react";
 
 type NotificationsProps = {
@@ -16,6 +17,7 @@ type NotificationsProps = {
 export const Notifications = ({
   journeyDetails,
 }: NotificationsProps): JSX.Element => {
+  const router = useRouter();
   return (
     <div className="flex flex-col items-start gap-5 relative p-2">
       {/* Map Card */}
@@ -64,7 +66,9 @@ export const Notifications = ({
 
           {/* Revenue Section */}
           <div className="flex flex-col w-full md:gap-[30px] gap-4 pb-[30px] border-b border-[#cbcbcb]">
-            <h2 className="font-bold text-black md:text-2xl text-[20px]">Revenue</h2>
+            <h2 className="font-bold text-black md:text-2xl text-[20px]">
+              Revenue
+            </h2>
             <div className="flex items-center justify-around gap-[39px] px-5 py-4 w-full bg-[#0000000a] rounded-[10px] shadow-[2px_2px_8px_#0000000d] opacity-80">
               <div className="flex items-center justify-between flex-1 rounded-[10px] ">
                 <span className="font-bold text-[#5b5b5b] text-base text-right leading-5 whitespace-nowrap">
@@ -82,6 +86,7 @@ export const Notifications = ({
       {/* Action Buttons */}
       <div className="flex items-start gap-5 w-full">
         <Button
+          onClick={() => router.push("/inbox")}
           variant="outline"
           className="flex-1 justify-center items-center gap-5 p-5 bg-white rounded-[50px] border border-solid border-[#f2f2f2]"
         >

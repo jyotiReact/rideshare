@@ -96,13 +96,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
             icon={ArrowDataTransferVerticalIcon}
             width={20}
             color="#631cff "
-            className="md:hidden lg:block block "
+            className="md:hidden lg:hidden block "
           />
           <HugeiconsIcon
             icon={ArrowDataTransferHorizontalFreeIcons}
             width={20}
             color="#631cff "
-            className="md:block lg:hidden hidden"
+            className="md:block lg:block hidden "
           />
         </Button>
       </div>

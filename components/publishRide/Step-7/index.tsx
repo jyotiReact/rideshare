@@ -4,7 +4,7 @@ import Terms from "@/components/terms&Conditions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { ChevronLeft, MinusIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 import React, { JSX, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,9 +49,16 @@ export const StepSeven = (): JSX.Element => {
           <div className="flex flex-col items-center gap-2.5 relative self-stretch w-full">
             <div className="flex flex-col items-center gap-[35px] relative self-stretch w-full">
               <div className="flex items-center justify-between relative self-stretch w-full">
-                <h1 className="font-bold text-[#353535] md:text-3xl text-[24px] [font-family:'Plus_Jakarta_Sans',Helvetica]">
-                  Ready to publish
-                </h1>
+                <div className="flex gap-3 items-center">
+                  <ChevronLeft
+                    className="w-5 h-5 mt-2 text-[#631CFF] cursor-pointer"
+                    onClick={() => router.back()}
+                  />
+
+                  <h1 className="font-bold text-[#353535] md:text-3xl text-[24px] [font-family:'Plus_Jakarta_Sans',Helvetica]">
+                    Ready to publish
+                  </h1>
+                </div>
                 <span className="font-medium text-[#353535] text-base [font-family:'Plus_Jakarta_Sans',Helvetica]">
                   Step 7/7
                 </span>

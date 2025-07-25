@@ -24,8 +24,8 @@ function InboxLayout({
 }: InboxLayoutProps): JSX.Element {
   const router = useRouter();
   return (
-    <div className="flex gap-5  py-5 lg:px-20 px-2 w-full  h-full">
-      <div className="flex flex-col  items-center gap-10 lg:w-[500px] w-full">
+    <div className="flex gap-5  py-5 lg:px-20 px-5 w-full  h-full">
+      <div className="flex flex-col  items-center gap-10 flex-1 w-full ">
         {/* Navigation Tabs */}
         {showTabs ? (
           <TabsComponent
@@ -33,7 +33,7 @@ function InboxLayout({
             handleTabClick={handleTabClick}
           />
         ) : (
-          <Card className="flex flex-col items-start gap-5 md:p-10 p-5 relative bg-white rounded-[10px] border-[#f2f2f2]">
+          <Card className="flex flex-col items-start gap-5 md:p-10 p-5 relative bg-white rounded-[10px] border-[#f2f2f2] w-full">
             <div
               className="inline-flex items-center gap-2.5 p-2 bg-[#0000000d] rounded-[20px] cursor-pointer"
               onClick={() => router.back()}
@@ -88,7 +88,7 @@ function InboxLayout({
         </Card>
       </div>
 
-      <div className="w-full lg:block hidden">{children}</div>
+      <div className="w-[700px] lg:block hidden">{children}</div>
     </div>
   );
 }

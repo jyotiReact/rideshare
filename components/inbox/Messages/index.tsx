@@ -28,7 +28,7 @@ type MessagesProps = {
 export const Messages = ({ messages }: MessagesProps): JSX.Element => {
   const router = useRouter();
   return (
-    <Card className="md:h-[691px] h-screen   rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
+    <Card className="lg:h-[691px] h-screen    rounded-[20px] border border-solid border-[#f2f2f2] relative overflow-hidden bg-neutral-100">
       {/* Chat header */}
       <div className="flex items-center gap-5 p-5 w-full bg-white rounded-[20px_20px_0px_0px] backdrop-blur-md">
         <div
@@ -96,7 +96,7 @@ export const Messages = ({ messages }: MessagesProps): JSX.Element => {
       </div>
 
       {/* Message input */}
-      <div className="md:absolute  fixed left-0 right-0 bottom-0 flex items-center justify-center gap-[5px] px-5">
+      <div className="lg:absolute mb-10  lg:mb-0 fixed left-0 right-0 bottom-0 flex items-center justify-center gap-[5px] px-5">
         <Input
           className="flex-1 px-5 py-[15px] bg-white rounded-[35px] border border-solid border-[#0000000f] h-auto placeholder:text-[#6b6b6b] placeholder:font-normal"
           placeholder="Type a message"

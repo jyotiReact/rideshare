@@ -95,7 +95,7 @@ export const StepTwo = (): JSX.Element => {
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col lg:order-1 order-2 items-center justify-center lg:px-[100px] px-4 py-6 lg:flex-1 w-full lg:overflow-y-auto">
+      <div className="flex flex-col lg:order-1 order-2 items-center justify-center lg:px-[100px] px-[20px] py-6 lg:flex-1 w-full lg:overflow-y-auto">
         <div className="flex flex-col justify-center md:gap-10 gap-8 w-full max-w-[600px]">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-start gap-3">

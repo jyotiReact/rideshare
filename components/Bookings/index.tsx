@@ -3,7 +3,7 @@ import InboxLayout from "@/components/layout/InboxLayout";
 import { JourneyDetailsType, Notification } from "@/types";
 import { useRouter } from "next/navigation";
 import React, { JSX } from "react";
-import { BookingDetail } from "../BookingDetail";
+import { BookingDetail } from "../yourRides/BookingDetail";
 
 const journeyDetails: JourneyDetailsType = {
   date: "Monday, 23 June",

@@ -4,7 +4,11 @@ import React, { JSX, ReactNode } from "react";
 import {
   AlertCircleFreeIcons,
   AlertCircleIcon,
+  ArrowLeft01FreeIcons,
   CarSignalIcon,
+  Group01FreeIcons,
+  UserGroup02Icon,
+  UserMultiple02FreeIcons,
   ZapFreeIcons,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -59,9 +63,21 @@ export const RideDetailsLayout = ({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full bg-neutral-50 lg:px-20 px-2 py-10">
+    <div className="flex flex-col w-full bg-neutral-50 lg:px-20 px-5  py-10 custom-shadow">
       <div className="flex flex-col gap-10">
-        <h1 className="text-4xl font-bold text-[#353535]">Ride Details</h1>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => router.back()}
+            className="text-[#353535] hover:text-gray-600 transition-colors"
+          >
+            <HugeiconsIcon
+              icon={ArrowLeft01FreeIcons}
+              size={24}
+              color="#631cff"
+            />
+          </button>
+          <h1 className="text-4xl font-bold text-[#353535]">Ride Details</h1>
+        </div>
 
         {/* Alert Message */}
         {alreadyDeparted && (
@@ -80,7 +96,7 @@ export const RideDetailsLayout = ({
           <div className="lg:w-1/3 w-full order-1 lg:order-2">
             <div className="flex flex-col w-full  items-start gap-[30px] relative">
               <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-                <CardContent className="flex flex-col items-start gap-[30px] lg:px-10 px-5 py-5">
+                <CardContent className="flex flex-col items-start gap-[30px]  px-5 py-5">
                   <JourneyDetails journeyData={journeyData} />
 
                   <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
@@ -127,6 +143,13 @@ export const RideDetailsLayout = ({
                   </div>
                 </CardContent>
               </Card>
+
+              <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto] custom-shadow bg-white p-5 rounded-[20px]">
+                <div className="rounded-full w-8 h-8 flex justify-center items-center bg-[#F3EFFF]  ">
+                  <HugeiconsIcon icon={UserMultiple02FreeIcons} color="#631CFF" width={20} />
+                </div>
+                <div className="font-bold text-1xl">1000.00</div>
+              </div>
 
               {buttons?.length > 0 &&
                 buttons?.map((button, index) => (

@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon, RefreshCwIcon, FilterIcon, XIcon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  RefreshCwIcon,
+  FilterIcon,
+  XIcon,
+} from "lucide-react";
 import RideListCard from "../../RideListCard";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
@@ -208,7 +213,7 @@ export const DepartureTimeSection: React.FC<DepartureTimeSectionProps> = ({
               </div>
 
               <div className="w-full relative ">
-                <div className="flex items-center justify-between px-5 py-2.5 relative z-10 bg-[#D0F500] ">
+                <div className="flex items-center justify-between px-5 py-2.5 relative z-10 bg-[url('/images/wave.png')] bg-contain  ">
                   <div className="text-sm text-black">
                     {filteredRides.length > 0 ? (
                       <>
@@ -236,11 +241,6 @@ export const DepartureTimeSection: React.FC<DepartureTimeSectionProps> = ({
                     </div>
                   )}
                 </div>
-                <img
-                  src="/images/wave.png"
-                  alt="wave"
-                  className="w-full absolute -bottom-1 left-0 z-0 pointer-events-none"
-                />
               </div>
             </div>
 
@@ -252,7 +252,13 @@ export const DepartureTimeSection: React.FC<DepartureTimeSectionProps> = ({
                     key={ride.id}
                     ride={ride}
                     btnLabel="Book now"
-                    handleCardClick={() => router.push(`/ride-details`)}
+                    handleCardClick={() =>
+                      router.push(
+                        `/ride-details/${
+                          ride.instantRequest ? "instant" : "approval"
+                        }`
+                      )
+                    }
                   />
                 ))
               ) : (

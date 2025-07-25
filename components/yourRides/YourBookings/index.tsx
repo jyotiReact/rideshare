@@ -104,7 +104,7 @@ export const YourBookingsSection = (): JSX.Element => {
                     { ` ₹ ${booking.price}`}
                   </div>
                 </div>
-                <Button onClick={() => router.push(`/ride-details`)} className="inline-flex items-center w-fit justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
+                <Button onClick={() => router.push(`/ride-details/published-ride`)} className="inline-flex items-center w-fit justify-center gap-1 px-4 py-2 bg-[#631CFF] rounded-[28px] shadow-[0px_2px_0px_#EEEEEE] text-white">
                   <span className=" font-bold md:text-base text-xs tracking-[-0.13px] leading-[22.4px]">
                     View Details
                   </span>
@@ -113,7 +113,7 @@ export const YourBookingsSection = (): JSX.Element => {
               </div>
             </div>
           </CardContent>
-          <Link href={`/your-rides/bookings`}>
+          <Link href={`/booking-requests`}>
             <CardFooter className="flex items-center justify-between md:px-10 py-2.5 px-2 bg-[#0000000a] cursor-pointer">
               <div className="inline-flex items-center gap-2.5">
                 <div className="inline-flex items-center gap-[5px]">

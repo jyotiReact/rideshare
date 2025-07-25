@@ -72,7 +72,7 @@ export const BookingDetail = (): JSX.Element => {
 
             <Button
               variant="outline"
-              className="inline-flex items-center justify-center gap-2.5 px-5 py-[15px] bg-[#631cff1a] text-[#631cff] rounded-[25px]"
+              className="inline-flex items-center md:w-fit w-full justify-center gap-2.5 px-5 py-[15px] bg-[#631cff1a] text-[#631cff] rounded-[25px]"
             >
               <HugeiconsIcon icon={MessengerIcon} width={20} color="#631CFF" />
               <span className="font-bold text-sm tracking-[-0.11px] leading-[19.6px]">

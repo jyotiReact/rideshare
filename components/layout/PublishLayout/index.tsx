@@ -30,7 +30,7 @@ const PublishLayout = ({
   const router = useRouter();
 
   return (
-    <section className="flex md:items-center justify-center h-full lg:h-screen p-2 ">
+    <section className="flex md:items-center justify-center h-full lg:h-screen p-[20px] ">
       <div className="flex flex-col md:items-center md:justify-center md:gap-10 gap-6  relative w-full md:w-fit">
         {/* Main Content */}
         <div className="flex flex-col md:items-center md:gap-10 gap-6 relative self-stretch ">

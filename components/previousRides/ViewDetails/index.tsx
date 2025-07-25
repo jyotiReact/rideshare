@@ -11,7 +11,7 @@ export const ViewDetails = (): JSX.Element => {
     <RideDetailsLayout btnLabel="Rate Driver/Passengers">
       <div className="flex flex-col w-full items-start gap-[30px]">
         {/* Passenger List */}
-        <PassengerListSection alreadyDeparted={true} />
+        <PassengerListSection  />
 
         <div className="flex flex-col gap-5 mt-[30px] w-full">
           <div className="flex flex-col gap-[30px] pb-[30px] border-b border-[#cbcbcb]">

@@ -41,7 +41,7 @@ export const RidePublished = (): JSX.Element => {
               instantRequest: step6.bookingType == "manual" ? false : true,
             }}
             btnLabel="View Details"
-            handleCardClick={() => router.push(`/ride-details`)}
+            handleCardClick={() => router.push(`/ride-details/published-ride`)}
           />
         </div>
       </div>

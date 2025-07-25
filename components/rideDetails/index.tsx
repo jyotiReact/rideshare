@@ -2,7 +2,7 @@
 
 import React, { JSX } from "react";
 import { PassengerListSection } from "./PassengerList";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { RideDetailsLayout } from "../layout/RideDetailsLayout";
 import { Card, CardContent } from "../ui/card";
 import Profile from "../ui/profile";
@@ -20,7 +20,8 @@ import {
   SecurityCheckIcon,
   ZapFreeIcons,
 } from "@hugeicons/core-free-icons";
-import { XIcon } from "lucide-react";
+import { XIcon, ZapIcon } from "lucide-react";
+import Link from "next/link";
 
 const driverInfo = {
   name: "Ritik B.",
@@ -36,36 +37,48 @@ const driverInfo = {
 };
 
 export const RideDetails = (): JSX.Element => {
+  const { id } = useParams() as { id: string };
   const alreadyDeparted = false;
   const router = useRouter();
 
   return (
     <RideDetailsLayout
-      buttons={[
-        {
-          label: "Edit Ride",
-          handleClick: () => {},
-          variant: "twoTone",
-          className: "border-none",
-        },
-        {
-          label: "Complete Ride",
-          handleClick: () => {},
-          variant: "solid",
-        },
-        {
-          label: "Cancel Ride",
-          handleClick: () => {},
-          variant: "twoTone",
-          className: "!text-red-500 bg-red-100 border-none gap-2 ",
-          icon: <XIcon className="w-4 h-4" />,
-        },
-      ]}
+      buttons={
+        ["instant", "approval"].includes(id)
+          ? [
+              {
+                label: "Book Ride",
+                handleClick: () => router.push("/booking"),
+                variant: "solid",
+                icon: <ZapIcon />,
+              },
+            ]
+          : [
+              {
+                label: "Edit Ride",
+                handleClick: () => {},
+                variant: "twoTone",
+                className: "border-none",
+              },
+              {
+                label: "Complete Ride",
+                handleClick: () => {},
+                variant: "solid",
+              },
+              {
+                label: "Cancel Ride",
+                handleClick: () => {},
+                variant: "twoTone",
+                className: "!text-red-500 bg-red-100 border-none ",
+                icon: <XIcon className="w-4 h-4" />,
+              },
+            ]
+      }
     >
       <div className="flex flex-col w-full items-start gap-[30px]">
         {/* Driver Profile Card */}
         <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-          <CardContent className="flex flex-col gap-5 lg:px-10 px-5 py-5">
+          <CardContent className="flex flex-col gap-5  px-5 py-5">
             {/* Driver Info */}
             <div className="flex justify-between border-b border-[#cbcbcb] pb-5">
               <div className="flex items-center gap-3.5">
@@ -158,7 +171,7 @@ export const RideDetails = (): JSX.Element => {
                   color="#631CFF"
                 />
                 <span className="text-sm font-medium text-[#101828]">
-                  {alreadyDeparted
+                  {alreadyDeparted || id == "instant"
                     ? "Instant Booking Confirmation"
                     : "Request approval required by rider"}
                 </span>
@@ -193,11 +206,29 @@ export const RideDetails = (): JSX.Element => {
         </Card>
 
         {/* Passenger List */}
-        <PassengerListSection alreadyDeparted={alreadyDeparted} />
+        {!["instant", "approval"].includes(id) && (
+          <Link href={`/booking-requests`} className=" w-full">
+            <div className="flex items-center justify-between cursor-pointer relative self-stretch w-full flex-[0_0_auto] custom-shadow bg-white p-5 rounded-[20px]">
+              <div className="flex items-center gap-3 ">
+                <div className="font-semibold">Request</div>{" "}
+                <div className="flex items-center justify-center bg-[#631CFF] text-white rounded-md p-1 text-xs">
+                  {" "}
+                  4 New
+                </div>
+              </div>
+              <div className="font-bold text-1xl flex">
+                <span className="">10</span>{" "}
+                <HugeiconsIcon icon={ArrowRight01Icon} />
+              </div>
+            </div>
+          </Link>
+        )}
+
+        <PassengerListSection alreadyDeparted={{ alreadyDeparted, id }} />
 
         {/* Report Section */}
         <Card className="w-full bg-white rounded-[20px] border border-solid border-[#f2f2f2]">
-          <CardContent className="flex h-[68px] items-center justify-between lg:px-[30px] px-5 py-0">
+          <CardContent className="flex h-[68px] items-center justify-between  px-5 py-0">
             <span className="text-base font-bold text-black">
               Report/FlagIcon this ride
             </span>

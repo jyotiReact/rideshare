@@ -117,7 +117,7 @@ export const FindRide = () => {
   }, [searchParamsObj, formatDateDisplay]);
 
   return (
-    <div className="flex flex-col w-full bg-neutral-50 overflow-x-hidden py-5 lg:px-20 px-2 gap-6">
+    <div className="flex flex-col w-full bg-neutral-50 overflow-x-hidden py-5 lg:px-20 px-5 gap-6">
       <div className="flex flex-col gap-6 mt-6">
         <h2 className="text-3xl font-bold text-[#363636] text-center">
           Find a Ride

@@ -52,7 +52,7 @@ export const ProfileLayout = ({
       {/* Sidebar */}
       <div className="inline-flex flex-col  rounded-[20px]  items-center  h-full  flex-[0_0_auto]">
         <div className="flex flex-col items-center gap-5  self-stretch w-full">
-          <div className="lg:w-[397px] w-full items-center  bg-white lg:px-[30px] px-2 py-5 rounded-[20px] border-none bg-transparent">
+          <div className="lg:w-[397px] w-full items-center  bg-white lg:px-[30px] px-5 py-5 rounded-[20px] border-none bg-transparent">
             <CardContent className="p-0 flex flex-col items-center justify-center gap-2.5">
               <Avatar className="w-[137.81px] h-[137.81px]">
                 <AvatarImage

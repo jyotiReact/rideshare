@@ -103,7 +103,7 @@ export const Inbox = (): JSX.Element => {
 
   return (
     <div className="flex flex-col w-full bg-zinc-50 h-full  pb-20 ">
-      <div className="flex justify-center items-start">
+      <div className="flex justify-center items-start w-full">
         {tab === "messages" ? (
           <InboxLayout
             tabOptions={tabOptions}

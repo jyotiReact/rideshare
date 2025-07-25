@@ -176,7 +176,7 @@ export const PreviousRides = (): JSX.Element => {
     },
   ];
   return (
-    <div className="flex flex-col w-full py-10">
+    <div className="flex flex-col w-full py-10 px-5">
       <TabsComponent
         title={tab === "rides" ? "Previous Rides" : "Previous Bookings"}
         tabOptions={tabOptions}
@@ -184,7 +184,7 @@ export const PreviousRides = (): JSX.Element => {
       />
 
       <div className="flex justify-center mt-8">
-        <div className="md:w-4/5 w-full flex flex-col gap-12 ">
+        <div className="lg:w-4/5 w-full flex flex-col gap-12 ">
           {(tab === "rides" ? Rides : Bookings)?.length > 0 &&
             (tab === "rides" ? Rides : Bookings).map((ride) => (
               <RideStatusCard

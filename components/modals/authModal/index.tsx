@@ -38,7 +38,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <div className="p-1 bg-[#631cff] rounded-md">
               <Image
                 src="/images/Logo.png"
-                alt="RideShare Logo"
+                alt=" Reachyo Logo"
                 width={26.31}
                 height={26.42}
                 className="w-[26.31px] h-[26.42px]"

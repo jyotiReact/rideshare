@@ -24,15 +24,24 @@ export const PhoneOption = ({
 }: EmailOptionProps) => {
   const formik = useFormik({
     initialValues: {
-      phone: authData.phone || "",
-      otp: authData.otp || "",
+      phone: "",
+      countryCode: "", // Add country code field
+      purePhoneNumber: "", // Add pure phone number field
+      otp: "",
     },
     validationSchema,
     onSubmit: (values: any) => {
+      // Extract country code and pure phone number before submission
+      const submissionValues = {
+        ...values,
+        countryCode: values.countryCode || "", // Will be set by PhoneNumberInput
+        purePhoneNumber: values.phone.replace(values.countryCode, "").trim() // Remove country code
+      };
+
       if (values?.otp) {
-        handleContinue();
+        handleContinue(submissionValues);
       } else {
-        handleSendOtp(values);
+        handleSendOtp(submissionValues);
       }
     },
   });
@@ -44,8 +53,9 @@ export const PhoneOption = ({
           <div className="flex gap-2 px-2 py-2 w-full rounded-[40px] border border-[#d9d9d9] relative">
             <PhoneNumberInput
               value={formik.values.phone}
-              onChange={(value: string) => {
+              onChange={(value: string, code: string) => {
                 formik.setFieldValue("phone", value);
+                formik.setFieldValue("countryCode", code.dialCode); // Set country code
               }}
               buttonClassName="rounded-full border-none"
               placeholder="7986543210"
@@ -53,11 +63,11 @@ export const PhoneOption = ({
             <Badge
               className="px-5 py-2.5 cursor-pointer rounded-full font-bold absolute right-1"
               style={{
-                backgroundColor: authData.otp ? "#E7FFE5" : "#D0F500",
-                color: authData.otp ? "#35C329" : "#000000",
+                backgroundColor: authData ? "#E7FFE5" : "#D0F500",
+                color: authData ? "#35C329" : "#000000",
               }}
             >
-              {authData.otp ? "OTP Sent" : "Send OTP"}
+              {authData ? "OTP Sent" : "Send OTP"}
             </Badge>
           </div>
           {formik.touched.phone && formik.errors.phone && (
@@ -66,7 +76,7 @@ export const PhoneOption = ({
             </div>
           )}
 
-          {authData.otp && (
+          {authData && (
             <div className="flex flex-col gap-4 justify-start w-full">
               <div className="flex items-center justify-between w-full">
                 <span className="font-bold text-sm">Enter 6-Digit OTP</span>
@@ -76,7 +86,7 @@ export const PhoneOption = ({
                   onClick={() => {
                     formik.setFieldValue("otp", "");
                     //@ts-ignore
-                    setAuthData({ ...authData, otp: "" });
+                    setAuthData(null);
                   }}
                   type="button"
                 >

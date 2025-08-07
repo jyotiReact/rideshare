@@ -69,7 +69,7 @@ export const FAQSection = (): JSX.Element => {
   return (
     <section className="flex flex-col items-center md:gap-[60px] gap-4 w-full max-w-[1230px] mx-auto md:px-12 px-5">
       <h2 className="md:text-4xl text-[24px] font-bold text-[#232f1a] leading-[50.4px]">
-        Rideshare Help Center
+        Reachyo Help Center
       </h2>
 
       <div className="flex flex-col md:flex-row items-start gap-5 w-full">
@@ -96,7 +96,7 @@ export const FAQSection = (): JSX.Element => {
                 >
                   <div className="px-0 py-0 ">
                     <AccordionTrigger className="p-0 before:hidden after:hidden text-left">
-                      <CustomAccordionTrigger isOpen={openItemLeft === value} >
+                      <CustomAccordionTrigger isOpen={openItemLeft === value}>
                         {faq.question}
                       </CustomAccordionTrigger>
                     </AccordionTrigger>

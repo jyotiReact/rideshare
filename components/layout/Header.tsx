@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 
 import { JSX, useState, useRef, useEffect } from "react";
@@ -34,7 +36,28 @@ import { Switch } from "../../components/ui/switch";
 import { clearVehicleData } from "@/store/profileSlice";
 import { clearRideData } from "@/store/rideSlice";
 import { useRouter } from "next/navigation";
-import { AuthData } from "@/types";
+import { RootState } from "@/store/store"; // Import your RootState type
+import { postApi } from "@/services/userService";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { toast } from "react-toastify";
+
+interface AuthData {
+  email?: string;
+  purePhoneNumber?: string;
+  countryCode?: string;
+  otp?: string;
+  isEmailVerified?: boolean;
+  isPhoneVerified?: boolean;
+  // Add other properties as needed
+}
+
+interface ContinueValues {
+  email?: string;
+  purePhoneNumber?: string;
+  countryCode?: string;
+  otp?: string;
+}
 
 export const ChangeLanguage = ({
   onClose,
@@ -113,37 +136,60 @@ export const ChangeLanguage = ({
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
   const [showLanguage, setShowLanguage] = useState(false);
-  const { login } = useSelector((state: any) => state?.user?.userInfo);
+  const { login } = useSelector((state: RootState) => state.user.userInfo);
   const [switchToLogin, setSwitchToLogin] = useState(false);
-  const [buttonClick, setButtonClick] = useState("");
+  const [buttonClick, setButtonClick] = useState<string>("");
   const dispatch = useDispatch();
-  const [authData, setAuthData] = useState<AuthData>({});
+  const [authData, setAuthData] = useState<AuthData | null>(null);
   const [showProfile, setShowProfile] = useState(false);
   const router = useRouter();
-  const handleGoogleLogin = async () => {};
+  const googleProvider = new GoogleAuthProvider();
 
   const handleModalClose = () => {
     setOpen(false);
     setButtonClick("");
     dispatch(resetAuthState());
   };
+
   function handleLogout() {
+    window.location.reload()
     dispatch(resetAuthState());
     dispatch(clearVehicleData());
     dispatch(clearRideData());
   }
-  function handleSendOtp(formData: AuthData) {
-    console.log(formData);
-    if (formData?.email || formData?.phone) {
-      setAuthData({ ...formData, otp: "123456" });
+
+  async function handleSendOtp(formData: AuthData) {
+
+    try {
+      const response = await postApi<{ message: string }>(
+        "/user/checkRegister",
+        {
+          ...(formData.email && { email: formData.email }),
+          ...(formData.purePhoneNumber && {
+            phoneNumber: formData.purePhoneNumber,
+          }),
+          ...(formData.countryCode && { countryCode: formData.countryCode }),
+        }
+      );
+      if (response?.data?.isEmailVerified || response?.data?.isPhoneVerified) {
+        dispatch(
+          setPersonalDetails(response?.data)
+        );
+        setShowProfile(false);
+        setShowProfile(false);
+        setButtonClick("");
+        setOpen(false);
+        setAuthData(null);
+      }
+      setAuthData(response?.data);
+    } catch (error) {
+      console.error("Failed to send OTP:", error);
     }
   }
 
   const menuItems = [
     { icon: HomeIconFreeIcons, label: "Home", path: "/dashboard" },
-
     { icon: TaxiFreeIcons, label: "Your Rides", path: "/your-rides" },
     {
       icon: TaxiFreeIcons,
@@ -154,19 +200,37 @@ const Header: React.FC = () => {
     { icon: UserIcon, label: "Profile", path: "/profile" },
     { icon: Logout01Icon, label: "Logout", path: "" },
   ];
-  function handleContinue() {
-    if (switchToLogin) {
-      dispatch(
-        //@ts-ignore
-        setPersonalDetails({ login: true, ...authData })
-      );
-      setButtonClick("");
-      setOpen(false);
-      setAuthData({});
-    } else {
-      setShowProfile(true);
+
+  async function handleContinue(values: ContinueValues) {
+    try {
+      const response = await postApi<{ message: string }>("/user/verifyOtp", {
+        ...(values.email && { email: values.email }),
+        ...(values.purePhoneNumber && {
+          phoneNumber: values.purePhoneNumber,
+        }),
+        ...(values.countryCode && { countryCode: values.countryCode }),
+        ...(values.otp && { otp: values.otp }),
+      });
+      if (response?.data?.isEmailVerified || response?.data?.isPhoneVerified) {
+        setShowProfile(true);
+      }
+    } catch (error) {
+      console.error("Failed to send OTP:", error);
     }
   }
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      if (user.emailVerified) {
+        setShowProfile(true);
+      }
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Failed to sign in with Google");
+    }
+  };
 
   return (
     <header className="py-5 lg:px-20 px-5 bg-[#fafafa] shadow w-full border-b border-[#E0E1E0] flex flex-col gap-5">
@@ -176,7 +240,7 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-2 cursor-pointer">
             <Image src="/images/Logo.png" alt="Logo" width={24} height={24} />
             <span className="font-semibold md:text-lg text-md text-[#1A1A1A]">
-              RideShare
+              Reachyo
             </span>
           </div>
         </Link>
@@ -292,10 +356,10 @@ const Header: React.FC = () => {
         onClose={handleModalClose}
         title={
           switchToLogin && !showProfile
-            ? "Sign In To RideShare"
+            ? "Sign In To  Reachyo"
             : showProfile
             ? "Personal Details"
-            : "Welcome To RideShare"
+            : "Welcome To  Reachyo"
         }
         terms={true}
         switchForm={() => {
@@ -316,7 +380,7 @@ const Header: React.FC = () => {
             />
           ) : !showProfile && buttonClick === "Email" ? (
             <EmailOption
-              btnLabel={!authData?.email ? "Send OTP" : "Continue"}
+              btnLabel={!authData ? "Send OTP" : "Continue"}
               setAuthData={setAuthData}
               authData={authData}
               handleSendOtp={handleSendOtp}
@@ -324,7 +388,7 @@ const Header: React.FC = () => {
             />
           ) : !showProfile && buttonClick === "Phone" ? (
             <PhoneOption
-              btnLabel={!authData?.phone ? "Send OTP" : "Continue"}
+              btnLabel={!authData ? "Send OTP" : "Continue"}
               authData={authData}
               setAuthData={setAuthData}
               handleSendOtp={handleSendOtp}

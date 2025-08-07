@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Providers } from "./providers";
+import { ToastContainer } from "react-toastify";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -11,7 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "RideShare - Book Your Ride",
+  title: " Reachyo - Book Your Ride",
   description: "Modern ride booking application with seamless user experience",
 };
 
@@ -29,6 +30,18 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen w-full">{children}</main>
         </Providers>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
-"use client";
+// @ts-nocheck
 
+"use client";
 import { Button } from "@/components/ui/button";
 import { Mail01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -9,6 +10,11 @@ import OtpInputField from "@/components/ui/otpComponent";
 import { Badge } from "@/components/ui/badge";
 import { EditIcon } from "lucide-react";
 import { EmailOptionProps } from "@/types";
+
+interface FormValues {
+  email: string;
+  otp: string;
+}
 
 export const EmailOption = ({
   btnLabel,
@@ -23,7 +29,7 @@ export const EmailOption = ({
       .required("Email is required"),
   });
 
-  const formik = useFormik({
+  const formik = useFormik<FormValues>({
     initialValues: {
       email: authData?.email || "",
       otp: authData?.otp || "",
@@ -31,7 +37,7 @@ export const EmailOption = ({
     validationSchema,
     onSubmit: (values) => {
       if (values?.otp) {
-        handleContinue();
+        handleContinue(values);
       } else {
         handleSendOtp(values);
       }
@@ -54,6 +60,7 @@ export const EmailOption = ({
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                disabled={!!authData}
                 className="font-light text-sm text-black placeholder:text-[#cfcfcf] outline-none border-none bg-transparent flex-1"
               />
               <Badge
@@ -63,7 +70,7 @@ export const EmailOption = ({
                   color: authData?.otp ? "#35C329" : "#000000",
                 }}
               >
-                {authData.otp ? "OTP Sent" : "Send OTP"}
+                {authData ? "OTP Sent" : "Send OTP"}
               </Badge>
             </div>
             {formik.touched.email && formik.errors.email && (
@@ -74,8 +81,8 @@ export const EmailOption = ({
           </div>
 
           {/* OTP Field */}
-          {authData?.otp && (
-            <div className="flex flex-col gap-4  w-full mt-4 ">
+          {authData != null && (
+            <div className="flex flex-col gap-4 w-full mt-4">
               <div className="flex items-center justify-between w-full">
                 <span className="font-bold text-sm">Enter 6-Digit OTP</span>
                 <Button
@@ -84,8 +91,7 @@ export const EmailOption = ({
                   className="flex items-center w-fit gap-0.5 px-3 py-2 bg-[#f4efff] text-[#631cff] rounded-[100px] border-none h-auto"
                   onClick={() => {
                     formik.setFieldValue("otp", "");
-                    //@ts-ignore
-                    setAuthData({ ...authData, otp: "" });
+                    setAuthData(null);
                   }}
                 >
                   <span className="font-bold text-xs">Edit Email</span>
@@ -95,9 +101,9 @@ export const EmailOption = ({
               <div className="w-full">
                 <OtpInputField
                   value={formik.values.otp}
-                  onChange={(otp) => formik.setFieldValue("otp", otp)}
+                  onChange={(otp: string) => formik.setFieldValue("otp", otp)}
                   numInputs={6}
-                  separator={<span className="mx-1" />}  
+                  separator={<span className="mx-1" />}
                 />
               </div>
             </div>

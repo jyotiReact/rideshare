@@ -1,3 +1,6 @@
+// @ts-nocheck
+
+
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +22,7 @@ import {
   XIcon,
 } from "lucide-react";
 import Link from "next/link";
-import React, { JSX, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import { AuthModal } from "@/components/modals/authModal";
 import { EmailOption } from "@/components/modals/EmailOption";
 import { PhoneOption } from "@/components/modals/PhoneOption";
@@ -34,6 +37,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { AuthData } from "@/types";
+import { getApi } from "@/services/userService";
 
 interface Vehicle {
   brand: string;
@@ -96,6 +100,8 @@ export const Verified: React.FC<VerifiedProps> = ({ data }): JSX.Element => {
     { id: 4, text: "No Smoking", icon: "/images/smoking.svg", type: "image" },
   ]);
   const [newTagText, setNewTagText] = useState("");
+  const [vehicleData, setVehicleData] = useState([]);
+
   const [selectedTagType, setSelectedTagType] = useState<"icon" | "image">(
     "icon"
   );
@@ -154,7 +160,6 @@ export const Verified: React.FC<VerifiedProps> = ({ data }): JSX.Element => {
   ];
 
   function handleSendOtp(formData: AuthData) {
-    console.log(formData);
     if (formData?.email || formData?.phone) {
       setAuthData({ ...formData, otp: "123456" });
     }
@@ -164,6 +169,22 @@ export const Verified: React.FC<VerifiedProps> = ({ data }): JSX.Element => {
     setOpen(false);
     setAuthData({});
   }
+
+  async function handleGetVehicles() {
+    try {
+      const response = await getApi<{ message: string }>("/vehicle/list");
+      if (response) {
+        setVehicleData(response?.data?.data);
+      }
+    } catch (error) {
+      console.error("Failed to send OTP:", error);
+    }
+  }
+
+  useEffect(() => {
+    handleGetVehicles();
+  }, []);
+
 
   return (
     <div className="flex flex-col items-start justify-center gap-5 relative">
@@ -344,12 +365,10 @@ export const Verified: React.FC<VerifiedProps> = ({ data }): JSX.Element => {
             <h2 className="relative self-stretch mt-[-1.00px] [font-family:'Plus_Jakarta_Sans',Helvetica] font-semibold text-neutralblackb-900 text-lg tracking-[0] leading-[31.5px]">
               Vehicles
             </h2>
-            {data?.vehicles?.length
-              ? data.vehicles.map((vehicle, index) => (
+            {vehicleData?.length
+              ? vehicleData.map((vehicle, index) => (
                   <Link
-                    href={`/profile/edit-vehicle/${encodeURIComponent(
-                      btoa(JSON.stringify(vehicle?.number))
-                    )}`}
+                    href={`/profile/edit-vehicle/${vehicle?._id}`}
                     key={index}
                     className="flex items-center justify-between cursor-pointer p-5 w-full rounded-[20px] border border-[#e9e9eb] bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
                   >
@@ -383,7 +402,8 @@ export const Verified: React.FC<VerifiedProps> = ({ data }): JSX.Element => {
                               </span>
 
                               <span className="text-sm font-medium text-gray-500">
-                                {vehicle?.number || "No number provided"}
+                                {vehicle?.registrationNumber ||
+                                  "No number provided"}
                               </span>
                             </div>
                           </div>

@@ -34,6 +34,7 @@ export const authSlice = createSlice({
       setPersonalDetails: (state, action: PayloadAction<Partial<UserInfo>>) => {
       state.userInfo = {
         ...state.userInfo,
+        login: true,
         ...action.payload
       };
     },

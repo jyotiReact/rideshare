@@ -157,6 +157,19 @@ export interface EmailOptionProps {
 export interface AuthData {
   email?: string;
   phone?: string;
-  otp?: string;
   [key: string]: any;
+  data:any
+}
+
+export interface VehicleBrand {
+  id: string;
+  name: string;
+  models: string[];
+}
+
+export interface Vehicle {
+  brand: string;
+  model: string;
+  color: string;
+  number: string;
 }

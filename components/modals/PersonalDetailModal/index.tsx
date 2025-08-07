@@ -19,6 +19,7 @@ import CustomDatePicker from "@/components/ui/date-picker";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { setPersonalDetails } from "@/store/authslice";
+import { postApi } from "@/services/userService";
 
 // Validation Schema
 const validationSchema = Yup.object().shape({
@@ -58,22 +59,34 @@ export const PersonalDetailModal = ({
       gender: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      // Format date before dispatching
+    onSubmit: async (values) => {
       const formattedValues = {
-        ...values,
-        dateOfBirth: moment(values.dateOfBirth).format("YYYY-MM-DD"),
+        firstName: values.firstName,
+        lastName: values.lastName,
+        dob: moment(values.dateOfBirth).format("YYYY-MM-DD"),
+        gender: Number(values.gender),
       };
 
-      dispatch(
-        //@ts-ignore
+      try {
+        const response = await postApi<{ message: string }>(
+          "/user/checkRegister",
+          formattedValues
+        );
+        if (response.statusCode === 200) {
+          dispatch(
+            //@ts-ignore
 
-        setPersonalDetails({ formattedValues, login: true, ...authData })
-      );
-      setShowProfile(false);
-      setButtonClick("");
-      setOpen(false);
-      setAuthData({});
+            setPersonalDetails(response?.data)
+          );
+          setShowProfile(false);
+          setShowProfile(false);
+          setButtonClick("");
+          setOpen(false);
+          setAuthData(null);
+        }
+      } catch (error) {
+        console.error("Failed to send OTP:", error);
+      }
     },
   });
 
@@ -173,9 +186,9 @@ export const PersonalDetailModal = ({
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="male">Male</SelectItem>
-                <SelectItem value="female">Female</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="1">Male</SelectItem>
+                <SelectItem value="2">Female</SelectItem>
+                <SelectItem value="3">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>

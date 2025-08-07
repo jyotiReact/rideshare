@@ -46,7 +46,6 @@ export const StepThree = (): JSX.Element => {
       }
     }
   }, [step1, step3]);
-  console.log(cities);
 
   const handleCheckboxChange = (cityName: string) => {
     const updatedCities = cities.map((city) =>

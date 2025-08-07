@@ -73,7 +73,6 @@ export const HeroBannerSection = (): JSX.Element => {
 
     router.push(`/search-ride?${queryParams.toString()}`);
   };
-console.log(toLocation)
   return (
     <section className="flex flex-col items-center w-full bg-[url('/images/bannerbg.png')] bg-contain bg-no-repeat md:px-12 px-5">
       <div className="relative w-full md:py-20 py-10">

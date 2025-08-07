@@ -1,3 +1,4 @@
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define types for user information
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
       setPersonalDetails: (state, action: PayloadAction<Partial<UserInfo>>) => {
       state.userInfo = {
         ...state.userInfo,
+        //@ts-ignore
         login: true,
         ...action.payload
       };
